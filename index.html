@@ -15,18 +15,27 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0f;
-      --bg-card: #12121a;
-      --bg-card-hover: #1a1a26;
-      --border: #1e1e2e;
-      --text: #e4e4ef;
-      --text-dim: #8888a0;
-      --accent: #e8453c;
-      --accent-glow: rgba(232, 69, 60, 0.15);
+      --bg: #0a0a0a;
+      --bg-card: #111113;
+      --bg-card-hover: #19191d;
+      --bg-elevated: #161618;
+      --border: #1e1e24;
+      --border-subtle: #2a2a34;
+      --text: #e8e8f0;
+      --text-dim: #7a7a90;
+      --text-muted: #55556a;
+      --accent: #7c3aed;
+      --accent-light: #8b5cf6;
+      --accent-glow: rgba(124, 58, 237, 0.15);
+      --accent-glow-strong: rgba(124, 58, 237, 0.25);
       --green: #34d399;
+      --green-dim: rgba(52, 211, 153, 0.15);
+      --red: #ef4444;
+      --red-dim: rgba(239, 68, 68, 0.15);
       --purple: #a78bfa;
       --orange: #fb923c;
       --blue: #60a5fa;
+      --yellow: #fbbf24;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
     }
@@ -52,8 +61,8 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(ellipse at 20% 50%, rgba(232, 69, 60, 0.04) 0%, transparent 50%),
-                  radial-gradient(ellipse at 80% 20%, rgba(167, 139, 250, 0.03) 0%, transparent 50%),
+      background: radial-gradient(ellipse at 30% 40%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 20%, rgba(139, 92, 246, 0.04) 0%, transparent 50%),
                   radial-gradient(ellipse at 50% 80%, rgba(52, 211, 153, 0.02) 0%, transparent 50%);
       z-index: -1;
       animation: drift 30s ease-in-out infinite alternate;
@@ -62,6 +71,16 @@
     @keyframes drift {
       0% { transform: translate(0, 0) rotate(0deg); }
       100% { transform: translate(-2%, -1%) rotate(1deg); }
+    }
+
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ─── Layout ───────────────────────────────── */
@@ -83,7 +102,7 @@
       right: 0;
       z-index: 100;
       padding: 16px 0;
-      background: rgba(10, 10, 15, 0.8);
+      background: rgba(10, 10, 10, 0.85);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
@@ -135,65 +154,46 @@
 
     /* ─── Hero ─────────────────────────────────── */
     .hero {
-      padding: 180px 0 120px;
+      padding: 160px 0 100px;
       text-align: center;
       position: relative;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      background: var(--accent-glow);
-      border: 1px solid rgba(232, 69, 60, 0.2);
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 32px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
+    .hero-tagline {
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
       font-weight: 800;
       line-height: 1.1;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       letter-spacing: -0.03em;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--accent), var(--orange));
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 50%, var(--purple) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .hero p {
-      font-size: 1.2rem;
+    .hero-subtitle {
+      font-size: 1.15rem;
       color: var(--text-dim);
-      max-width: 600px;
-      margin: 0 auto 40px;
+      max-width: 560px;
+      margin: 0 auto 36px;
       line-height: 1.7;
     }
 
-    .hero-actions {
+    .hero-ctas {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 60px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-size: 1rem;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 0.95rem;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s;
@@ -208,8 +208,9 @@
     }
 
     .btn-primary:hover {
+      background: var(--accent-light);
       transform: translateY(-2px);
-      box-shadow: 0 0 40px rgba(232, 69, 60, 0.25);
+      box-shadow: 0 0 40px var(--accent-glow-strong);
     }
 
     .btn-secondary {
@@ -220,52 +221,349 @@
 
     .btn-secondary:hover {
       background: var(--bg-card-hover);
-      border-color: var(--text-dim);
+      border-color: var(--border-subtle);
     }
 
-    /* ─── Terminal preview ─────────────────────── */
-    .terminal {
-      max-width: 600px;
-      margin: 60px auto 0;
+    .btn-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ─── App Window (macOS-style frame) ──────── */
+    .app-window {
+      max-width: 960px;
+      margin: 0 auto;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
       text-align: left;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 80px var(--accent-glow);
+      animation: fade-in-up 0.8s ease-out;
     }
 
-    .terminal-bar {
+    .app-titlebar {
       display: flex;
       align-items: center;
-      gap: 8px;
       padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.02);
+      background: #161618;
       border-bottom: 1px solid var(--border);
+      gap: 8px;
     }
 
-    .terminal-dot {
+    .app-titlebar-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .app-dot {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #333;
     }
 
-    .terminal-dot:nth-child(1) { background: #ff5f56; }
-    .terminal-dot:nth-child(2) { background: #ffbd2e; }
-    .terminal-dot:nth-child(3) { background: #27c93f; }
+    .app-dot--close { background: #ff5f56; }
+    .app-dot--min { background: #ffbd2e; }
+    .app-dot--max { background: #27c93f; }
 
-    .terminal-body {
-      padding: 20px 24px;
+    .app-titlebar-title {
+      flex: 1;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-right: 52px; /* offset for dots to center */
+    }
+
+    /* ─── App Layout ──────────────────────────── */
+    .app-body {
+      display: flex;
+      min-height: 420px;
+    }
+
+    .app-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* ─── App Header ──────────────────────────── */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .app-header-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .app-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .app-status--live {
+      background: var(--green-dim);
+      color: var(--green);
+    }
+
+    .app-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-live 2s ease-in-out infinite;
+    }
+
+    .app-header-port {
       font-family: var(--mono);
-      font-size: 0.85rem;
-      line-height: 1.8;
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    .terminal-body .prompt { color: var(--green); }
-    .terminal-body .cmd { color: var(--text); }
-    .terminal-body .comment { color: var(--text-dim); }
-    .terminal-body .output { color: var(--text-dim); opacity: 0.7; }
-    .terminal-body .highlight { color: var(--accent); }
+    /* ─── Stats Row ───────────────────────────── */
+    .app-stats {
+      display: flex;
+      padding: 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-stat {
+      flex: 1;
+      padding: 14px 16px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .app-stat:last-child { border-right: none; }
+
+    .app-stat-value {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .app-stat-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    /* ─── Feed ────────────────────────────────── */
+    .app-feed {
+      flex: 1;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .app-event {
+      display: flex;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .app-event:hover {
+      background: rgba(255,255,255,0.015);
+    }
+
+    .app-event:last-child { border-bottom: none; }
+
+    .app-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .app-avatar--1 { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+    .app-avatar--2 { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+    .app-avatar--3 { background: linear-gradient(135deg, #059669, #34d399); }
+    .app-avatar--4 { background: linear-gradient(135deg, #d97706, #fbbf24); }
+
+    .app-event-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .app-event-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .app-event-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .app-event-npub {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .app-event-time {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .app-event-text {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+
+    .app-event-actions {
+      display: flex;
+      gap: 20px;
+    }
+
+    .app-event-action {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.15s;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: var(--font);
+    }
+
+    .app-event-action:hover { color: var(--accent-light); }
+
+    .app-event-action .icon { font-size: 0.85rem; }
+
+    /* ─── Sidebar ─────────────────────────────── */
+    .app-sidebar {
+      width: 200px;
+      border-left: 1px solid var(--border);
+      background: rgba(255,255,255,0.01);
+      flex-shrink: 0;
+    }
+
+    .app-sidebar-header {
+      padding: 14px 16px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-relay-list {
+      padding: 8px 0;
+    }
+
+    .app-relay {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .app-relay-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .app-relay-dot--on { background: var(--green); }
+    .app-relay-dot--off { background: var(--red); opacity: 0.7; }
+
+    .app-relay-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+    }
+
+    .app-relay-latency {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    .app-sidebar-section {
+      padding: 14px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .app-sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .app-wot-bar {
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .app-wot-fill {
+      height: 100%;
+      width: 72%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      border-radius: 3px;
+    }
+
+    .app-wot-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .app-wot-label span {
+      color: var(--accent-light);
+      font-weight: 600;
+    }
 
     /* ─── Features ─────────────────────────────── */
     .features-grid {
@@ -283,7 +581,7 @@
     }
 
     .feature-card:hover {
-      border-color: rgba(232, 69, 60, 0.2);
+      border-color: rgba(124, 58, 237, 0.2);
       background: var(--bg-card-hover);
       transform: translateY(-4px);
     }
@@ -312,12 +610,12 @@
       line-height: 1.6;
     }
 
-    .fi-wot { background: rgba(232, 69, 60, 0.1); }
+    .fi-wot { background: rgba(124, 58, 237, 0.1); }
     .fi-relay { background: rgba(96, 165, 250, 0.1); }
     .fi-media { background: rgba(167, 139, 250, 0.1); }
     .fi-config { background: rgba(251, 146, 60, 0.1); }
     .fi-daemon { background: rgba(52, 211, 153, 0.1); }
-    .fi-offline { background: rgba(232, 69, 60, 0.1); }
+    .fi-offline { background: rgba(124, 58, 237, 0.1); }
 
     /* ─── Section headings ─────────────────────── */
     .section-header {
@@ -406,11 +704,7 @@
       text-align: center;
     }
 
-    .arch-diagram .label {
-      color: var(--text);
-      font-weight: 600;
-    }
-
+    .arch-diagram .label { color: var(--text); font-weight: 600; }
     .arch-diagram .accent { color: var(--accent); }
     .arch-diagram .green { color: var(--green); }
     .arch-diagram .purple { color: var(--purple); }
@@ -418,7 +712,7 @@
 
     /* ─── Gossip section ───────────────────────── */
     .gossip-section {
-      background: linear-gradient(180deg, transparent, rgba(167, 139, 250, 0.03), transparent);
+      background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.03), transparent);
     }
 
     .gossip-content {
@@ -509,6 +803,13 @@
       margin-bottom: 36px;
     }
 
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     /* ─── Footer ───────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
@@ -536,10 +837,23 @@
     /* ─── Responsive ───────────────────────────── */
     @media (max-width: 768px) {
       section { padding: 70px 0; }
-      .hero { padding: 140px 0 80px; }
+      .hero { padding: 130px 0 70px; }
       .nav-links { display: none; }
       .gossip-content { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
+
+      .app-sidebar { display: none; }
+      .app-stats { flex-wrap: wrap; }
+      .app-stat { min-width: 50%; }
+      .app-stat:nth-child(2) { border-right: none; }
+      .app-event-time { display: none; }
+      .hero-ctas .btn { padding: 12px 18px; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 480px) {
+      .app-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .app-event { padding: 12px 14px; }
+      .app-event-actions { gap: 14px; }
     }
   </style>
 </head>
@@ -562,35 +876,178 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="hero-badge">🌶️ Open Source &bull; MIT Licensed</div>
-      <h1>Your data.<br><em>Your relay.</em></h1>
-      <p>A personal Nostr mini-relay that lives on your machine. Give it your npub — it builds your Web of Trust, syncs your feed, caches your media. Offline-first, always yours.</p>
-      <div class="hero-actions">
-        <a href="https://github.com/nostrito/nostrito" class="btn btn-primary">
-          Get Started →
-        </a>
-        <a href="#how" class="btn btn-secondary">
-          How it works
-        </a>
+      <h1 class="hero-tagline">Your relay. Your network.<br>Your machine.</h1>
+      <p class="hero-subtitle">A personal Nostr mini-relay that lives on your machine. Give it your npub — it builds your Web of Trust, syncs your feed, caches your media.</p>
+
+      <div class="hero-ctas">
+        <a href="#" class="btn btn-primary"><span class="btn-icon">🍎</span> Download for Mac</a>
+        <a href="#" class="btn btn-secondary"><span class="btn-icon">🐧</span> Download for Linux</a>
+        <a href="#" class="btn btn-secondary"><span class="btn-icon">🪟</span> Download for Windows</a>
       </div>
 
-      <div class="terminal">
-        <div class="terminal-bar">
-          <div class="terminal-dot"></div>
-          <div class="terminal-dot"></div>
-          <div class="terminal-dot"></div>
+      <!-- App Window Mockup -->
+      <div class="app-window">
+        <div class="app-titlebar">
+          <div class="app-titlebar-dots">
+            <div class="app-dot app-dot--close"></div>
+            <div class="app-dot app-dot--min"></div>
+            <div class="app-dot app-dot--max"></div>
+          </div>
+          <div class="app-titlebar-title">nostrito — ws://localhost:4869</div>
         </div>
-        <div class="terminal-body">
-          <div><span class="prompt">$</span> <span class="cmd">nostrito init --npub npub1fabri...</span></div>
-          <div class="output">✓ Config created at ~/.config/nostrito/config.toml</div>
-          <div class="output">✓ Database initialized</div>
-          <div><span class="prompt">$</span> <span class="cmd">nostrito start</span></div>
-          <div class="output">✓ Building Web of Trust... <span class="highlight">847 trusted pubkeys</span></div>
-          <div class="output">✓ Syncing from 4 relays...</div>
-          <div class="output">✓ Relay live at <span class="highlight">ws://localhost:4869</span></div>
-          <div class="comment"># Point any Nostr client here. Done.</div>
+
+        <div class="app-body">
+          <div class="app-main">
+            <!-- App Header -->
+            <div class="app-header">
+              <div class="app-header-left">
+                <span class="app-header-name">🌶️ nostrito</span>
+                <span class="app-status app-status--live">
+                  <span class="app-status-dot"></span>
+                  Live
+                </span>
+              </div>
+              <span class="app-header-port">ws://localhost:4869</span>
+            </div>
+
+            <!-- Stats -->
+            <div class="app-stats">
+              <div class="app-stat">
+                <div class="app-stat-value" data-target="847" data-counter>847</div>
+                <div class="app-stat-label">Trusted Pubkeys</div>
+              </div>
+              <div class="app-stat">
+                <div class="app-stat-value">4</div>
+                <div class="app-stat-label">Relays Connected</div>
+              </div>
+              <div class="app-stat">
+                <div class="app-stat-value" data-target="12483" data-counter>12,483</div>
+                <div class="app-stat-label">Events Cached</div>
+              </div>
+              <div class="app-stat">
+                <div class="app-stat-value">2.3 GB</div>
+                <div class="app-stat-label">Stored</div>
+              </div>
+            </div>
+
+            <!-- Feed -->
+            <div class="app-feed">
+              <div class="app-event">
+                <div class="app-avatar app-avatar--1">F</div>
+                <div class="app-event-content">
+                  <div class="app-event-meta">
+                    <span class="app-event-name">fiatjaf</span>
+                    <span class="app-event-npub">npub1qe3e...7g8a</span>
+                    <span class="app-event-time">2m ago</span>
+                  </div>
+                  <div class="app-event-text">Nostr is the most censorship-resistant protocol we have. Your relay, your rules. That's the whole point.</div>
+                  <div class="app-event-actions">
+                    <button class="app-event-action"><span class="icon">💬</span> 12</button>
+                    <button class="app-event-action"><span class="icon">🔁</span> 34</button>
+                    <button class="app-event-action"><span class="icon">⚡</span> 2.1k</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="app-event">
+                <div class="app-avatar app-avatar--2">J</div>
+                <div class="app-event-content">
+                  <div class="app-event-meta">
+                    <span class="app-event-name">jb55</span>
+                    <span class="app-event-npub">npub1xtsc...h2ts</span>
+                    <span class="app-event-time">8m ago</span>
+                  </div>
+                  <div class="app-event-text">Just shipped a new notedeck build. The local relay approach is the way — your data should live on your machine, not someone else's server.</div>
+                  <div class="app-event-actions">
+                    <button class="app-event-action"><span class="icon">💬</span> 8</button>
+                    <button class="app-event-action"><span class="icon">🔁</span> 21</button>
+                    <button class="app-event-action"><span class="icon">⚡</span> 890</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="app-event">
+                <div class="app-avatar app-avatar--3">O</div>
+                <div class="app-event-content">
+                  <div class="app-event-meta">
+                    <span class="app-event-name">ODELL</span>
+                    <span class="app-event-npub">npub1qny3...kj5h</span>
+                    <span class="app-event-time">15m ago</span>
+                  </div>
+                  <div class="app-event-text">Running a personal relay is like running your own node. Don't trust, verify. Don't outsource, self-host. 🫡</div>
+                  <div class="app-event-actions">
+                    <button class="app-event-action"><span class="icon">💬</span> 24</button>
+                    <button class="app-event-action"><span class="icon">🔁</span> 67</button>
+                    <button class="app-event-action"><span class="icon">⚡</span> 4.2k</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="app-event">
+                <div class="app-avatar app-avatar--4">G</div>
+                <div class="app-event-content">
+                  <div class="app-event-meta">
+                    <span class="app-event-name">Gigi</span>
+                    <span class="app-event-npub">npub1derg...ql3q</span>
+                    <span class="app-event-time">23m ago</span>
+                  </div>
+                  <div class="app-event-text">Sovereignty isn't just about money. It's about your communications, your data, your identity. Nostr gets this right.</div>
+                  <div class="app-event-actions">
+                    <button class="app-event-action"><span class="icon">💬</span> 18</button>
+                    <button class="app-event-action"><span class="icon">🔁</span> 45</button>
+                    <button class="app-event-action"><span class="icon">⚡</span> 3.7k</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="app-sidebar">
+            <div class="app-sidebar-header">Connected Relays</div>
+            <div class="app-relay-list">
+              <div class="app-relay">
+                <div class="app-relay-dot app-relay-dot--on"></div>
+                <span class="app-relay-name">relay.primal.net</span>
+                <span class="app-relay-latency">24ms</span>
+              </div>
+              <div class="app-relay">
+                <div class="app-relay-dot app-relay-dot--on"></div>
+                <span class="app-relay-name">relay.damus.io</span>
+                <span class="app-relay-latency">31ms</span>
+              </div>
+              <div class="app-relay">
+                <div class="app-relay-dot app-relay-dot--on"></div>
+                <span class="app-relay-name">nos.lol</span>
+                <span class="app-relay-latency">18ms</span>
+              </div>
+              <div class="app-relay">
+                <div class="app-relay-dot app-relay-dot--on"></div>
+                <span class="app-relay-name">relay.nostr.band</span>
+                <span class="app-relay-latency">42ms</span>
+              </div>
+              <div class="app-relay">
+                <div class="app-relay-dot app-relay-dot--off"></div>
+                <span class="app-relay-name">eden.nostr.land</span>
+                <span class="app-relay-latency">—</span>
+              </div>
+            </div>
+
+            <div class="app-sidebar-section">
+              <div class="app-sidebar-section-title">WoT Coverage</div>
+              <div class="app-wot-bar"><div class="app-wot-fill"></div></div>
+              <div class="app-wot-label"><span>72%</span> of your network synced</div>
+            </div>
+
+            <div class="app-sidebar-section">
+              <div class="app-sidebar-section-title">Storage</div>
+              <div class="app-wot-bar"><div class="app-wot-fill" style="width: 46%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
+              <div class="app-wot-label"><span style="color: var(--green);">2.3 GB</span> / 5 GB limit</div>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -644,7 +1101,7 @@
   </section>
 
   <!-- How it works -->
-  <section id="how" style="background: linear-gradient(180deg, transparent, rgba(232, 69, 60, 0.02), transparent);">
+  <section id="how" style="background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.02), transparent);">
     <div class="container">
       <div class="section-header">
         <h2>Three commands. That's it.</h2>
@@ -762,6 +1219,19 @@
       <p>🌶️ nostrito — your relay, your data, your rules.</p>
     </div>
   </footer>
+
+  <!-- Subtle animation: increment event count -->
+  <script>
+    (function() {
+      const eventsEl = document.querySelector('[data-target="12483"]');
+      if (!eventsEl) return;
+      let count = 12483;
+      setInterval(() => {
+        count += Math.floor(Math.random() * 3) + 1;
+        eventsEl.textContent = count.toLocaleString();
+      }, 4000);
+    })();
+  </script>
 
 </body>
 </html>
