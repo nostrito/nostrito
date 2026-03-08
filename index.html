@@ -455,6 +455,151 @@
     .mini-bar-label { font-size: 0.68rem; color: var(--text-muted); }
     .mini-bar-label span { font-weight: 600; }
 
+    /* WoT hop badges */
+    .wot-hop-badge {
+      display: inline-flex; align-items: center; padding: 2px 8px;
+      border-radius: 100px; font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.3px; margin-left: 6px; vertical-align: middle;
+    }
+    .wot-hop-1 { background: rgba(167,139,250,0.15); color: var(--purple); }
+    .wot-hop-2 { background: rgba(96,165,250,0.15); color: var(--blue); }
+
+    /* 24h Activity chart */
+    .dash-activity {
+      padding: 12px 20px 16px; border-bottom: 1px solid var(--border);
+    }
+    .dash-activity-label {
+      font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase;
+      letter-spacing: 0.5px; margin-bottom: 8px;
+    }
+    .dash-activity-bars {
+      display: flex; align-items: flex-end; gap: 3px; height: 40px;
+    }
+    .dash-activity-bar {
+      flex: 1; border-radius: 2px; min-width: 0;
+      transition: background 0.3s;
+    }
+    .dash-activity-bar.recent { background: var(--accent) !important; }
+
+    /* Sync Engine panel */
+    .sync-engine-header {
+      padding: 14px 16px; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .sync-tier {
+      padding: 10px 16px; border-bottom: 1px solid var(--border);
+    }
+    .sync-tier:last-child { border-bottom: none; }
+    .sync-tier-head {
+      display: flex; align-items: center; gap: 6px; margin-bottom: 3px;
+    }
+    .sync-tier-label {
+      font-size: 0.72rem; font-weight: 600; color: var(--text-dim);
+    }
+    .sync-tier-badge {
+      display: inline-flex; align-items: center; padding: 1px 6px;
+      border-radius: 4px; font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.3px;
+    }
+    .sync-tier-badge.fast { background: var(--green-dim); color: var(--green); }
+    .sync-tier-badge.idle { background: rgba(255,255,255,0.04); color: var(--text-muted); }
+    .sync-tier-detail {
+      font-size: 0.7rem; color: var(--text-muted); font-family: var(--mono);
+    }
+    .sync-relay-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.7rem; color: var(--text-dim); padding: 2px 0;
+    }
+    .sync-relay-item .relay-dot { width: 6px; height: 6px; }
+    .sync-relay-item .relay-name { font-family: var(--mono); font-size: 0.68rem; }
+    .sync-relay-item .relay-latency { margin-left: auto; font-family: var(--mono); font-size: 0.62rem; color: var(--text-muted); }
+    .pulse-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+      animation: pulse-live 1.5s ease-in-out infinite;
+    }
+    .sync-tier.dimmed { opacity: 0.45; }
+    .blossom-section {
+      padding: 10px 16px; border-top: 1px solid var(--border);
+    }
+    .blossom-title {
+      font-size: 0.72rem; font-weight: 600; margin-bottom: 4px; color: var(--text-dim);
+    }
+    .blossom-detail {
+      font-size: 0.68rem; color: var(--text-muted);
+    }
+
+    /* DMs page */
+    .dms-page-inner { display: flex; flex-direction: column; height: 100%; }
+    .dm-list { flex: 1; }
+    .dm-item {
+      display: flex; align-items: center; gap: 12px; padding: 14px 20px;
+      border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s;
+      position: relative;
+    }
+    .dm-item:hover { background: rgba(255,255,255,0.015); }
+    .dm-item.active { background: var(--accent-glow); }
+    .dm-avatar {
+      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; font-weight: 700; color: #fff;
+    }
+    .dm-info { flex: 1; min-width: 0; }
+    .dm-name-row { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+    .dm-name { font-weight: 600; font-size: 0.85rem; }
+    .dm-preview { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dm-time { font-size: 0.68rem; color: var(--text-muted); flex-shrink: 0; align-self: flex-start; margin-top: 2px; }
+    .dm-unread-dot {
+      position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    }
+    /* DM conversation view */
+    .dm-conversation { display: none; flex-direction: column; height: 100%; }
+    .dm-conversation.active { display: flex; }
+    .dm-conv-header {
+      display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .dm-conv-back {
+      background: none; border: none; color: var(--text-dim); cursor: pointer;
+      font-size: 1rem; padding: 4px; font-family: var(--font);
+    }
+    .dm-conv-back:hover { color: var(--text); }
+    .dm-conv-name { font-weight: 600; font-size: 0.9rem; }
+    .dm-encrypted {
+      padding: 8px 20px; font-size: 0.7rem; color: var(--green);
+      background: var(--green-dim); text-align: center; font-weight: 500;
+    }
+    .dm-messages { flex: 1; padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; }
+    .dm-msg {
+      max-width: 75%; padding: 10px 14px; border-radius: 12px;
+      font-size: 0.82rem; line-height: 1.5;
+    }
+    .dm-msg.them {
+      align-self: flex-start; background: var(--bg-elevated);
+      border: 1px solid var(--border); color: var(--text-dim);
+    }
+    .dm-msg.me {
+      align-self: flex-end; background: rgba(124,58,237,0.15);
+      color: var(--text); border: 1px solid rgba(124,58,237,0.25);
+    }
+    .dm-msg-time { font-size: 0.62rem; color: var(--text-muted); margin-top: 4px; }
+    .dm-input-bar {
+      display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .dm-input {
+      flex: 1; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-family: var(--font); font-size: 0.82rem;
+      outline: none;
+    }
+    .dm-input::placeholder { color: var(--text-muted); }
+    .dm-send-btn {
+      padding: 8px 16px; background: var(--accent); color: #fff; border: none;
+      border-radius: 8px; font-weight: 600; font-size: 0.8rem; cursor: pointer;
+      font-family: var(--font);
+    }
+
     /* Event card (shared by dashboard + feed) */
     .event-card {
       display: flex; gap: 12px; padding: 16px 20px;
@@ -922,6 +1067,7 @@
             <div class="app-sidebar-nav">
               <div class="app-nav-item active" data-page="dashboard">📊 Dashboard</div>
               <div class="app-nav-item" data-page="feed">📰 Feed</div>
+              <div class="app-nav-item" data-page="dms">💬 DMs</div>
               <div class="app-nav-item" data-page="wot">🕸️ WoT</div>
               <div class="app-nav-item" data-page="storage">💾 Storage</div>
               <div class="app-nav-item" data-page="settings">⚙️ Settings</div>
@@ -937,17 +1083,22 @@
                   </div>
                 </div>
                 <div class="dash-stats">
-                  <div class="dash-stat"><div class="dash-stat-val">847</div><div class="dash-stat-label">Pubkeys</div></div>
-                  <div class="dash-stat"><div class="dash-stat-val">4</div><div class="dash-stat-label">Relays</div></div>
-                  <div class="dash-stat"><div class="dash-stat-val" id="dashEvents">12,483</div><div class="dash-stat-label">Events</div></div>
-                  <div class="dash-stat"><div class="dash-stat-val">2.3 GB</div><div class="dash-stat-label">Storage</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val" id="dashEvents">12,483</div><div class="dash-stat-label">Events Synced</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val">847</div><div class="dash-stat-label">WoT Peers</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val">1,204</div><div class="dash-stat-label">Media Cached</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val" id="dashSyncRate">~3/min</div><div class="dash-stat-label">Sync Rate</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val" id="dashUptime">4h 23m</div><div class="dash-stat-label">Uptime</div></div>
+                </div>
+                <div class="dash-activity">
+                  <div class="dash-activity-label">Last 24h activity</div>
+                  <div class="dash-activity-bars" id="activityChart"></div>
                 </div>
                 <div class="dash-body">
                   <div class="dash-feed">
                     <div class="event-card">
                       <div class="ev-avatar av1">F</div>
                       <div class="ev-content">
-                        <div class="ev-meta"><span class="ev-name">fiatjaf</span><span class="ev-npub">npub1qe3e...7g8a</span><span class="ev-time">2m ago</span></div>
+                        <div class="ev-meta"><span class="ev-name">fiatjaf</span><span class="ev-npub">npub1qe3e...7g8a</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-time">2m ago</span></div>
                         <div class="ev-text">Nostr is the most censorship-resistant protocol we have. Your relay, your rules.</div>
                         <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 12</button><button class="ev-action"><span class="icon">🔁</span> 34</button><button class="ev-action"><span class="icon">⚡</span> 2.1k</button></div>
                       </div>
@@ -955,7 +1106,7 @@
                     <div class="event-card">
                       <div class="ev-avatar av2">J</div>
                       <div class="ev-content">
-                        <div class="ev-meta"><span class="ev-name">jb55</span><span class="ev-npub">npub1xtsc...h2ts</span><span class="ev-time">8m ago</span></div>
+                        <div class="ev-meta"><span class="ev-name">jb55</span><span class="ev-npub">npub1xtsc...h2ts</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-time">8m ago</span></div>
                         <div class="ev-text">Just shipped a new notedeck build. The local relay approach is the way.</div>
                         <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 8</button><button class="ev-action"><span class="icon">🔁</span> 21</button><button class="ev-action"><span class="icon">⚡</span> 890</button></div>
                       </div>
@@ -963,7 +1114,7 @@
                     <div class="event-card">
                       <div class="ev-avatar av3">O</div>
                       <div class="ev-content">
-                        <div class="ev-meta"><span class="ev-name">ODELL</span><span class="ev-npub">npub1qny3...kj5h</span><span class="ev-time">15m ago</span></div>
+                        <div class="ev-meta"><span class="ev-name">ODELL</span><span class="ev-npub">npub1qny3...kj5h</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-time">15m ago</span></div>
                         <div class="ev-text">Running a personal relay is like running your own node. Don't trust, verify. 🫡</div>
                         <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 24</button><button class="ev-action"><span class="icon">🔁</span> 67</button><button class="ev-action"><span class="icon">⚡</span> 4.2k</button></div>
                       </div>
@@ -971,29 +1122,49 @@
                     <div class="event-card">
                       <div class="ev-avatar av4">G</div>
                       <div class="ev-content">
-                        <div class="ev-meta"><span class="ev-name">Gigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="ev-time">23m ago</span></div>
+                        <div class="ev-meta"><span class="ev-name">Gigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-time">23m ago</span></div>
                         <div class="ev-text">Sovereignty isn't just about money. It's about your communications, your data, your identity.</div>
                         <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 18</button><button class="ev-action"><span class="icon">🔁</span> 45</button><button class="ev-action"><span class="icon">⚡</span> 3.7k</button></div>
                       </div>
                     </div>
                   </div>
                   <div class="dash-sidebar">
-                    <div class="dash-sidebar-header">Connected Relays</div>
-                    <div class="dash-relay-list">
-                      <div class="dash-relay"><div class="relay-dot on"></div><span class="relay-name">primal</span><span class="relay-latency">24ms</span></div>
-                      <div class="dash-relay"><div class="relay-dot on"></div><span class="relay-name">damus</span><span class="relay-latency">31ms</span></div>
-                      <div class="dash-relay"><div class="relay-dot on"></div><span class="relay-name">nostr.wine</span><span class="relay-latency">18ms</span></div>
-                      <div class="dash-relay"><div class="relay-dot on"></div><span class="relay-name">yakihonne</span><span class="relay-latency">42ms</span></div>
+                    <div class="sync-engine-header">Sync Engine</div>
+                    <div class="sync-tier">
+                      <div class="sync-tier-head">
+                        <span class="sync-tier-label">Tier 1 — Local Cache</span>
+                        <span class="sync-tier-badge fast">FAST</span>
+                      </div>
+                      <div class="sync-tier-detail">Hit rate: 94%</div>
                     </div>
-                    <div class="sidebar-section">
-                      <div class="sidebar-section-title">WoT Coverage</div>
-                      <div class="mini-bar"><div class="mini-bar-fill" style="width:72%;background:linear-gradient(90deg,var(--accent),var(--accent-light))"></div></div>
-                      <div class="mini-bar-label"><span style="color:var(--accent-light)">72%</span> of your network synced</div>
+                    <div class="sync-tier">
+                      <div class="sync-tier-head">
+                        <span class="sync-tier-label">Tier 2 — WoT Peers</span>
+                        <span class="pulse-dot"></span>
+                      </div>
+                      <div class="sync-tier-detail">2 active</div>
                     </div>
-                    <div class="sidebar-section">
-                      <div class="sidebar-section-title">Storage</div>
-                      <div class="mini-bar"><div class="mini-bar-fill" style="width:46%;background:linear-gradient(90deg,var(--green),#34d399)"></div></div>
-                      <div class="mini-bar-label"><span style="color:var(--green)">2.3 GB</span> / 5 GB limit</div>
+                    <div class="sync-tier">
+                      <div class="sync-tier-head">
+                        <span class="sync-tier-label">Tier 3 — Relays</span>
+                      </div>
+                      <div style="padding-top:4px">
+                        <div class="sync-relay-item"><div class="relay-dot on"></div><span class="relay-name">primal</span><span class="relay-latency">24ms</span></div>
+                        <div class="sync-relay-item"><div class="relay-dot on"></div><span class="relay-name">damus</span><span class="relay-latency">31ms</span></div>
+                        <div class="sync-relay-item"><div class="relay-dot on"></div><span class="relay-name">nostr.wine</span><span class="relay-latency">18ms</span></div>
+                        <div class="sync-relay-item"><div class="relay-dot on"></div><span class="relay-name">yakihonne</span><span class="relay-latency">42ms</span></div>
+                      </div>
+                    </div>
+                    <div class="sync-tier dimmed">
+                      <div class="sync-tier-head">
+                        <span class="sync-tier-label">Tier 4 — Fallback</span>
+                        <span class="sync-tier-badge idle">IDLE</span>
+                      </div>
+                      <div class="sync-tier-detail">Idle</div>
+                    </div>
+                    <div class="blossom-section">
+                      <div class="blossom-title">🌸 Blossom</div>
+                      <div class="blossom-detail">3 images, 1 video cached this hour</div>
                     </div>
                   </div>
                 </div>
@@ -1011,7 +1182,7 @@
                   <div class="event-card" data-kind="note">
                     <div class="ev-avatar av1">F</div>
                     <div class="ev-content">
-                      <div class="ev-meta"><span class="ev-name">fiatjaf</span><span class="ev-npub">npub1qe3e...7g8a</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">2m</span></div>
+                      <div class="ev-meta"><span class="ev-name">fiatjaf</span><span class="ev-npub">npub1qe3e...7g8a</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">2m</span></div>
                       <div class="ev-text">Nostr is the most censorship-resistant protocol we have. Your relay, your rules.</div>
                       <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 12</button><button class="ev-action"><span class="icon">🔁</span> 34</button><button class="ev-action"><span class="icon">⚡</span> 2.1k</button></div>
                     </div>
@@ -1019,7 +1190,7 @@
                   <div class="event-card" data-kind="long">
                     <div class="ev-avatar av5">L</div>
                     <div class="ev-content">
-                      <div class="ev-meta"><span class="ev-name">Lynalden</span><span class="ev-npub">npub1a2c...v4kz</span><span class="ev-kind-tag ev-kind-long">long-form</span><span class="ev-time">12m</span></div>
+                      <div class="ev-meta"><span class="ev-name">Lynalden</span><span class="ev-npub">npub1a2c...v4kz</span><span class="wot-hop-badge wot-hop-2">2-hop</span><span class="ev-kind-tag ev-kind-long">long-form</span><span class="ev-time">12m</span></div>
                       <div class="ev-text">The case for personal relays: Why data sovereignty matters more than convenience. A deep dive into relay architecture...</div>
                       <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 42</button><button class="ev-action"><span class="icon">🔁</span> 89</button><button class="ev-action"><span class="icon">⚡</span> 5.4k</button></div>
                     </div>
@@ -1027,7 +1198,7 @@
                   <div class="event-card" data-kind="note">
                     <div class="ev-avatar av2">J</div>
                     <div class="ev-content">
-                      <div class="ev-meta"><span class="ev-name">jb55</span><span class="ev-npub">npub1xtsc...h2ts</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">18m</span></div>
+                      <div class="ev-meta"><span class="ev-name">jb55</span><span class="ev-npub">npub1xtsc...h2ts</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">18m</span></div>
                       <div class="ev-text">Just shipped a new notedeck build. Local relay approach is the way — your data on your machine.</div>
                       <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 8</button><button class="ev-action"><span class="icon">🔁</span> 21</button><button class="ev-action"><span class="icon">⚡</span> 890</button></div>
                     </div>
@@ -1035,7 +1206,7 @@
                   <div class="event-card" data-kind="repost">
                     <div class="ev-avatar av6">P</div>
                     <div class="ev-content">
-                      <div class="ev-meta"><span class="ev-name">Preston</span><span class="ev-npub">npub1p0w...r4nm</span><span class="ev-kind-tag ev-kind-repost">repost</span><span class="ev-time">25m</span></div>
+                      <div class="ev-meta"><span class="ev-name">Preston</span><span class="ev-npub">npub1p0w...r4nm</span><span class="wot-hop-badge wot-hop-2">2-hop</span><span class="ev-kind-tag ev-kind-repost">repost</span><span class="ev-time">25m</span></div>
                       <div class="ev-text">🔁 Bitcoin is freedom money. Nostr is freedom communication. Together, unstoppable.</div>
                       <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 5</button><button class="ev-action"><span class="icon">🔁</span> 112</button><button class="ev-action"><span class="icon">⚡</span> 1.8k</button></div>
                     </div>
@@ -1043,7 +1214,7 @@
                   <div class="event-card" data-kind="note">
                     <div class="ev-avatar av3">O</div>
                     <div class="ev-content">
-                      <div class="ev-meta"><span class="ev-name">ODELL</span><span class="ev-npub">npub1qny3...kj5h</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">32m</span></div>
+                      <div class="ev-meta"><span class="ev-name">ODELL</span><span class="ev-npub">npub1qny3...kj5h</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">32m</span></div>
                       <div class="ev-text">Running a personal relay is like running your own node. Don't trust, verify. 🫡</div>
                       <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 24</button><button class="ev-action"><span class="icon">🔁</span> 67</button><button class="ev-action"><span class="icon">⚡</span> 4.2k</button></div>
                     </div>
@@ -1051,7 +1222,7 @@
                   <div class="event-card" data-kind="long">
                     <div class="ev-avatar av7">D</div>
                     <div class="ev-content">
-                      <div class="ev-meta"><span class="ev-name">DerGigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="ev-kind-tag ev-kind-long">long-form</span><span class="ev-time">45m</span></div>
+                      <div class="ev-meta"><span class="ev-name">DerGigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-kind-tag ev-kind-long">long-form</span><span class="ev-time">45m</span></div>
                       <div class="ev-text">21 Lessons in Digital Sovereignty: What Bitcoin taught me about owning my data, my keys, and my future...</div>
                       <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 67</button><button class="ev-action"><span class="icon">🔁</span> 134</button><button class="ev-action"><span class="icon">⚡</span> 8.9k</button></div>
                     </div>
@@ -1059,9 +1230,151 @@
                   <div class="event-card" data-kind="repost">
                     <div class="ev-avatar av4">G</div>
                     <div class="ev-content">
-                      <div class="ev-meta"><span class="ev-name">Gigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="ev-kind-tag ev-kind-repost">repost</span><span class="ev-time">1h</span></div>
+                      <div class="ev-meta"><span class="ev-name">Gigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="wot-hop-badge wot-hop-1">1-hop</span><span class="ev-kind-tag ev-kind-repost">repost</span><span class="ev-time">1h</span></div>
                       <div class="ev-text">🔁 The internet was supposed to be decentralized. Nostr actually delivers on that promise.</div>
                       <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 31</button><button class="ev-action"><span class="icon">🔁</span> 78</button><button class="ev-action"><span class="icon">⚡</span> 2.6k</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DMs -->
+              <div class="app-page" id="page-dms">
+                <div class="dms-page-inner">
+                  <div class="dm-list" id="dmList">
+                    <div class="dm-item" data-dm="fiatjaf" style="padding-left:28px">
+                      <div class="dm-unread-dot"></div>
+                      <div class="dm-avatar av1">F</div>
+                      <div class="dm-info">
+                        <div class="dm-name-row"><span class="dm-name">fiatjaf</span><span class="wot-hop-badge wot-hop-1">1-hop</span></div>
+                        <div class="dm-preview">Have you tried the new relay config? It's way faster now</div>
+                      </div>
+                      <span class="dm-time">3m ago</span>
+                    </div>
+                    <div class="dm-item" data-dm="jb55">
+                      <div class="dm-avatar av2">J</div>
+                      <div class="dm-info">
+                        <div class="dm-name-row"><span class="dm-name">jb55</span><span class="wot-hop-badge wot-hop-1">1-hop</span></div>
+                        <div class="dm-preview">notedeck integration is looking solid 🔥</div>
+                      </div>
+                      <span class="dm-time">1h ago</span>
+                    </div>
+                    <div class="dm-item" data-dm="lynalden">
+                      <div class="dm-avatar av5">L</div>
+                      <div class="dm-info">
+                        <div class="dm-name-row"><span class="dm-name">Lynalden</span><span class="wot-hop-badge wot-hop-2">2-hop</span></div>
+                        <div class="dm-preview">Thanks for the article recommendation, really insightful</div>
+                      </div>
+                      <span class="dm-time">3h ago</span>
+                    </div>
+                    <div class="dm-item" data-dm="odell">
+                      <div class="dm-avatar av3">O</div>
+                      <div class="dm-info">
+                        <div class="dm-name-row"><span class="dm-name">ODELL</span><span class="wot-hop-badge wot-hop-1">1-hop</span></div>
+                        <div class="dm-preview">Let's do a citadel dispatch episode on personal relays</div>
+                      </div>
+                      <span class="dm-time">5h ago</span>
+                    </div>
+                    <div class="dm-item" data-dm="gigi">
+                      <div class="dm-avatar av4">G</div>
+                      <div class="dm-info">
+                        <div class="dm-name-row"><span class="dm-name">Gigi</span><span class="wot-hop-badge wot-hop-1">1-hop</span></div>
+                        <div class="dm-preview">The sovereignty angle is exactly right. Ship it.</div>
+                      </div>
+                      <span class="dm-time">1d ago</span>
+                    </div>
+                  </div>
+                  <!-- Conversation views -->
+                  <div class="dm-conversation" id="dm-conv-fiatjaf">
+                    <div class="dm-conv-header">
+                      <button class="dm-conv-back" data-back="true">← </button>
+                      <div class="dm-avatar av1" style="width:30px;height:30px;font-size:0.75rem">F</div>
+                      <span class="dm-conv-name">fiatjaf</span>
+                      <span class="wot-hop-badge wot-hop-1">1-hop</span>
+                    </div>
+                    <div class="dm-encrypted">🔒 End-to-end encrypted · NIP-44</div>
+                    <div class="dm-messages">
+                      <div class="dm-msg them">Hey, have you tried the new relay config format?<div class="dm-msg-time">3:42 PM</div></div>
+                      <div class="dm-msg me">Not yet — still on the old TOML setup. What changed?<div class="dm-msg-time">3:44 PM</div></div>
+                      <div class="dm-msg them">It's way faster now. Just relay names, no URLs needed. nostrito resolves them.<div class="dm-msg-time">3:45 PM</div></div>
+                      <div class="dm-msg me">That's exactly what we needed. Trying it now 🔥<div class="dm-msg-time">3:47 PM</div></div>
+                    </div>
+                    <div class="dm-input-bar">
+                      <input type="text" class="dm-input" placeholder="Message fiatjaf..." readonly>
+                      <button class="dm-send-btn">Send</button>
+                    </div>
+                  </div>
+                  <div class="dm-conversation" id="dm-conv-jb55">
+                    <div class="dm-conv-header">
+                      <button class="dm-conv-back" data-back="true">← </button>
+                      <div class="dm-avatar av2" style="width:30px;height:30px;font-size:0.75rem">J</div>
+                      <span class="dm-conv-name">jb55</span>
+                      <span class="wot-hop-badge wot-hop-1">1-hop</span>
+                    </div>
+                    <div class="dm-encrypted">🔒 End-to-end encrypted · NIP-44</div>
+                    <div class="dm-messages">
+                      <div class="dm-msg them">The notedeck integration is looking solid 🔥<div class="dm-msg-time">1:12 PM</div></div>
+                      <div class="dm-msg me">Yeah, local relay + notedeck is a killer combo<div class="dm-msg-time">1:15 PM</div></div>
+                      <div class="dm-msg them">Exactly. No round-trips to remote relays for your own data<div class="dm-msg-time">1:16 PM</div></div>
+                    </div>
+                    <div class="dm-input-bar">
+                      <input type="text" class="dm-input" placeholder="Message jb55..." readonly>
+                      <button class="dm-send-btn">Send</button>
+                    </div>
+                  </div>
+                  <div class="dm-conversation" id="dm-conv-lynalden">
+                    <div class="dm-conv-header">
+                      <button class="dm-conv-back" data-back="true">← </button>
+                      <div class="dm-avatar av5" style="width:30px;height:30px;font-size:0.75rem">L</div>
+                      <span class="dm-conv-name">Lynalden</span>
+                      <span class="wot-hop-badge wot-hop-2">2-hop</span>
+                    </div>
+                    <div class="dm-encrypted">🔒 End-to-end encrypted · NIP-44</div>
+                    <div class="dm-messages">
+                      <div class="dm-msg me">Have you read the new paper on relay economics?<div class="dm-msg-time">10:30 AM</div></div>
+                      <div class="dm-msg them">Yes! Really insightful. The WoT filtering angle is underexplored<div class="dm-msg-time">10:45 AM</div></div>
+                      <div class="dm-msg me">Exactly — that's what nostrito does at the personal level<div class="dm-msg-time">10:48 AM</div></div>
+                      <div class="dm-msg them">Thanks for the article recommendation, really insightful<div class="dm-msg-time">10:52 AM</div></div>
+                    </div>
+                    <div class="dm-input-bar">
+                      <input type="text" class="dm-input" placeholder="Message Lynalden..." readonly>
+                      <button class="dm-send-btn">Send</button>
+                    </div>
+                  </div>
+                  <div class="dm-conversation" id="dm-conv-odell">
+                    <div class="dm-conv-header">
+                      <button class="dm-conv-back" data-back="true">← </button>
+                      <div class="dm-avatar av3" style="width:30px;height:30px;font-size:0.75rem">O</div>
+                      <span class="dm-conv-name">ODELL</span>
+                      <span class="wot-hop-badge wot-hop-1">1-hop</span>
+                    </div>
+                    <div class="dm-encrypted">🔒 End-to-end encrypted · NIP-44</div>
+                    <div class="dm-messages">
+                      <div class="dm-msg them">Let's do a citadel dispatch episode on personal relays<div class="dm-msg-time">9:20 AM</div></div>
+                      <div class="dm-msg me">I'm down. The sovereignty narrative writes itself<div class="dm-msg-time">9:25 AM</div></div>
+                      <div class="dm-msg them">Perfect. I'll set it up for next week 🫡<div class="dm-msg-time">9:28 AM</div></div>
+                    </div>
+                    <div class="dm-input-bar">
+                      <input type="text" class="dm-input" placeholder="Message ODELL..." readonly>
+                      <button class="dm-send-btn">Send</button>
+                    </div>
+                  </div>
+                  <div class="dm-conversation" id="dm-conv-gigi">
+                    <div class="dm-conv-header">
+                      <button class="dm-conv-back" data-back="true">← </button>
+                      <div class="dm-avatar av4" style="width:30px;height:30px;font-size:0.75rem">G</div>
+                      <span class="dm-conv-name">Gigi</span>
+                      <span class="wot-hop-badge wot-hop-1">1-hop</span>
+                    </div>
+                    <div class="dm-encrypted">🔒 End-to-end encrypted · NIP-44</div>
+                    <div class="dm-messages">
+                      <div class="dm-msg me">What do you think about the data sovereignty framing?<div class="dm-msg-time">Yesterday</div></div>
+                      <div class="dm-msg them">The sovereignty angle is exactly right. Ship it.<div class="dm-msg-time">Yesterday</div></div>
+                      <div class="dm-msg me">Will do. Thanks for the feedback 🤝<div class="dm-msg-time">Yesterday</div></div>
+                    </div>
+                    <div class="dm-input-bar">
+                      <input type="text" class="dm-input" placeholder="Message Gigi..." readonly>
+                      <button class="dm-send-btn">Send</button>
                     </div>
                   </div>
                 </div>
@@ -1504,6 +1817,59 @@
       count += Math.floor(Math.random() * 3) + 1;
       dashEventsEl.textContent = count.toLocaleString();
     }, 4000);
+
+    // ═══ SYNC RATE ANIMATION ═══
+    var syncRateEl = document.getElementById('dashSyncRate');
+    var syncRates = ['~2/min', '~3/min', '~4/min', '~3/min'];
+    var syncIdx = 0;
+    setInterval(function() {
+      syncIdx = (syncIdx + 1) % syncRates.length;
+      syncRateEl.textContent = syncRates[syncIdx];
+    }, 5000);
+
+    // ═══ UPTIME COUNTER ═══
+    var uptimeEl = document.getElementById('dashUptime');
+    var uptimeMinutes = 263; // 4h 23m
+    setInterval(function() {
+      uptimeMinutes++;
+      var h = Math.floor(uptimeMinutes / 60);
+      var m = uptimeMinutes % 60;
+      uptimeEl.textContent = h + 'h ' + m + 'm';
+    }, 60000);
+
+    // ═══ 24H ACTIVITY CHART ═══
+    var activityData = [12,8,5,3,2,2,4,18,35,52,61,58,55,63,70,65,48,42,55,68,45,38,28,20];
+    var chartEl = document.getElementById('activityChart');
+    var maxVal = Math.max.apply(null, activityData);
+    activityData.forEach(function(val, i) {
+      var bar = document.createElement('div');
+      bar.className = 'dash-activity-bar';
+      var pct = (val / maxVal) * 100;
+      bar.style.height = Math.max(pct, 4) + '%';
+      bar.style.background = 'rgba(124,58,237,0.2)';
+      if (i >= 20) bar.classList.add('recent');
+      chartEl.appendChild(bar);
+    });
+
+    // ═══ DM NAVIGATION ═══
+    var dmList = document.getElementById('dmList');
+    var dmItems = document.querySelectorAll('.dm-item');
+    var dmConvs = document.querySelectorAll('.dm-conversation');
+    dmItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        var dmId = this.getAttribute('data-dm');
+        dmList.style.display = 'none';
+        dmConvs.forEach(function(c) { c.classList.remove('active'); });
+        var conv = document.getElementById('dm-conv-' + dmId);
+        if (conv) conv.classList.add('active');
+      });
+    });
+    document.querySelectorAll('.dm-conv-back').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        dmConvs.forEach(function(c) { c.classList.remove('active'); });
+        dmList.style.display = 'block';
+      });
+    });
   })();
   </script>
 
