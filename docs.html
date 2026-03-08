@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nostrito — Documentation</title>
+  <meta name="description" content="Documentation for nostrito, your personal Nostr mini-relay.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #111113;
+      --bg-card-hover: #19191d;
+      --bg-elevated: #161618;
+      --border: #1e1e24;
+      --border-subtle: #2a2a34;
+      --text: #e8e8f0;
+      --text-dim: #7a7a90;
+      --text-muted: #55556a;
+      --accent: #7c3aed;
+      --accent-light: #8b5cf6;
+      --accent-glow: rgba(124, 58, 237, 0.15);
+      --green: #34d399;
+      --purple: #a78bfa;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span { font-size: 1.4rem; }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-links a.active { color: var(--accent-light); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* Docs layout */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 60px;
+      min-height: 100vh;
+      gap: 0;
+    }
+
+    /* Sidebar */
+    .docs-sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding: 24px 0;
+      border-right: 1px solid var(--border);
+    }
+
+    .docs-sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      padding: 0 20px 12px;
+    }
+
+    .docs-sidebar-nav {
+      list-style: none;
+    }
+
+    .docs-sidebar-nav a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+
+    .docs-sidebar-nav a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .docs-sidebar-nav a.active {
+      color: var(--accent-light);
+      background: var(--accent-glow);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Content */
+    .docs-content {
+      flex: 1;
+      min-width: 0;
+      padding: 24px 0 60px 48px;
+    }
+
+    .docs-content h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .docs-content .docs-lead {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .docs-section {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .docs-section:last-child {
+      border-bottom: none;
+    }
+
+    .docs-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .docs-section h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 24px 0 8px;
+    }
+
+    .docs-section p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .docs-stub {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    .docs-stub-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .docs-stub-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .docs-stub-text strong {
+      color: var(--text-dim);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .docs-code {
+      display: block;
+      margin: 16px 0;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--green);
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .docs-list {
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    .docs-list li {
+      padding: 6px 0;
+      color: var(--text-dim);
+      font-size: 0.92rem;
+    }
+
+    .docs-list li::before {
+      content: '→';
+      color: var(--accent-light);
+      margin-right: 10px;
+      font-weight: 600;
+    }
+
+    .docs-list li code {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      background: var(--bg-card);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--purple);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .docs-sidebar { display: none; }
+      .docs-content { padding-left: 0; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo"><span>🌶️</span> nostrito</a>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#demo">Demo</a></li>
+        <li><a href="docs.html" class="active">Docs</a></li>
+        <li><a href="https://github.com/nostrito/nostrito" class="nav-cta">GitHub →</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="docs-sidebar-title">Documentation</div>
+      <ul class="docs-sidebar-nav">
+        <li><a href="#getting-started" class="active">Getting Started</a></li>
+        <li><a href="#configuration">Configuration</a></li>
+        <li><a href="#relay-aliases">Relay Aliases</a></li>
+        <li><a href="#storage">Storage</a></li>
+        <li><a href="#wot">Web of Trust</a></li>
+        <li><a href="#advanced">Advanced</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </aside>
+
+    <main class="docs-content">
+      <h1>Documentation</h1>
+      <p class="docs-lead">Everything you need to set up and configure your personal Nostr relay. nostrito is currently in active development — docs will expand as features ship.</p>
+
+      <div class="docs-section" id="getting-started">
+        <h2>Getting Started</h2>
+        <p>nostrito is a personal Nostr relay that runs on your machine. It syncs your feed, caches media, and serves everything locally over WebSocket.</p>
+
+        <h3>Installation</h3>
+        <p>Download the latest release for your platform from the GitHub releases page, or build from source:</p>
+        <code class="docs-code">git clone https://github.com/nostrito/nostrito.git
+cd nostrito
+cargo build --release</code>
+
+        <h3>Quick Start</h3>
+        <p>Open the app and paste your npub. nostrito handles the rest — database setup, relay connections, and trust graph computation.</p>
+
+        <div class="docs-stub">
+          <span class="docs-stub-icon">🚧</span>
+          <div class="docs-stub-text">
+            <strong>Coming soon</strong>
+            Detailed installation guides for macOS, Linux, and Windows with platform-specific instructions.
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section" id="configuration">
+        <h2>Configuration</h2>
+        <p>nostrito uses a TOML configuration file stored alongside its database. Most settings can be configured through the GUI, but power users can edit the file directly.</p>
+
+        <h3>Config file location</h3>
+        <ul class="docs-list">
+          <li><code>~/.config/nostrito/config.toml</code> on Linux</li>
+          <li><code>~/Library/Application Support/nostrito/config.toml</code> on macOS</li>
+          <li><code>%APPDATA%\nostrito\config.toml</code> on Windows</li>
+        </ul>
+
+        <div class="docs-stub">
+          <span class="docs-stub-icon">🚧</span>
+          <div class="docs-stub-text">
+            <strong>Coming soon</strong>
+            Full configuration reference with all available keys, defaults, and examples.
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section" id="relay-aliases">
+        <h2>Relay Aliases</h2>
+        <p>nostrito lets you refer to relays by name instead of WebSocket URLs. Built-in aliases are provided for popular relays.</p>
+
+        <h3>Built-in aliases</h3>
+        <ul class="docs-list">
+          <li><code>primal</code> — Fast global relay</li>
+          <li><code>damus</code> — iOS community hub</li>
+          <li><code>nos</code> — Curated social relay</li>
+          <li><code>snort</code> — Web client relay</li>
+          <li><code>coracle</code> — Discovery-focused</li>
+          <li><code>nostr.wine</code> — Premium paid relay</li>
+          <li><code>amethyst</code> — Android community</li>
+          <li><code>yakihonne</code> — Long-form content</li>
+        </ul>
+
+        <div class="docs-stub">
+          <span class="docs-stub-icon">🚧</span>
+          <div class="docs-stub-text">
+            <strong>Coming soon</strong>
+            How to add custom relay aliases and configure relay-specific sync behavior.
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section" id="storage">
+        <h2>Storage</h2>
+        <p>nostrito gives you fine-grained control over what gets stored locally. Your own events are always kept. Others' events can be filtered by kind, trust depth, and quota.</p>
+
+        <h3>Storage tiers</h3>
+        <ul class="docs-list">
+          <li><strong>Your events</strong> — Always stored, 100%, no exceptions</li>
+          <li><strong>Others' events</strong> — Configurable by WoT depth and storage quota</li>
+          <li><strong>Media (Blossom)</strong> — Images, videos, and audio cached locally with hash verification</li>
+        </ul>
+
+        <div class="docs-stub">
+          <span class="docs-stub-icon">🚧</span>
+          <div class="docs-stub-text">
+            <strong>Coming soon</strong>
+            Detailed storage configuration, cleanup policies, and database management.
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section" id="wot">
+        <h2>Web of Trust</h2>
+        <p>nostrito computes your trust graph from your follow list, recursively. It uses this to decide whose events to sync and store.</p>
+
+        <h3>How it works</h3>
+        <p>Starting from your npub, nostrito fetches your follow list (kind 3), then your follows' follow lists, and so on up to a configurable depth. Each hop reduces trust weight.</p>
+
+        <ul class="docs-list">
+          <li><strong>1 hop</strong> — People you directly follow</li>
+          <li><strong>2 hops</strong> — People your follows follow</li>
+          <li><strong>3 hops</strong> — Extended network (lower trust weight)</li>
+        </ul>
+
+        <div class="docs-stub">
+          <span class="docs-stub-icon">🚧</span>
+          <div class="docs-stub-text">
+            <strong>Coming soon</strong>
+            Trust scoring algorithm, WoT refresh intervals, and manual trust overrides.
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section" id="advanced">
+        <h2>Advanced</h2>
+        <p>Advanced configuration options for power users.</p>
+
+        <h3>Relay server</h3>
+        <p>nostrito runs a NIP-01 compliant WebSocket relay on <code>localhost:4869</code> by default. You can change the port and bind address in settings.</p>
+
+        <h3>Daemon mode</h3>
+        <p>nostrito can run as a background daemon that starts with your system and syncs continuously.</p>
+
+        <div class="docs-stub">
+          <span class="docs-stub-icon">🚧</span>
+          <div class="docs-stub-text">
+            <strong>Coming soon</strong>
+            Daemon configuration, logging, auto-start setup, and performance tuning.
+          </div>
+        </div>
+      </div>
+
+      <div class="docs-section" id="faq">
+        <h2>FAQ</h2>
+
+        <h3>What NIPs does nostrito support?</h3>
+        <p>nostrito implements NIP-01 (basic protocol) with plans to support additional NIPs as needed. The goal is compatibility with all major Nostr clients.</p>
+
+        <h3>Does nostrito work offline?</h3>
+        <p>Yes. Once events and media are synced, everything is available locally. Your relay serves cached data even without an internet connection.</p>
+
+        <h3>How much disk space does nostrito use?</h3>
+        <p>It depends on your configuration. Your own events typically use under 500 MB. Others' events and media are configurable with storage quotas.</p>
+
+        <h3>Can I use nostrito with any Nostr client?</h3>
+        <p>Any client that supports adding a custom relay can connect to nostrito. Just add your local relay address in your client's relay settings.</p>
+
+        <div class="docs-stub">
+          <span class="docs-stub-icon">🚧</span>
+          <div class="docs-stub-text">
+            <strong>Coming soon</strong>
+            More questions and answers as the community grows. Open an issue on GitHub to suggest FAQ entries.
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://github.com/nostrito/nostrito">GitHub</a>
+        <a href="docs.html">Docs</a>
+        <a href="https://github.com/nostrito/nostrito/blob/main/SPEC.md">Spec</a>
+        <a href="https://github.com/nostrito/nostrito/blob/main/LICENSE">MIT License</a>
+      </div>
+      <p>🌶️ nostrito — your relay, your data, your rules.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Highlight active sidebar link on scroll
+    const sections = document.querySelectorAll('.docs-section');
+    const navLinks = document.querySelectorAll('.docs-sidebar-nav a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(`.docs-sidebar-nav a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
