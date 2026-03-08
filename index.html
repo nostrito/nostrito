@@ -835,6 +835,592 @@
     }
 
     /* ─── Responsive ───────────────────────────── */
+    /* ─── Wizard ───────────────────────────────── */
+    .wizard-body {
+      padding: 0;
+    }
+
+    .wizard-steps-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 28px 24px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wizard-step-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .wizard-step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      border: 2px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .wizard-step-dot.active .wizard-step-num {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .wizard-step-dot.completed .wizard-step-num {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .wizard-step-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .wizard-step-dot.active .wizard-step-label { color: var(--accent-light); }
+    .wizard-step-dot.completed .wizard-step-label { color: var(--green); }
+
+    .wizard-step-line {
+      width: 60px;
+      height: 2px;
+      background: var(--border);
+      margin: 0 16px;
+      margin-bottom: 22px;
+    }
+
+    .wizard-step-line.completed {
+      background: var(--green);
+    }
+
+    .wizard-panel {
+      min-height: 380px;
+    }
+
+    .wizard-panel-inner {
+      padding: 32px 36px;
+    }
+
+    .wizard-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .wizard-subtitle {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .wizard-input-group {
+      max-width: 480px;
+    }
+
+    .wizard-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .wizard-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .wizard-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Relay grid */
+    .relay-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .relay-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .relay-card:hover {
+      border-color: var(--border-subtle);
+      background: var(--bg-card-hover);
+    }
+
+    .relay-card.relay-on {
+      border-color: rgba(124, 58, 237, 0.3);
+      background: rgba(124, 58, 237, 0.05);
+    }
+
+    .relay-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .relay-card-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .relay-card-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* Toggle switch */
+    .toggle {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .toggle input { opacity: 0; width: 0; height: 0; }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--border-subtle);
+      border-radius: 22px;
+      transition: 0.2s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      left: 3px;
+      bottom: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+
+    .toggle input:checked + .toggle-slider {
+      background: var(--accent);
+    }
+
+    .toggle input:checked + .toggle-slider::before {
+      transform: translateX(18px);
+    }
+
+    /* Storage wizard */
+    .storage-section {
+      margin-bottom: 20px;
+    }
+
+    .storage-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      gap: 20px;
+    }
+
+    .storage-row.storage-locked {
+      border-color: rgba(52, 211, 153, 0.2);
+      background: rgba(52, 211, 153, 0.03);
+    }
+
+    .storage-row-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .storage-row-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .storage-row-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .storage-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 160px;
+    }
+
+    .storage-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .storage-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), #34d399);
+      border-radius: 4px;
+    }
+
+    .storage-bar-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--green);
+      font-family: var(--mono);
+    }
+
+    .storage-slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 180px;
+    }
+
+    .storage-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .storage-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .storage-slider-value {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      font-family: var(--mono);
+      min-width: 40px;
+    }
+
+    .storage-toggles {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .mini-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      cursor: default;
+    }
+
+    .mini-toggle.active {
+      color: var(--accent-light);
+      border-color: rgba(124, 58, 237, 0.3);
+      background: rgba(124, 58, 237, 0.06);
+    }
+
+    .storage-radio-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .storage-radio {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      cursor: default;
+    }
+
+    .storage-radio.active {
+      color: var(--accent-light);
+      border-color: var(--accent);
+      background: rgba(124, 58, 237, 0.08);
+    }
+
+    .wizard-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 36px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .wizard-btn {
+      min-width: 100px;
+    }
+
+    /* ─── Settings ─────────────────────────────── */
+    .settings-body {
+      display: flex;
+      min-height: 520px;
+    }
+
+    .settings-sidebar {
+      width: 200px;
+      border-right: 1px solid var(--border);
+      background: rgba(255,255,255,0.01);
+      padding: 8px 0;
+      flex-shrink: 0;
+    }
+
+    .settings-nav-item {
+      padding: 11px 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      cursor: default;
+      transition: all 0.15s;
+      border-left: 3px solid transparent;
+    }
+
+    .settings-nav-item:hover {
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+    }
+
+    .settings-nav-item.active {
+      color: var(--accent-light);
+      background: var(--accent-glow);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .settings-content {
+      flex: 1;
+      padding: 28px 32px;
+      overflow-y: auto;
+    }
+
+    .settings-content-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .settings-content-subtitle {
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      margin-bottom: 24px;
+    }
+
+    /* Kind grid */
+    .kind-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .kind-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .kind-card:hover {
+      border-color: var(--border-subtle);
+      background: var(--bg-card-hover);
+    }
+
+    .kind-card.kind-on {
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+
+    .kind-card.kind-locked {
+      border-color: rgba(52, 211, 153, 0.2);
+    }
+
+    .kind-card.kind-wide {
+      grid-column: span 3;
+    }
+
+    .kind-card-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .kind-icon {
+      font-size: 1.1rem;
+    }
+
+    .kind-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .kind-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    .kind-card .toggle {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+    }
+
+    /* Others' storage preview */
+    .others-storage-preview {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .others-storage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+    }
+
+    .others-storage-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--accent-light);
+    }
+
+    .others-storage-body {
+      padding: 20px;
+    }
+
+    .others-wot-selector {
+      margin-bottom: 16px;
+    }
+
+    .others-wot-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .pill-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pill {
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: default;
+    }
+
+    .pill.active {
+      color: #fff;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .others-quota {
+      margin-bottom: 16px;
+    }
+
+    .others-kind-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .others-kind {
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .others-kind.on span {
+      color: var(--green);
+    }
+
+    .others-kind.off {
+      opacity: 0.5;
+    }
+
+    .others-kind.off span {
+      color: var(--red);
+    }
+
     @media (max-width: 768px) {
       section { padding: 70px 0; }
       .hero { padding: 130px 0 70px; }
@@ -848,6 +1434,18 @@
       .app-stat:nth-child(2) { border-right: none; }
       .app-event-time { display: none; }
       .hero-ctas .btn { padding: 12px 18px; font-size: 0.85rem; }
+
+      .relay-grid { grid-template-columns: 1fr; }
+      .kind-grid { grid-template-columns: repeat(2, 1fr); }
+      .kind-card.kind-wide { grid-column: span 2; }
+      .settings-sidebar { display: none; }
+      .settings-body { flex-direction: column; }
+      .wizard-panel-inner { padding: 24px 20px; }
+      .wizard-nav { padding: 16px 20px 20px; }
+      .storage-row { flex-direction: column; align-items: flex-start; }
+      .storage-slider-wrap { width: 100%; }
+      .storage-bar-wrap { width: 100%; }
+      .storage-radio-group { width: 100%; }
     }
 
     @media (max-width: 480px) {
@@ -867,6 +1465,7 @@
         <li><a href="#features">Features</a></li>
         <li><a href="#how">How it works</a></li>
         <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#wizard">Setup</a></li>
         <li><a href="#gossip">Gossip</a></li>
         <li><a href="https://github.com/nostrito/nostrito" class="nav-cta">GitHub →</a></li>
       </ul>
@@ -1216,6 +1815,342 @@
       <p>🌶️ nostrito — your relay, your data, your rules.</p>
     </div>
   </footer>
+
+  <!-- Installation Wizard -->
+  <section id="wizard">
+    <div class="container">
+      <div class="section-header">
+        <h2>Set up in three steps.</h2>
+        <p>No terminal. No config files. Just tell nostrito who you are.</p>
+      </div>
+      <div class="app-window">
+        <div class="app-titlebar">
+          <div class="app-titlebar-dots">
+            <div class="app-dot app-dot--close"></div>
+            <div class="app-dot app-dot--min"></div>
+            <div class="app-dot app-dot--max"></div>
+          </div>
+          <div class="app-titlebar-title">nostrito — Setup</div>
+        </div>
+        <div class="wizard-body">
+          <!-- Step indicators -->
+          <div class="wizard-steps-indicator">
+            <div class="wizard-step-dot completed" data-step="1">
+              <span class="wizard-step-num">✓</span>
+              <span class="wizard-step-label">Identity</span>
+            </div>
+            <div class="wizard-step-line completed"></div>
+            <div class="wizard-step-dot active" data-step="2">
+              <span class="wizard-step-num">2</span>
+              <span class="wizard-step-label">Relays</span>
+            </div>
+            <div class="wizard-step-line"></div>
+            <div class="wizard-step-dot" data-step="3">
+              <span class="wizard-step-num">3</span>
+              <span class="wizard-step-label">Storage</span>
+            </div>
+          </div>
+
+          <!-- Step 1: Identity -->
+          <div class="wizard-panel" data-wizard-step="1" style="display: none;">
+            <div class="wizard-panel-inner">
+              <h3 class="wizard-title">Your npub</h3>
+              <p class="wizard-subtitle">Your relay, your rules. Only you connect to it.</p>
+              <div class="wizard-input-group">
+                <input type="text" class="wizard-input" placeholder="npub1..." readonly>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Relays (active) -->
+          <div class="wizard-panel" data-wizard-step="2">
+            <div class="wizard-panel-inner">
+              <h3 class="wizard-title">Where do you want to sync from?</h3>
+              <p class="wizard-subtitle">Pick by name. We handle the rest.</p>
+              <div class="relay-grid">
+                <div class="relay-card relay-on">
+                  <div class="relay-card-info">
+                    <span class="relay-card-name">primal</span>
+                    <span class="relay-card-desc">Fast global relay</span>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+                </div>
+                <div class="relay-card relay-on">
+                  <div class="relay-card-info">
+                    <span class="relay-card-name">damus</span>
+                    <span class="relay-card-desc">iOS community hub</span>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+                </div>
+                <div class="relay-card relay-on">
+                  <div class="relay-card-info">
+                    <span class="relay-card-name">nos</span>
+                    <span class="relay-card-desc">Curated social relay</span>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+                </div>
+                <div class="relay-card">
+                  <div class="relay-card-info">
+                    <span class="relay-card-name">snort</span>
+                    <span class="relay-card-desc">Web client relay</span>
+                  </div>
+                  <label class="toggle"><input type="checkbox" disabled><span class="toggle-slider"></span></label>
+                </div>
+                <div class="relay-card">
+                  <div class="relay-card-info">
+                    <span class="relay-card-name">coracle</span>
+                    <span class="relay-card-desc">Discovery-focused</span>
+                  </div>
+                  <label class="toggle"><input type="checkbox" disabled><span class="toggle-slider"></span></label>
+                </div>
+                <div class="relay-card relay-on">
+                  <div class="relay-card-info">
+                    <span class="relay-card-name">nostr.wine</span>
+                    <span class="relay-card-desc">Premium paid relay</span>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+                </div>
+                <div class="relay-card">
+                  <div class="relay-card-info">
+                    <span class="relay-card-name">amethyst</span>
+                    <span class="relay-card-desc">Android community</span>
+                  </div>
+                  <label class="toggle"><input type="checkbox" disabled><span class="toggle-slider"></span></label>
+                </div>
+                <div class="relay-card relay-on">
+                  <div class="relay-card-info">
+                    <span class="relay-card-name">yakihonne</span>
+                    <span class="relay-card-desc">Long-form content</span>
+                  </div>
+                  <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Storage -->
+          <div class="wizard-panel" data-wizard-step="3" style="display: none;">
+            <div class="wizard-panel-inner">
+              <h3 class="wizard-title">Storage</h3>
+              <p class="wizard-subtitle">Control what gets stored and how much space to use.</p>
+
+              <div class="storage-section">
+                <div class="storage-row storage-locked">
+                  <div class="storage-row-info">
+                    <span class="storage-row-label">Your events & media</span>
+                    <span class="storage-row-meta">🔒 Always stored. No exceptions.</span>
+                  </div>
+                  <div class="storage-bar-wrap">
+                    <div class="storage-bar"><div class="storage-bar-fill" style="width: 100%;"></div></div>
+                    <span class="storage-bar-label">100%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="storage-section">
+                <div class="storage-row">
+                  <div class="storage-row-info">
+                    <span class="storage-row-label">Others' events</span>
+                    <span class="storage-row-meta">From your Web of Trust</span>
+                  </div>
+                  <div class="storage-slider-wrap">
+                    <input type="range" class="storage-slider" min="1" max="50" value="5" disabled>
+                    <span class="storage-slider-value">5 GB</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="storage-section">
+                <div class="storage-row">
+                  <div class="storage-row-info">
+                    <span class="storage-row-label">Others' media (Blossom)</span>
+                    <span class="storage-row-meta">Images, videos, audio from your network</span>
+                  </div>
+                  <div class="storage-slider-wrap">
+                    <input type="range" class="storage-slider" min="1" max="50" value="2" disabled>
+                    <span class="storage-slider-value">2 GB</span>
+                  </div>
+                </div>
+                <div class="storage-toggles">
+                  <label class="mini-toggle active"><span>🖼️</span> Images</label>
+                  <label class="mini-toggle active"><span>🎬</span> Videos</label>
+                  <label class="mini-toggle active"><span>🔊</span> Audio</label>
+                </div>
+              </div>
+
+              <div class="storage-section">
+                <div class="storage-row">
+                  <div class="storage-row-info">
+                    <span class="storage-row-label">Auto-cleanup</span>
+                    <span class="storage-row-meta">When storage limit is reached</span>
+                  </div>
+                  <div class="storage-radio-group">
+                    <label class="storage-radio active">Oldest first</label>
+                    <label class="storage-radio">Least interacted</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wizard nav -->
+          <div class="wizard-nav">
+            <button class="btn btn-secondary wizard-btn" disabled>← Back</button>
+            <button class="btn btn-primary wizard-btn">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Settings Page -->
+  <section id="settings">
+    <div class="container">
+      <div class="section-header">
+        <h2>Fine-grained control.</h2>
+        <p>Choose exactly what to keep — by event kind, by trust depth, by media type.</p>
+      </div>
+      <div class="app-window">
+        <div class="app-titlebar">
+          <div class="app-titlebar-dots">
+            <div class="app-dot app-dot--close"></div>
+            <div class="app-dot app-dot--min"></div>
+            <div class="app-dot app-dot--max"></div>
+          </div>
+          <div class="app-titlebar-title">nostrito — Settings</div>
+        </div>
+        <div class="settings-body">
+          <!-- Settings sidebar -->
+          <div class="settings-sidebar">
+            <div class="settings-nav-item">🔑 Identity</div>
+            <div class="settings-nav-item">📡 Relays</div>
+            <div class="settings-nav-item active">💾 Your Storage</div>
+            <div class="settings-nav-item">👥 Others' Storage</div>
+            <div class="settings-nav-item">🕸️ WoT</div>
+            <div class="settings-nav-item">⚙️ Advanced</div>
+          </div>
+
+          <!-- Settings content -->
+          <div class="settings-content">
+            <h3 class="settings-content-title">Your Storage</h3>
+            <p class="settings-content-subtitle">What do you want to keep from yourself?</p>
+
+            <div class="kind-grid">
+              <div class="kind-card kind-on">
+                <div class="kind-card-top">
+                  <span class="kind-icon">📝</span>
+                  <span class="kind-name">Notes</span>
+                </div>
+                <span class="kind-meta">kind 1</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+              <div class="kind-card kind-on">
+                <div class="kind-card-top">
+                  <span class="kind-icon">📰</span>
+                  <span class="kind-name">Long-form</span>
+                </div>
+                <span class="kind-meta">kind 30023</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+              <div class="kind-card kind-on">
+                <div class="kind-card-top">
+                  <span class="kind-icon">⚡</span>
+                  <span class="kind-name">Zaps</span>
+                </div>
+                <span class="kind-meta">kind 9735</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+              <div class="kind-card kind-on">
+                <div class="kind-card-top">
+                  <span class="kind-icon">🔁</span>
+                  <span class="kind-name">Reposts</span>
+                </div>
+                <span class="kind-meta">kind 6</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+              <div class="kind-card kind-on">
+                <div class="kind-card-top">
+                  <span class="kind-icon">❤️</span>
+                  <span class="kind-name">Reactions</span>
+                </div>
+                <span class="kind-meta">kind 7</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+              <div class="kind-card kind-on">
+                <div class="kind-card-top">
+                  <span class="kind-icon">💬</span>
+                  <span class="kind-name">DMs</span>
+                </div>
+                <span class="kind-meta">kind 4</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+              <div class="kind-card kind-on">
+                <div class="kind-card-top">
+                  <span class="kind-icon">📋</span>
+                  <span class="kind-name">Lists</span>
+                </div>
+                <span class="kind-meta">kind 30000</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+              <div class="kind-card kind-on kind-locked">
+                <div class="kind-card-top">
+                  <span class="kind-icon">🏷️</span>
+                  <span class="kind-name">Metadata</span>
+                </div>
+                <span class="kind-meta">kind 0 · 🔒</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+              <div class="kind-card kind-on kind-wide">
+                <div class="kind-card-top">
+                  <span class="kind-icon">🖼️</span>
+                  <span class="kind-name">Media (Blossom)</span>
+                </div>
+                <span class="kind-meta">Images ✓ · Videos ✓ · Audio ✓</span>
+                <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+              </div>
+            </div>
+
+            <!-- Others' Storage preview -->
+            <div class="others-storage-preview">
+              <div class="others-storage-header">
+                <span>👥 Others' Storage</span>
+                <span class="others-storage-badge">Preview</span>
+              </div>
+              <div class="others-storage-body">
+                <div class="others-wot-selector">
+                  <span class="others-wot-label">WoT trust depth</span>
+                  <div class="pill-group">
+                    <span class="pill">1 hop</span>
+                    <span class="pill active">2 hops</span>
+                    <span class="pill">3 hops</span>
+                  </div>
+                </div>
+                <div class="others-quota">
+                  <span class="others-wot-label">Storage quota</span>
+                  <div class="storage-slider-wrap">
+                    <input type="range" class="storage-slider" min="1" max="50" value="5" disabled>
+                    <span class="storage-slider-value">5 GB</span>
+                  </div>
+                </div>
+                <div class="others-kind-grid">
+                  <div class="others-kind on">📝 Notes <span>✓</span></div>
+                  <div class="others-kind on">📰 Long-form <span>✓</span></div>
+                  <div class="others-kind on">⚡ Zaps <span>✓</span></div>
+                  <div class="others-kind on">🔁 Reposts <span>✓</span></div>
+                  <div class="others-kind on">❤️ Reactions <span>✓</span></div>
+                  <div class="others-kind off">💬 DMs <span>✗</span></div>
+                  <div class="others-kind on">📋 Lists <span>✓</span></div>
+                  <div class="others-kind on">🖼️ Images <span>✓</span></div>
+                  <div class="others-kind on">🎬 Videos <span>✓</span></div>
+                  <div class="others-kind off">🔊 Audio <span>✗</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Subtle animation: increment event count -->
   <script>
