@@ -12,7 +12,6 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg: #0a0a0a;
       --bg-card: #111113;
@@ -38,11 +37,8 @@
       --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
     }
-
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--font);
       background: var(--bg);
@@ -51,111 +47,142 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-
     body::before {
       content: '';
       position: fixed;
       top: -50%; left: -50%;
       width: 200%; height: 200%;
-      background: radial-gradient(ellipse at 30% 40%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
-                  radial-gradient(ellipse at 70% 20%, rgba(139, 92, 246, 0.04) 0%, transparent 50%),
-                  radial-gradient(ellipse at 50% 80%, rgba(52, 211, 153, 0.02) 0%, transparent 50%);
+      background: radial-gradient(ellipse at 30% 40%, rgba(124,58,237,0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 20%, rgba(139,92,246,0.04) 0%, transparent 50%),
+                  radial-gradient(ellipse at 50% 80%, rgba(52,211,153,0.02) 0%, transparent 50%);
       z-index: -1;
       animation: drift 30s ease-in-out infinite alternate;
     }
-
     @keyframes drift {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(-2%, -1%) rotate(1deg); }
+      0% { transform: translate(0,0) rotate(0deg); }
+      100% { transform: translate(-2%,-1%) rotate(1deg); }
     }
-
     @keyframes pulse-live {
-      0%, 100% { opacity: 1; }
+      0%,100% { opacity: 1; }
       50% { opacity: 0.4; }
     }
-
     @keyframes fade-in-up {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    @keyframes screen-fade-in {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     section { padding: 100px 0; }
 
-    /* ─── Nav ─────────────────────────────────── */
+    /* Nav */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 16px 0;
-      background: rgba(10, 10, 10, 0.85);
+      background: rgba(10,10,10,0.85);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
     nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.25rem; font-weight: 800; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo {
+      font-size: 1.25rem; font-weight: 800; color: var(--text);
+      text-decoration: none; display: flex; align-items: center; gap: 8px;
+    }
     .logo span { font-size: 1.4rem; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a {
+      color: var(--text-dim); text-decoration: none; font-size: 0.9rem;
+      font-weight: 500; transition: color 0.2s;
+    }
     .nav-links a:hover { color: var(--text); }
-    .nav-cta { background: var(--accent); color: #fff !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; transition: opacity 0.2s; }
+    .nav-cta {
+      background: var(--accent); color: #fff !important;
+      padding: 8px 20px; border-radius: 8px; font-weight: 600; transition: opacity 0.2s;
+    }
     .nav-cta:hover { opacity: 0.9; }
 
-    /* ─── Hero ────────────────────────────────── */
+    /* Hero */
     .hero { padding: 160px 0 100px; text-align: center; }
     .hero-tagline {
-      font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 800; line-height: 1.1;
+      font-size: clamp(2.4rem,5.5vw,3.8rem); font-weight: 800; line-height: 1.1;
       margin-bottom: 20px; letter-spacing: -0.03em;
       background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 50%, var(--purple) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-subtitle { font-size: 1.15rem; color: var(--text-dim); max-width: 560px; margin: 0 auto 36px; line-height: 1.7; }
-    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px;
-      border-radius: 10px; font-size: 0.95rem; font-weight: 600;
-      text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; font-family: var(--font);
+    .hero-subtitle {
+      font-size: 1.15rem; color: var(--text-dim);
+      max-width: 560px; margin: 0 auto 36px; line-height: 1.7;
     }
-    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 0 30px var(--accent-glow); }
-    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 0 40px var(--accent-glow-strong); }
-    .btn-secondary { background: var(--bg-card); color: var(--text); border: 1px solid var(--border); }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 24px; border-radius: 10px; font-size: 0.95rem;
+      font-weight: 600; text-decoration: none; transition: all 0.2s;
+      border: none; cursor: pointer; font-family: var(--font);
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: var(--accent-light); transform: translateY(-2px);
+      box-shadow: 0 0 40px var(--accent-glow-strong);
+    }
+    .btn-secondary {
+      background: var(--bg-card); color: var(--text);
+      border: 1px solid var(--border);
+    }
     .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--border-subtle); }
     .btn-icon { font-size: 1.1rem; }
 
-    /* ─── Section headings ────────────────────── */
+    /* Section headers */
     .section-header { text-align: center; margin-bottom: 60px; }
-    .section-header h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
+    .section-header h2 {
+      font-size: clamp(2rem,4vw,2.8rem); font-weight: 800;
+      margin-bottom: 16px; letter-spacing: -0.03em;
+    }
     .section-header p { color: var(--text-dim); font-size: 1.1rem; max-width: 550px; margin: 0 auto; }
 
-    /* ─── Features ────────────────────────────── */
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px; transition: all 0.3s; }
-    .feature-card:hover { border-color: rgba(124, 58, 237, 0.2); background: var(--bg-card-hover); transform: translateY(-4px); }
-    .feature-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+    /* Features */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;
+    }
+    .feature-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px; transition: all 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(124,58,237,0.2); background: var(--bg-card-hover);
+      transform: translateY(-4px);
+    }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 20px;
+    }
     .feature-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
     .feature-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
-    .fi-wot { background: rgba(124, 58, 237, 0.1); }
-    .fi-relay { background: rgba(96, 165, 250, 0.1); }
-    .fi-media { background: rgba(167, 139, 250, 0.1); }
-    .fi-config { background: rgba(251, 146, 60, 0.1); }
-    .fi-daemon { background: rgba(52, 211, 153, 0.1); }
-    .fi-offline { background: rgba(124, 58, 237, 0.1); }
+    .fi-wot { background: rgba(124,58,237,0.1); }
+    .fi-relay { background: rgba(96,165,250,0.1); }
+    .fi-media { background: rgba(167,139,250,0.1); }
+    .fi-config { background: rgba(251,146,60,0.1); }
+    .fi-daemon { background: rgba(52,211,153,0.1); }
+    .fi-offline { background: rgba(124,58,237,0.1); }
 
-    /* ─── How it works ────────────────────────── */
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; counter-reset: step; }
+    /* Steps */
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px; counter-reset: step;
+    }
     .step { position: relative; padding: 32px; counter-increment: step; }
     .step::before {
-      content: counter(step); display: flex; align-items: center; justify-content: center;
+      content: counter(step);
+      display: flex; align-items: center; justify-content: center;
       width: 40px; height: 40px; background: var(--accent); color: #fff;
       border-radius: 10px; font-weight: 800; font-size: 1.1rem; margin-bottom: 20px;
     }
     .step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
     .step p { color: var(--text-dim); font-size: 0.95rem; }
 
-    /* ─── Architecture ────────────────────────── */
+    /* Architecture */
     .arch-diagram {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
       padding: 48px; font-family: var(--mono); font-size: 0.78rem; line-height: 1.5;
@@ -167,29 +194,40 @@
     .arch-diagram .purple { color: var(--purple); }
     .arch-diagram .blue { color: var(--blue); }
 
-    /* ─── Gossip ──────────────────────────────── */
-    .gossip-section { background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.03), transparent); }
+    /* Gossip */
+    .gossip-section { background: linear-gradient(180deg, transparent, rgba(124,58,237,0.03), transparent); }
     .gossip-content { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     .gossip-text h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
-    .gossip-text h2 em { font-style: normal; background: linear-gradient(135deg, var(--purple), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gossip-text h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
     .gossip-text > p { color: var(--text-dim); font-size: 1.05rem; margin-bottom: 28px; line-height: 1.7; }
     .gossip-features { list-style: none; display: flex; flex-direction: column; gap: 16px; }
     .gossip-features li { display: flex; align-items: flex-start; gap: 12px; color: var(--text-dim); font-size: 0.95rem; }
-    .gossip-features li span { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; background: rgba(167, 139, 250, 0.1); border-radius: 6px; font-size: 0.75rem; }
+    .gossip-features li span {
+      flex-shrink: 0; width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(167,139,250,0.1); border-radius: 6px; font-size: 0.75rem;
+    }
     .gossip-visual {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
       padding: 36px; font-family: var(--mono); font-size: 0.75rem; line-height: 1.6;
       white-space: pre; color: var(--text-dim); overflow-x: auto;
     }
 
-    /* ─── CTA ─────────────────────────────────── */
+    /* CTA */
     .cta-section { text-align: center; padding: 120px 0; }
-    .cta-section h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
+    .cta-section h2 { font-size: clamp(2rem,4vw,2.8rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
     .cta-section p { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 36px; }
     .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-    /* ─── Footer ──────────────────────────────── */
-    footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--text-dim); font-size: 0.85rem; }
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border); padding: 40px 0;
+      text-align: center; color: var(--text-dim); font-size: 0.85rem;
+    }
     footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: var(--text); }
     .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; }
@@ -197,430 +235,431 @@
     /* ═══════════════════════════════════════════
        INTERACTIVE DEMO
        ═══════════════════════════════════════════ */
-
-    .demo-section { padding: 100px 0 120px; background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.02), transparent); }
-
-    .demo-window {
-      max-width: 1020px; margin: 0 auto;
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
-      overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 80px var(--accent-glow);
+    .demo-section {
+      padding: 120px 0;
+      background: linear-gradient(180deg, transparent, rgba(124,58,237,0.03), transparent);
     }
-
+    .demo-window {
+      max-width: 1060px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 80px var(--accent-glow);
+      animation: fade-in-up 0.8s ease-out;
+    }
     .demo-titlebar {
       display: flex; align-items: center; padding: 12px 16px;
       background: #161618; border-bottom: 1px solid var(--border); gap: 8px;
     }
-    .demo-titlebar-dots { display: flex; gap: 8px; }
+    .demo-dots { display: flex; gap: 8px; }
     .demo-dot { width: 12px; height: 12px; border-radius: 50%; }
     .demo-dot--close { background: #ff5f56; }
     .demo-dot--min { background: #ffbd2e; }
     .demo-dot--max { background: #27c93f; }
-    .demo-titlebar-title { flex: 1; text-align: center; font-size: 0.8rem; font-weight: 600; color: var(--text-dim); margin-right: 52px; }
-
-    .demo-body { display: flex; min-height: 620px; }
-
-    /* Demo left sidebar nav */
-    .demo-nav {
-      width: 200px; border-right: 1px solid var(--border);
-      background: rgba(255,255,255,0.01); flex-shrink: 0; padding: 12px 0;
-      display: flex; flex-direction: column;
+    .demo-titlebar-title {
+      flex: 1; text-align: center; font-size: 0.8rem;
+      font-weight: 600; color: var(--text-dim); margin-right: 52px;
     }
-    .demo-nav-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 20px; font-size: 0.88rem; font-weight: 500;
-      color: var(--text-dim); cursor: pointer; transition: all 0.15s;
-      border-left: 3px solid transparent; background: none; border-top: none; border-right: none; border-bottom: none;
-      font-family: var(--font); text-align: left; width: 100%;
-    }
-    .demo-nav-item:hover { background: rgba(255,255,255,0.02); color: var(--text); }
-    .demo-nav-item.active { color: var(--accent-light); background: var(--accent-glow); border-left-color: var(--accent); font-weight: 600; }
-    .demo-nav-item .nav-icon { font-size: 1rem; width: 20px; text-align: center; }
-    .demo-nav-spacer { flex: 1; }
-    .demo-nav-reset {
-      display: flex; align-items: center; gap: 8px; padding: 12px 20px;
-      font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
-      background: none; border: none; font-family: var(--font); transition: color 0.15s;
-    }
-    .demo-nav-reset:hover { color: var(--accent-light); }
+    .demo-body { min-height: 520px; position: relative; }
 
-    /* Demo main content */
-    .demo-main { flex: 1; min-width: 0; display: flex; flex-direction: column; position: relative; }
-    .demo-screen { display: none; flex-direction: column; flex: 1; animation: screen-fade-in 0.25s ease-out; }
-    .demo-screen.active { display: flex; }
-
-    /* ── Wizard screens ────────────────────── */
-    .wiz-indicator {
-      display: flex; align-items: center; justify-content: center; gap: 0;
-      padding: 24px 24px 20px; border-bottom: 1px solid var(--border);
+    /* Wizard */
+    .wizard-container { display: flex; flex-direction: column; min-height: 520px; }
+    .wizard-progress {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; padding: 28px 24px 24px; border-bottom: 1px solid var(--border);
     }
     .wiz-dot-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    .wiz-num {
-      width: 34px; height: 34px; border-radius: 50%;
+    .wiz-dot-num {
+      width: 36px; height: 36px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.82rem; font-weight: 700;
+      font-size: 0.85rem; font-weight: 700;
       background: var(--bg-elevated); color: var(--text-muted);
-      border: 2px solid var(--border); transition: all 0.2s;
+      border: 2px solid var(--border); transition: all 0.3s;
     }
-    .wiz-dot-wrap.active .wiz-num { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
-    .wiz-dot-wrap.completed .wiz-num { background: var(--green); color: #fff; border-color: var(--green); }
-    .wiz-label { font-size: 0.68rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .wiz-dot-wrap.active .wiz-label { color: var(--accent-light); }
-    .wiz-dot-wrap.completed .wiz-label { color: var(--green); }
-    .wiz-line { width: 50px; height: 2px; background: var(--border); margin: 0 14px; margin-bottom: 20px; transition: background 0.2s; }
-    .wiz-line.completed { background: var(--green); }
-
-    .wiz-panel { flex: 1; display: none; flex-direction: column; }
-    .wiz-panel.active { display: flex; }
-    .wiz-content { flex: 1; padding: 28px 32px; overflow-y: auto; }
-    .wiz-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.02em; }
-    .wiz-subtitle { color: var(--text-dim); font-size: 0.88rem; margin-bottom: 24px; }
-
+    .wiz-dot-wrap.active .wiz-dot-num {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .wiz-dot-wrap.done .wiz-dot-num { background: var(--green); color: #fff; border-color: var(--green); }
+    .wiz-dot-label {
+      font-size: 0.7rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .wiz-dot-wrap.active .wiz-dot-label { color: var(--accent-light); }
+    .wiz-dot-wrap.done .wiz-dot-label { color: var(--green); }
+    .wiz-line {
+      width: 60px; height: 2px; background: var(--border);
+      margin: 0 16px; margin-bottom: 22px; transition: background 0.3s;
+    }
+    .wiz-line.done { background: var(--green); }
+    .wiz-panel { flex: 1; padding: 32px 36px; display: none; }
+    .wiz-panel.active { display: block; }
+    .wiz-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.02em; }
+    .wiz-subtitle { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 28px; }
     .wiz-input {
-      width: 100%; max-width: 460px; padding: 14px 18px;
+      width: 100%; max-width: 480px; padding: 14px 18px;
       background: var(--bg); border: 1px solid var(--border-subtle); border-radius: 10px;
-      color: var(--text); font-family: var(--mono); font-size: 0.92rem; outline: none; transition: border-color 0.2s;
+      color: var(--text); font-family: var(--mono); font-size: 0.95rem;
+      outline: none; transition: border-color 0.2s;
     }
     .wiz-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
     .wiz-input::placeholder { color: var(--text-muted); }
-
     .wiz-nav {
-      display: flex; justify-content: space-between; padding: 14px 32px 20px;
-      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      padding: 16px 36px 24px; border-top: 1px solid var(--border);
     }
 
     /* Relay grid */
-    .relay-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+    .relay-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;
+    }
     .relay-card {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px; background: var(--bg); border: 1px solid var(--border);
-      border-radius: 10px; transition: all 0.2s; cursor: pointer;
+      padding: 14px 16px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; cursor: pointer; transition: all 0.2s; user-select: none;
     }
     .relay-card:hover { border-color: var(--border-subtle); background: var(--bg-card-hover); }
-    .relay-card.relay-on { border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.05); }
-    .relay-card-info { display: flex; flex-direction: column; gap: 1px; }
-    .relay-card-name { font-weight: 600; font-size: 0.85rem; color: var(--text); }
-    .relay-card-desc { font-size: 0.68rem; color: var(--text-muted); }
-
-    /* Toggle */
-    .toggle { position: relative; display: inline-block; width: 38px; height: 20px; flex-shrink: 0; }
-    .toggle input { opacity: 0; width: 0; height: 0; }
-    .toggle-slider {
-      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--border-subtle); border-radius: 20px; transition: 0.2s;
+    .relay-card.selected { border-color: rgba(124,58,237,0.4); background: rgba(124,58,237,0.06); }
+    .relay-card-info { display: flex; flex-direction: column; gap: 2px; }
+    .relay-card-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+    .relay-card-desc { font-size: 0.72rem; color: var(--text-muted); }
+    .relay-check {
+      width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--border-subtle);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; transition: all 0.2s; flex-shrink: 0;
     }
-    .toggle-slider::before {
-      content: ''; position: absolute; width: 14px; height: 14px;
-      left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.2s;
+    .relay-card.selected .relay-check {
+      background: var(--accent); border-color: var(--accent); color: #fff;
     }
-    .toggle input:checked + .toggle-slider { background: var(--accent); }
-    .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
 
     /* Storage wizard */
+    .storage-section { margin-bottom: 16px; }
     .storage-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px; background: var(--bg); border: 1px solid var(--border);
-      border-radius: 10px; gap: 16px; margin-bottom: 12px;
+      padding: 16px 20px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; gap: 20px;
     }
-    .storage-row.storage-locked { border-color: rgba(52, 211, 153, 0.2); background: rgba(52, 211, 153, 0.03); }
-    .storage-row-info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-    .storage-row-label { font-weight: 600; font-size: 0.88rem; }
-    .storage-row-meta { font-size: 0.72rem; color: var(--text-muted); }
-    .storage-bar-wrap { display: flex; align-items: center; gap: 10px; min-width: 140px; }
-    .storage-bar { flex: 1; height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .storage-row.locked { border-color: rgba(52,211,153,0.2); background: rgba(52,211,153,0.03); }
+    .storage-row-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .storage-row-label { font-weight: 600; font-size: 0.9rem; }
+    .storage-row-meta { font-size: 0.75rem; color: var(--text-muted); }
+    .storage-bar-wrap { display: flex; align-items: center; gap: 10px; min-width: 160px; }
+    .storage-bar { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
     .storage-bar-fill { height: 100%; background: linear-gradient(90deg, var(--green), #34d399); border-radius: 4px; }
     .storage-bar-label { font-size: 0.75rem; font-weight: 600; color: var(--green); font-family: var(--mono); }
-    .storage-slider-wrap { display: flex; align-items: center; gap: 10px; min-width: 160px; }
+    .storage-slider-wrap { display: flex; align-items: center; gap: 12px; min-width: 180px; }
     .storage-slider {
       flex: 1; -webkit-appearance: none; appearance: none;
       height: 6px; background: var(--border); border-radius: 3px; outline: none;
     }
     .storage-slider::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+      -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
       background: var(--accent); cursor: pointer; box-shadow: 0 0 10px var(--accent-glow);
     }
-    .storage-slider-value { font-size: 0.78rem; font-weight: 600; color: var(--accent-light); font-family: var(--mono); min-width: 36px; }
-    .storage-toggles { display: flex; gap: 8px; margin-top: 8px; padding-left: 18px; }
-    .mini-toggle {
-      display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px;
-      border-radius: 8px; font-size: 0.75rem; font-weight: 500; color: var(--text-muted);
-      background: var(--bg); border: 1px solid var(--border); cursor: pointer; transition: all 0.15s;
+    .storage-slider-value {
+      font-size: 0.8rem; font-weight: 600; color: var(--accent-light);
+      font-family: var(--mono); min-width: 40px;
     }
-    .mini-toggle.active { color: var(--accent-light); border-color: rgba(124, 58, 237, 0.3); background: rgba(124, 58, 237, 0.06); }
+    .media-toggles { display: flex; gap: 10px; margin-top: 10px; padding-left: 20px; }
+    .media-toggle {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 500;
+      color: var(--text-muted); background: var(--bg); border: 1px solid var(--border);
+      cursor: pointer; transition: all 0.2s; user-select: none;
+    }
+    .media-toggle.active { color: var(--accent-light); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.06); }
+    .cleanup-group { display: flex; gap: 8px; }
+    .cleanup-radio {
+      padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 500;
+      color: var(--text-muted); background: var(--bg); border: 1px solid var(--border);
+      cursor: pointer; transition: all 0.2s; user-select: none;
+    }
+    .cleanup-radio.active { color: var(--accent-light); border-color: var(--accent); background: rgba(124,58,237,0.08); }
 
-    /* ── Dashboard ─────────────────────────── */
+    /* ═══ APP MODE ═══ */
+    .app-container { display: flex; min-height: 520px; }
+    .app-sidebar-nav {
+      width: 180px; border-right: 1px solid var(--border);
+      background: rgba(255,255,255,0.01); padding: 8px 0; flex-shrink: 0;
+    }
+    .app-nav-item {
+      padding: 12px 20px; font-size: 0.85rem; font-weight: 500;
+      color: var(--text-dim); cursor: pointer; transition: all 0.15s;
+      border-left: 3px solid transparent; user-select: none;
+    }
+    .app-nav-item:hover { background: rgba(255,255,255,0.02); color: var(--text); }
+    .app-nav-item.active {
+      color: var(--accent-light); background: var(--accent-glow);
+      border-left-color: var(--accent); font-weight: 600;
+    }
+    .app-content { flex: 1; overflow-y: auto; max-height: 520px; }
+    .app-page { display: none; }
+    .app-page.active { display: block; }
+
+    /* Dashboard */
     .dash-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 24px; border-bottom: 1px solid var(--border);
+      padding: 16px 20px; border-bottom: 1px solid var(--border);
     }
     .dash-header-left { display: flex; align-items: center; gap: 12px; }
     .dash-header-name { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; }
     .status-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 10px; border-radius: 100px; font-size: 0.68rem;
+      padding: 4px 10px; border-radius: 100px; font-size: 0.7rem;
       font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+      background: var(--green-dim); color: var(--green);
     }
-    .status-live { background: var(--green-dim); color: var(--green); }
-    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse-live 2s ease-in-out infinite; }
-
-    .dash-stats { display: flex; border-bottom: 1px solid var(--border); }
-    .dash-stat { flex: 1; padding: 14px 16px; border-right: 1px solid var(--border); text-align: center; }
+    .status-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+      animation: pulse-live 2s ease-in-out infinite;
+    }
+    .dash-stats {
+      display: flex; border-bottom: 1px solid var(--border);
+    }
+    .dash-stat {
+      flex: 1; padding: 14px 16px; border-right: 1px solid var(--border); text-align: center;
+    }
     .dash-stat:last-child { border-right: none; }
-    .dash-stat-val { font-size: 1.1rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-    .dash-stat-label { font-size: 0.66rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-
-    .dash-body { display: flex; flex: 1; min-height: 0; }
-    .dash-feed { flex: 1; overflow-y: auto; }
-    .dash-sidebar { width: 190px; border-left: 1px solid var(--border); background: rgba(255,255,255,0.01); flex-shrink: 0; }
-    .dash-sidebar-header { padding: 12px 14px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
-    .relay-list-item { display: flex; align-items: center; gap: 8px; padding: 7px 14px; font-size: 0.76rem; color: var(--text-dim); }
+    .dash-stat-val { font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .dash-stat-label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+    .dash-body { display: flex; }
+    .dash-feed { flex: 1; }
+    .dash-sidebar {
+      width: 200px; border-left: 1px solid var(--border);
+      background: rgba(255,255,255,0.01); flex-shrink: 0;
+    }
+    .dash-sidebar-header {
+      padding: 14px 16px; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .dash-relay-list { padding: 8px 0; }
+    .dash-relay {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px; font-size: 0.78rem; color: var(--text-dim);
+    }
     .relay-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .relay-dot.on { background: var(--green); }
     .relay-dot.off { background: var(--red); opacity: 0.7; }
-    .relay-name { font-family: var(--mono); font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .relay-latency { margin-left: auto; font-family: var(--mono); font-size: 0.62rem; color: var(--text-muted); }
-    .sidebar-section { padding: 12px 14px; border-top: 1px solid var(--border); }
-    .sidebar-section-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px; }
-    .mini-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 5px; }
+    .relay-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--mono); font-size: 0.72rem; }
+    .relay-latency { margin-left: auto; font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); }
+    .sidebar-section { padding: 14px 16px; border-top: 1px solid var(--border); }
+    .sidebar-section-title {
+      font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 10px;
+    }
+    .mini-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
     .mini-bar-fill { height: 100%; border-radius: 3px; }
-    .mini-bar-label { font-size: 0.66rem; color: var(--text-muted); }
+    .mini-bar-label { font-size: 0.68rem; color: var(--text-muted); }
     .mini-bar-label span { font-weight: 600; }
 
-    /* ── Event cards (shared) ──────────────── */
+    /* Event card (shared by dashboard + feed) */
     .event-card {
-      display: flex; gap: 12px; padding: 14px 20px;
+      display: flex; gap: 12px; padding: 16px 20px;
       border-bottom: 1px solid var(--border); transition: background 0.15s;
     }
     .event-card:hover { background: rgba(255,255,255,0.015); }
-    .event-avatar {
-      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+    .event-card:last-child { border-bottom: none; }
+    .ev-avatar {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.95rem; font-weight: 700; color: #fff;
+      font-size: 1rem; font-weight: 700; color: #fff;
     }
-    .av-1 { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
-    .av-2 { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-    .av-3 { background: linear-gradient(135deg, #059669, #34d399); }
-    .av-4 { background: linear-gradient(135deg, #d97706, #fbbf24); }
-    .av-5 { background: linear-gradient(135deg, #dc2626, #f87171); }
-    .av-6 { background: linear-gradient(135deg, #0891b2, #22d3ee); }
-    .av-7 { background: linear-gradient(135deg, #7c3aed, #c084fc); }
-    .av-8 { background: linear-gradient(135deg, #4f46e5, #818cf8); }
-    .event-content { flex: 1; min-width: 0; }
-    .event-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
-    .event-name { font-weight: 600; font-size: 0.85rem; }
-    .event-npub { font-family: var(--mono); font-size: 0.68rem; color: var(--text-muted); }
-    .event-time { font-size: 0.68rem; color: var(--text-muted); margin-left: auto; }
-    .event-text { font-size: 0.84rem; color: var(--text-dim); line-height: 1.55; margin-bottom: 7px; }
-    .event-actions { display: flex; gap: 18px; }
-    .event-action {
-      display: flex; align-items: center; gap: 4px; font-size: 0.73rem; color: var(--text-muted);
-      cursor: pointer; transition: color 0.15s; background: none; border: none; padding: 0; font-family: var(--font);
+    .av1 { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+    .av2 { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+    .av3 { background: linear-gradient(135deg, #059669, #34d399); }
+    .av4 { background: linear-gradient(135deg, #d97706, #fbbf24); }
+    .av5 { background: linear-gradient(135deg, #dc2626, #f87171); }
+    .av6 { background: linear-gradient(135deg, #0891b2, #22d3ee); }
+    .av7 { background: linear-gradient(135deg, #7c3aed, #f472b6); }
+    .ev-content { flex: 1; min-width: 0; }
+    .ev-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .ev-name { font-weight: 600; font-size: 0.88rem; }
+    .ev-npub { font-family: var(--mono); font-size: 0.7rem; color: var(--text-muted); }
+    .ev-time { font-size: 0.7rem; color: var(--text-muted); margin-left: auto; }
+    .ev-text { font-size: 0.85rem; color: var(--text-dim); line-height: 1.55; margin-bottom: 8px; }
+    .ev-actions { display: flex; gap: 20px; }
+    .ev-action {
+      display: flex; align-items: center; gap: 5px; font-size: 0.75rem;
+      color: var(--text-muted); cursor: pointer; transition: color 0.15s;
+      background: none; border: none; padding: 0; font-family: var(--font);
     }
-    .event-action:hover { color: var(--accent-light); }
-    .event-action .ic { font-size: 0.82rem; }
-    .event-badge {
-      display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.65rem;
-      font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;
+    .ev-action:hover { color: var(--accent-light); }
+    .ev-action .icon { font-size: 0.85rem; }
+    .ev-kind-tag {
+      display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 8px;
     }
-    .badge-note { background: rgba(124, 58, 237, 0.1); color: var(--accent-light); }
-    .badge-long { background: rgba(96, 165, 250, 0.1); color: var(--blue); }
-    .badge-repost { background: rgba(52, 211, 153, 0.1); color: var(--green); }
+    .ev-kind-note { background: rgba(124,58,237,0.1); color: var(--accent-light); }
+    .ev-kind-long { background: rgba(96,165,250,0.1); color: var(--blue); }
+    .ev-kind-repost { background: rgba(52,211,153,0.1); color: var(--green); }
 
-    /* ── Feed screen ───────────────────────── */
-    .feed-header { padding: 16px 24px; border-bottom: 1px solid var(--border); }
-    .feed-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
-    .feed-filters { display: flex; gap: 6px; }
+    /* Feed filters */
+    .feed-filters {
+      display: flex; gap: 0; border-bottom: 1px solid var(--border);
+    }
     .feed-filter {
-      padding: 6px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 500;
-      color: var(--text-muted); background: var(--bg); border: 1px solid var(--border);
-      cursor: pointer; transition: all 0.15s; font-family: var(--font);
+      padding: 12px 20px; font-size: 0.82rem; font-weight: 500;
+      color: var(--text-muted); cursor: pointer; transition: all 0.2s;
+      border-bottom: 2px solid transparent; user-select: none;
     }
-    .feed-filter:hover { color: var(--text); border-color: var(--border-subtle); }
-    .feed-filter.active { color: #fff; background: var(--accent); border-color: var(--accent); }
-    .feed-list { flex: 1; overflow-y: auto; }
+    .feed-filter:hover { color: var(--text); }
+    .feed-filter.active { color: var(--accent-light); border-bottom-color: var(--accent); }
 
-    /* ── WoT screen ────────────────────────── */
-    .wot-header { padding: 20px 24px; border-bottom: 1px solid var(--border); }
-    .wot-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
-    .wot-subtitle { font-size: 0.85rem; color: var(--text-dim); }
-    .wot-body { flex: 1; padding: 20px 24px; overflow-y: auto; }
-    .wot-stats { display: flex; gap: 16px; margin-bottom: 24px; }
+    /* WoT */
+    .wot-page-inner { padding: 24px; }
+    .wot-stats {
+      display: flex; gap: 16px; margin-bottom: 24px;
+    }
     .wot-stat-card {
-      flex: 1; padding: 14px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; text-align: center;
+      flex: 1; padding: 16px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; text-align: center;
     }
-    .wot-stat-val { font-size: 1.15rem; font-weight: 700; }
-    .wot-stat-val.purple { color: var(--accent-light); }
-    .wot-stat-val.green { color: var(--green); }
-    .wot-stat-val.blue { color: var(--blue); }
-    .wot-stat-val.orange { color: var(--orange); }
-    .wot-stat-lbl { font-size: 0.66rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-
-    .wot-graph-wrap { display: flex; justify-content: center; margin-bottom: 24px; }
-    .wot-graph {
-      width: 260px; height: 260px; position: relative;
-      border-radius: 50%; background: rgba(124, 58, 237, 0.02);
+    .wot-stat-val { font-size: 1.4rem; font-weight: 800; color: var(--accent-light); }
+    .wot-stat-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+    .wot-graph-wrap {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; margin-bottom: 24px; text-align: center;
     }
-    .wot-ring {
-      position: absolute; border-radius: 50%;
-      border: 1px solid rgba(124, 58, 237, 0.15);
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
-    }
-    .wot-ring-1 { width: 80px; height: 80px; border-color: rgba(124, 58, 237, 0.4); background: rgba(124, 58, 237, 0.08); }
-    .wot-ring-2 { width: 160px; height: 160px; border-color: rgba(124, 58, 237, 0.2); }
-    .wot-ring-3 { width: 240px; height: 240px; border-color: rgba(124, 58, 237, 0.1); }
-    .wot-center {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 18px; height: 18px; border-radius: 50%; background: var(--accent);
-      box-shadow: 0 0 16px var(--accent-glow-strong); z-index: 2;
-    }
-    .wot-node {
-      position: absolute; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent-light); opacity: 0.7;
-    }
-    .wot-node.hop2 { background: var(--blue); opacity: 0.5; width: 6px; height: 6px; }
-    .wot-node.hop3 { background: var(--purple); opacity: 0.3; width: 5px; height: 5px; }
-
-    .wot-pubkey-list { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .wot-pubkey-header {
-      display: flex; align-items: center; padding: 10px 16px; font-size: 0.75rem; font-weight: 600;
-      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;
-      border-bottom: 1px solid var(--border); background: var(--bg);
-    }
-    .wot-pubkey-row {
+    .wot-graph-wrap svg { max-width: 100%; }
+    .wot-trusted-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; }
+    .wot-trusted-list { display: flex; flex-direction: column; gap: 8px; }
+    .wot-trusted-item {
       display: flex; align-items: center; gap: 12px; padding: 10px 16px;
-      border-bottom: 1px solid var(--border); font-size: 0.84rem;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
     }
-    .wot-pubkey-row:last-child { border-bottom: none; }
-    .wot-pubkey-row .event-avatar { width: 30px; height: 30px; font-size: 0.75rem; }
-    .wot-pubkey-name { font-weight: 600; font-size: 0.84rem; min-width: 80px; }
-    .wot-pubkey-npub { font-family: var(--mono); font-size: 0.68rem; color: var(--text-muted); flex: 1; }
-    .wot-depth-badge {
-      padding: 3px 10px; border-radius: 100px; font-size: 0.65rem; font-weight: 600;
+    .wot-trusted-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; color: #fff;
     }
-    .depth-1 { background: rgba(124, 58, 237, 0.15); color: var(--accent-light); }
-    .depth-2 { background: rgba(96, 165, 250, 0.15); color: var(--blue); }
-    .depth-3 { background: rgba(167, 139, 250, 0.15); color: var(--purple); }
-    .wot-mutual { font-size: 0.7rem; color: var(--text-muted); white-space: nowrap; }
-
-    /* ── Storage screen ────────────────────── */
-    .stor-header { padding: 20px 24px; border-bottom: 1px solid var(--border); }
-    .stor-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
-    .stor-subtitle { font-size: 0.85rem; color: var(--text-dim); }
-    .stor-body { flex: 1; padding: 20px 24px; overflow-y: auto; }
-
-    .stor-breakdown { margin-bottom: 24px; }
-    .stor-bar-big { height: 28px; border-radius: 8px; display: flex; overflow: hidden; margin-bottom: 10px; }
-    .stor-bar-seg { display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 600; color: #fff; }
-    .stor-bar-legend { display: flex; gap: 20px; flex-wrap: wrap; }
-    .stor-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-dim); }
-    .stor-legend-dot { width: 10px; height: 10px; border-radius: 3px; }
-
-    .stor-section-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 12px; }
-    .stor-kind-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 24px; }
-    .stor-kind-card {
-      padding: 12px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    .wot-trusted-name { font-weight: 600; font-size: 0.85rem; }
+    .wot-trusted-hop {
+      margin-left: auto; font-size: 0.7rem; color: var(--text-muted);
+      font-family: var(--mono);
     }
-    .stor-kind-name { font-size: 0.78rem; font-weight: 600; margin-bottom: 2px; }
-    .stor-kind-count { font-size: 1rem; font-weight: 700; color: var(--accent-light); }
-    .stor-kind-meta { font-size: 0.65rem; color: var(--text-muted); font-family: var(--mono); }
 
-    .stor-media-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 10px; }
-    .stor-media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
-    .stor-media-tile {
-      aspect-ratio: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--text-muted);
+    /* Storage page */
+    .storage-page-inner { padding: 24px; }
+    .storage-usage-bar {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px; margin-bottom: 20px;
     }
-    .stor-media-stats { font-size: 0.78rem; color: var(--text-muted); }
+    .storage-usage-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; }
+    .storage-usage-visual {
+      height: 24px; background: var(--border); border-radius: 6px; overflow: hidden;
+      display: flex; margin-bottom: 8px;
+    }
+    .storage-seg {
+      height: 100%; transition: width 0.3s;
+    }
+    .storage-seg-notes { background: var(--accent); }
+    .storage-seg-media { background: var(--purple); }
+    .storage-seg-meta { background: var(--blue); }
+    .storage-seg-other { background: var(--green); }
+    .storage-legend { display: flex; gap: 16px; flex-wrap: wrap; }
+    .storage-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-dim); }
+    .storage-legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+    .kind-grid-page {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;
+    }
+    .kind-card-p {
+      display: flex; flex-direction: column; gap: 4px; padding: 14px 16px;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    }
+    .kind-card-top { display: flex; align-items: center; gap: 8px; }
+    .kind-icon { font-size: 1.1rem; }
+    .kind-name { font-weight: 600; font-size: 0.85rem; }
+    .kind-count { margin-left: auto; font-family: var(--mono); font-size: 0.75rem; color: var(--accent-light); }
+    .kind-meta { font-size: 0.7rem; color: var(--text-muted); font-family: var(--mono); }
+    .media-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    }
+    .media-tile {
+      aspect-ratio: 1; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; overflow: hidden;
+    }
+    .media-tile-gradient {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    }
 
-    /* ── Settings screen ───────────────────── */
-    .sett-body { display: flex; flex: 1; min-height: 0; }
-    .sett-sidebar {
+    /* Settings page */
+    .settings-container { display: flex; min-height: 100%; }
+    .settings-sub-nav {
       width: 180px; border-right: 1px solid var(--border);
       background: rgba(255,255,255,0.01); padding: 8px 0; flex-shrink: 0;
     }
-    .sett-nav-item {
-      display: block; padding: 10px 18px; font-size: 0.82rem; font-weight: 500;
+    .settings-sub-item {
+      padding: 11px 20px; font-size: 0.82rem; font-weight: 500;
       color: var(--text-dim); cursor: pointer; transition: all 0.15s;
-      border-left: 3px solid transparent; background: none; border-top: none; border-right: none; border-bottom: none;
-      font-family: var(--font); text-align: left; width: 100%;
+      border-left: 3px solid transparent; user-select: none;
     }
-    .sett-nav-item:hover { background: rgba(255,255,255,0.02); color: var(--text); }
-    .sett-nav-item.active { color: var(--accent-light); background: var(--accent-glow); border-left-color: var(--accent); font-weight: 600; }
-    .sett-content { flex: 1; padding: 24px 28px; overflow-y: auto; }
-    .sett-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.02em; }
-    .sett-subtitle { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 20px; }
-    .sett-panel { display: none; }
-    .sett-panel.active { display: block; }
-
-    .sett-field { margin-bottom: 18px; }
-    .sett-field-label { font-size: 0.78rem; font-weight: 600; color: var(--text-dim); margin-bottom: 6px; display: block; }
-    .sett-field-row { display: flex; align-items: center; gap: 10px; }
-    .sett-npub-display {
-      padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-      font-family: var(--mono); font-size: 0.82rem; color: var(--text-dim); flex: 1;
+    .settings-sub-item:hover { background: rgba(255,255,255,0.02); color: var(--text); }
+    .settings-sub-item.active {
+      color: var(--accent-light); background: var(--accent-glow);
+      border-left-color: var(--accent); font-weight: 600;
     }
-    .sett-btn-sm {
-      padding: 8px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
-      background: var(--bg-card-hover); border: 1px solid var(--border); color: var(--text);
-      cursor: pointer; font-family: var(--font); transition: all 0.15s;
+    .settings-panel { flex: 1; padding: 24px 28px; }
+    .settings-pane { display: none; }
+    .settings-pane.active { display: block; }
+    .settings-pane-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.02em; }
+    .settings-pane-desc { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 20px; }
+    .settings-field {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
     }
-    .sett-btn-sm:hover { border-color: var(--accent); color: var(--accent-light); }
-
-    /* Pill group for settings */
-    .pill-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .settings-field-info { display: flex; flex-direction: column; gap: 2px; }
+    .settings-field-label { font-weight: 600; font-size: 0.88rem; }
+    .settings-field-desc { font-size: 0.75rem; color: var(--text-muted); }
+    .toggle {
+      position: relative; display: inline-block; width: 40px; height: 22px; flex-shrink: 0;
+    }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--border-subtle); border-radius: 22px; transition: 0.2s;
+    }
+    .toggle-slider::before {
+      content: ''; position: absolute; width: 16px; height: 16px; left: 3px; bottom: 3px;
+      background: #fff; border-radius: 50%; transition: 0.2s;
+    }
+    .toggle input:checked + .toggle-slider { background: var(--accent); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+    .settings-mono {
+      font-family: var(--mono); font-size: 0.82rem; color: var(--text-dim);
+      padding: 10px 14px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; margin-top: 8px;
+    }
+    .pill-group { display: flex; gap: 6px; }
     .pill {
-      padding: 6px 14px; border-radius: 100px; font-size: 0.76rem; font-weight: 500;
+      padding: 6px 14px; border-radius: 100px; font-size: 0.78rem; font-weight: 500;
       color: var(--text-muted); background: var(--bg-card); border: 1px solid var(--border);
-      cursor: pointer; transition: all 0.15s; font-family: var(--font);
+      cursor: pointer; user-select: none; transition: all 0.2s;
     }
-    .pill:hover { color: var(--text); border-color: var(--border-subtle); }
     .pill.active { color: #fff; background: var(--accent); border-color: var(--accent); }
 
-    /* Kind grid for settings */
-    .kind-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-    .kind-card {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-    }
-    .kind-card.kind-locked { border-color: rgba(52, 211, 153, 0.2); }
-    .kind-card-left { display: flex; align-items: center; gap: 8px; }
-    .kind-card-icon { font-size: 0.95rem; }
-    .kind-card-name { font-size: 0.78rem; font-weight: 600; }
-    .kind-card-meta { font-size: 0.62rem; color: var(--text-muted); font-family: var(--mono); }
-
-    .sett-select {
-      padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-      color: var(--text); font-family: var(--font); font-size: 0.82rem; outline: none;
-    }
-
-    .sett-port-input {
-      width: 100px; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-      color: var(--text); font-family: var(--mono); font-size: 0.82rem; outline: none; text-align: center;
-    }
-
-    /* ─── Responsive ──────────────────────────── */
+    /* Responsive */
     @media (max-width: 768px) {
       section { padding: 70px 0; }
       .hero { padding: 130px 0 70px; }
       .nav-links { display: none; }
       .gossip-content { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
-      .hero-ctas .btn { padding: 12px 18px; font-size: 0.85rem; }
-      .demo-nav { display: none; }
+      .app-sidebar-nav { width: 50px; }
+      .app-nav-item { padding: 12px 8px; font-size: 0; text-align: center; }
+      .app-nav-item::before { font-size: 1.2rem; }
       .dash-sidebar { display: none; }
-      .sett-sidebar { display: none; }
-      .relay-grid { grid-template-columns: 1fr; }
-      .kind-grid { grid-template-columns: repeat(2, 1fr); }
-      .stor-kind-grid { grid-template-columns: repeat(2, 1fr); }
-      .wot-stats { flex-wrap: wrap; }
-      .wot-stat-card { min-width: 45%; }
-    }
-
-    @media (max-width: 480px) {
       .dash-stats { flex-wrap: wrap; }
       .dash-stat { min-width: 50%; }
-      .event-card { padding: 10px 14px; }
-      .event-time { display: none; }
-      .stor-media-grid { grid-template-columns: repeat(2, 1fr); }
+      .relay-grid { grid-template-columns: 1fr; }
+      .kind-grid-page { grid-template-columns: repeat(2, 1fr); }
+      .media-grid { grid-template-columns: repeat(2, 1fr); }
+      .settings-sub-nav { width: 50px; }
+      .settings-sub-item { font-size: 0; padding: 11px 8px; text-align: center; }
+      .wot-stats { flex-direction: column; }
     }
   </style>
 </head>
@@ -634,6 +673,8 @@
         <li><a href="#features">Features</a></li>
         <li><a href="#how">How it works</a></li>
         <li><a href="#demo">Demo</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#gossip">Gossip</a></li>
         <li><a href="docs.html">Docs</a></li>
         <li><a href="https://github.com/nostrito/nostrito" class="nav-cta">GitHub →</a></li>
       </ul>
@@ -646,10 +687,9 @@
       <h1 class="hero-tagline">Your relay. Your network.<br>Your machine.</h1>
       <p class="hero-subtitle">A personal Nostr mini-relay that lives on your machine. Give it your npub — it builds your Web of Trust, syncs your feed, caches your media.</p>
       <div class="hero-ctas">
-        <a href="#demo" class="btn btn-primary"><span class="btn-icon">🚀</span> Launch Demo</a>
-        <a href="#" class="btn btn-secondary"><span class="btn-icon">🍎</span> Download for Mac</a>
-        <a href="#" class="btn btn-secondary"><span class="btn-icon">🐧</span> Linux</a>
-        <a href="#" class="btn btn-secondary"><span class="btn-icon">🪟</span> Windows</a>
+        <a href="#" class="btn btn-primary"><span class="btn-icon">🍎</span> Download for Mac</a>
+        <a href="#" class="btn btn-secondary"><span class="btn-icon">🐧</span> Download for Linux</a>
+        <a href="#" class="btn btn-secondary"><span class="btn-icon">🪟</span> Download for Windows</a>
       </div>
     </div>
   </section>
@@ -680,7 +720,7 @@
         <div class="feature-card">
           <div class="feature-icon fi-config">🎯</div>
           <h3>Human-Friendly Config</h3>
-          <p>Pick relays by name — <code>primal</code>, <code>damus</code>, <code>nos</code> — not WebSocket URLs. TOML config, zero friction.</p>
+          <p>Choose <code>primal</code>. Choose <code>damus</code>. No URLs, no protocols, no copy-pasting strings from docs. You know the name — nostrito handles the rest.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon fi-daemon">⚡</div>
@@ -697,7 +737,7 @@
   </section>
 
   <!-- How it works -->
-  <section id="how" style="background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.02), transparent);">
+  <section id="how" style="background: linear-gradient(180deg, transparent, rgba(124,58,237,0.02), transparent);">
     <div class="container">
       <div class="section-header">
         <h2>Up and running in a minute.</h2>
@@ -715,6 +755,476 @@
         <div class="step">
           <h3>Use any client</h3>
           <p>Your favorite Nostr app connects to nostrito automatically. Your feed, served from your machine — fast, private, always available.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       INTERACTIVE DEMO
+       ═══════════════════════════════════════ -->
+  <section id="demo" class="demo-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>See it in action.</h2>
+        <p>Walk through the setup wizard, then explore the full app — all right here.</p>
+      </div>
+
+      <div class="demo-window">
+        <div class="demo-titlebar">
+          <div class="demo-dots">
+            <div class="demo-dot demo-dot--close"></div>
+            <div class="demo-dot demo-dot--min"></div>
+            <div class="demo-dot demo-dot--max"></div>
+          </div>
+          <div class="demo-titlebar-title" id="demoTitle">nostrito — Setup</div>
+        </div>
+        <div class="demo-body">
+
+          <!-- ═══ WIZARD ═══ -->
+          <div id="wizardMode" class="wizard-container">
+            <div class="wizard-progress">
+              <div class="wiz-dot-wrap active" id="wizDot1">
+                <span class="wiz-dot-num">1</span>
+                <span class="wiz-dot-label">Identity</span>
+              </div>
+              <div class="wiz-line" id="wizLine1"></div>
+              <div class="wiz-dot-wrap" id="wizDot2">
+                <span class="wiz-dot-num">2</span>
+                <span class="wiz-dot-label">Relays</span>
+              </div>
+              <div class="wiz-line" id="wizLine2"></div>
+              <div class="wiz-dot-wrap" id="wizDot3">
+                <span class="wiz-dot-num">3</span>
+                <span class="wiz-dot-label">Storage</span>
+              </div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="wiz-panel active" id="wizPanel1">
+              <h3 class="wiz-title">Your npub</h3>
+              <p class="wiz-subtitle">Your relay, your rules. Only you connect to it.</p>
+              <input type="text" class="wiz-input" placeholder="npub1..." value="npub1qe3e...7g8a" readonly>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="wiz-panel" id="wizPanel2">
+              <h3 class="wiz-title">Where do you want to sync from?</h3>
+              <p class="wiz-subtitle">Pick by name. We handle the rest.</p>
+              <div class="relay-grid" id="relayGrid">
+                <div class="relay-card selected" data-relay="primal">
+                  <div class="relay-card-info"><span class="relay-card-name">primal</span><span class="relay-card-desc">Fast global relay</span></div>
+                  <div class="relay-check">✓</div>
+                </div>
+                <div class="relay-card selected" data-relay="damus">
+                  <div class="relay-card-info"><span class="relay-card-name">damus</span><span class="relay-card-desc">iOS community hub</span></div>
+                  <div class="relay-check">✓</div>
+                </div>
+                <div class="relay-card" data-relay="nos">
+                  <div class="relay-card-info"><span class="relay-card-name">nos</span><span class="relay-card-desc">Curated social relay</span></div>
+                  <div class="relay-check"></div>
+                </div>
+                <div class="relay-card" data-relay="snort">
+                  <div class="relay-card-info"><span class="relay-card-name">snort</span><span class="relay-card-desc">Web client relay</span></div>
+                  <div class="relay-check"></div>
+                </div>
+                <div class="relay-card" data-relay="coracle">
+                  <div class="relay-card-info"><span class="relay-card-name">coracle</span><span class="relay-card-desc">Discovery-focused</span></div>
+                  <div class="relay-check"></div>
+                </div>
+                <div class="relay-card selected" data-relay="nostr.wine">
+                  <div class="relay-card-info"><span class="relay-card-name">nostr.wine</span><span class="relay-card-desc">Premium paid relay</span></div>
+                  <div class="relay-check">✓</div>
+                </div>
+                <div class="relay-card" data-relay="amethyst">
+                  <div class="relay-card-info"><span class="relay-card-name">amethyst</span><span class="relay-card-desc">Android community</span></div>
+                  <div class="relay-check"></div>
+                </div>
+                <div class="relay-card selected" data-relay="yakihonne">
+                  <div class="relay-card-info"><span class="relay-card-name">yakihonne</span><span class="relay-card-desc">Long-form content</span></div>
+                  <div class="relay-check">✓</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="wiz-panel" id="wizPanel3">
+              <h3 class="wiz-title">Storage</h3>
+              <p class="wiz-subtitle">Control what gets stored and how much space to use.</p>
+
+              <div class="storage-section">
+                <div class="storage-row locked">
+                  <div class="storage-row-info">
+                    <span class="storage-row-label">Your events & media</span>
+                    <span class="storage-row-meta">🔒 Always stored. No exceptions.</span>
+                  </div>
+                  <div class="storage-bar-wrap">
+                    <div class="storage-bar"><div class="storage-bar-fill" style="width:100%"></div></div>
+                    <span class="storage-bar-label">100%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="storage-section">
+                <div class="storage-row">
+                  <div class="storage-row-info">
+                    <span class="storage-row-label">Others' events</span>
+                    <span class="storage-row-meta">From your Web of Trust</span>
+                  </div>
+                  <div class="storage-slider-wrap">
+                    <input type="range" class="storage-slider" min="1" max="50" value="5" id="othersEventsSlider">
+                    <span class="storage-slider-value" id="othersEventsVal">5 GB</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="storage-section">
+                <div class="storage-row">
+                  <div class="storage-row-info">
+                    <span class="storage-row-label">Others' media (Blossom)</span>
+                    <span class="storage-row-meta">Images, videos, audio from your network</span>
+                  </div>
+                  <div class="storage-slider-wrap">
+                    <input type="range" class="storage-slider" min="1" max="50" value="2" id="othersMediaSlider">
+                    <span class="storage-slider-value" id="othersMediaVal">2 GB</span>
+                  </div>
+                </div>
+                <div class="media-toggles" id="mediaToggles">
+                  <div class="media-toggle active" data-media="images">🖼️ Images</div>
+                  <div class="media-toggle active" data-media="videos">🎬 Videos</div>
+                  <div class="media-toggle active" data-media="audio">🔊 Audio</div>
+                </div>
+              </div>
+
+              <div class="storage-section">
+                <div class="storage-row">
+                  <div class="storage-row-info">
+                    <span class="storage-row-label">Auto-cleanup</span>
+                    <span class="storage-row-meta">When storage limit is reached</span>
+                  </div>
+                  <div class="cleanup-group" id="cleanupGroup">
+                    <div class="cleanup-radio active" data-cleanup="oldest">Oldest first</div>
+                    <div class="cleanup-radio" data-cleanup="least">Least interacted</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wiz-nav">
+              <button class="btn btn-secondary" id="wizBack" style="visibility:hidden">← Back</button>
+              <button class="btn btn-primary" id="wizNext">Next →</button>
+            </div>
+          </div>
+
+          <!-- ═══ APP MODE ═══ -->
+          <div id="appMode" style="display:none" class="app-container">
+            <div class="app-sidebar-nav">
+              <div class="app-nav-item active" data-page="dashboard">📊 Dashboard</div>
+              <div class="app-nav-item" data-page="feed">📰 Feed</div>
+              <div class="app-nav-item" data-page="wot">🕸️ WoT</div>
+              <div class="app-nav-item" data-page="storage">💾 Storage</div>
+              <div class="app-nav-item" data-page="settings">⚙️ Settings</div>
+            </div>
+            <div class="app-content">
+
+              <!-- Dashboard -->
+              <div class="app-page active" id="page-dashboard">
+                <div class="dash-header">
+                  <div class="dash-header-left">
+                    <span class="dash-header-name">🌶️ nostrito</span>
+                    <span class="status-badge"><span class="status-dot"></span> Live</span>
+                  </div>
+                </div>
+                <div class="dash-stats">
+                  <div class="dash-stat"><div class="dash-stat-val">847</div><div class="dash-stat-label">Pubkeys</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val">4</div><div class="dash-stat-label">Relays</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val" id="dashEvents">12,483</div><div class="dash-stat-label">Events</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val">2.3 GB</div><div class="dash-stat-label">Storage</div></div>
+                </div>
+                <div class="dash-body">
+                  <div class="dash-feed">
+                    <div class="event-card">
+                      <div class="ev-avatar av1">F</div>
+                      <div class="ev-content">
+                        <div class="ev-meta"><span class="ev-name">fiatjaf</span><span class="ev-npub">npub1qe3e...7g8a</span><span class="ev-time">2m ago</span></div>
+                        <div class="ev-text">Nostr is the most censorship-resistant protocol we have. Your relay, your rules.</div>
+                        <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 12</button><button class="ev-action"><span class="icon">🔁</span> 34</button><button class="ev-action"><span class="icon">⚡</span> 2.1k</button></div>
+                      </div>
+                    </div>
+                    <div class="event-card">
+                      <div class="ev-avatar av2">J</div>
+                      <div class="ev-content">
+                        <div class="ev-meta"><span class="ev-name">jb55</span><span class="ev-npub">npub1xtsc...h2ts</span><span class="ev-time">8m ago</span></div>
+                        <div class="ev-text">Just shipped a new notedeck build. The local relay approach is the way.</div>
+                        <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 8</button><button class="ev-action"><span class="icon">🔁</span> 21</button><button class="ev-action"><span class="icon">⚡</span> 890</button></div>
+                      </div>
+                    </div>
+                    <div class="event-card">
+                      <div class="ev-avatar av3">O</div>
+                      <div class="ev-content">
+                        <div class="ev-meta"><span class="ev-name">ODELL</span><span class="ev-npub">npub1qny3...kj5h</span><span class="ev-time">15m ago</span></div>
+                        <div class="ev-text">Running a personal relay is like running your own node. Don't trust, verify. 🫡</div>
+                        <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 24</button><button class="ev-action"><span class="icon">🔁</span> 67</button><button class="ev-action"><span class="icon">⚡</span> 4.2k</button></div>
+                      </div>
+                    </div>
+                    <div class="event-card">
+                      <div class="ev-avatar av4">G</div>
+                      <div class="ev-content">
+                        <div class="ev-meta"><span class="ev-name">Gigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="ev-time">23m ago</span></div>
+                        <div class="ev-text">Sovereignty isn't just about money. It's about your communications, your data, your identity.</div>
+                        <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 18</button><button class="ev-action"><span class="icon">🔁</span> 45</button><button class="ev-action"><span class="icon">⚡</span> 3.7k</button></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dash-sidebar">
+                    <div class="dash-sidebar-header">Connected Relays</div>
+                    <div class="dash-relay-list">
+                      <div class="dash-relay"><div class="relay-dot on"></div><span class="relay-name">primal</span><span class="relay-latency">24ms</span></div>
+                      <div class="dash-relay"><div class="relay-dot on"></div><span class="relay-name">damus</span><span class="relay-latency">31ms</span></div>
+                      <div class="dash-relay"><div class="relay-dot on"></div><span class="relay-name">nostr.wine</span><span class="relay-latency">18ms</span></div>
+                      <div class="dash-relay"><div class="relay-dot on"></div><span class="relay-name">yakihonne</span><span class="relay-latency">42ms</span></div>
+                    </div>
+                    <div class="sidebar-section">
+                      <div class="sidebar-section-title">WoT Coverage</div>
+                      <div class="mini-bar"><div class="mini-bar-fill" style="width:72%;background:linear-gradient(90deg,var(--accent),var(--accent-light))"></div></div>
+                      <div class="mini-bar-label"><span style="color:var(--accent-light)">72%</span> of your network synced</div>
+                    </div>
+                    <div class="sidebar-section">
+                      <div class="sidebar-section-title">Storage</div>
+                      <div class="mini-bar"><div class="mini-bar-fill" style="width:46%;background:linear-gradient(90deg,var(--green),#34d399)"></div></div>
+                      <div class="mini-bar-label"><span style="color:var(--green)">2.3 GB</span> / 5 GB limit</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Feed -->
+              <div class="app-page" id="page-feed">
+                <div class="feed-filters">
+                  <div class="feed-filter active" data-filter="all">All</div>
+                  <div class="feed-filter" data-filter="note">Notes</div>
+                  <div class="feed-filter" data-filter="long">Long-form</div>
+                  <div class="feed-filter" data-filter="repost">Reposts</div>
+                </div>
+                <div id="feedList">
+                  <div class="event-card" data-kind="note">
+                    <div class="ev-avatar av1">F</div>
+                    <div class="ev-content">
+                      <div class="ev-meta"><span class="ev-name">fiatjaf</span><span class="ev-npub">npub1qe3e...7g8a</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">2m</span></div>
+                      <div class="ev-text">Nostr is the most censorship-resistant protocol we have. Your relay, your rules.</div>
+                      <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 12</button><button class="ev-action"><span class="icon">🔁</span> 34</button><button class="ev-action"><span class="icon">⚡</span> 2.1k</button></div>
+                    </div>
+                  </div>
+                  <div class="event-card" data-kind="long">
+                    <div class="ev-avatar av5">L</div>
+                    <div class="ev-content">
+                      <div class="ev-meta"><span class="ev-name">Lynalden</span><span class="ev-npub">npub1a2c...v4kz</span><span class="ev-kind-tag ev-kind-long">long-form</span><span class="ev-time">12m</span></div>
+                      <div class="ev-text">The case for personal relays: Why data sovereignty matters more than convenience. A deep dive into relay architecture...</div>
+                      <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 42</button><button class="ev-action"><span class="icon">🔁</span> 89</button><button class="ev-action"><span class="icon">⚡</span> 5.4k</button></div>
+                    </div>
+                  </div>
+                  <div class="event-card" data-kind="note">
+                    <div class="ev-avatar av2">J</div>
+                    <div class="ev-content">
+                      <div class="ev-meta"><span class="ev-name">jb55</span><span class="ev-npub">npub1xtsc...h2ts</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">18m</span></div>
+                      <div class="ev-text">Just shipped a new notedeck build. Local relay approach is the way — your data on your machine.</div>
+                      <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 8</button><button class="ev-action"><span class="icon">🔁</span> 21</button><button class="ev-action"><span class="icon">⚡</span> 890</button></div>
+                    </div>
+                  </div>
+                  <div class="event-card" data-kind="repost">
+                    <div class="ev-avatar av6">P</div>
+                    <div class="ev-content">
+                      <div class="ev-meta"><span class="ev-name">Preston</span><span class="ev-npub">npub1p0w...r4nm</span><span class="ev-kind-tag ev-kind-repost">repost</span><span class="ev-time">25m</span></div>
+                      <div class="ev-text">🔁 Bitcoin is freedom money. Nostr is freedom communication. Together, unstoppable.</div>
+                      <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 5</button><button class="ev-action"><span class="icon">🔁</span> 112</button><button class="ev-action"><span class="icon">⚡</span> 1.8k</button></div>
+                    </div>
+                  </div>
+                  <div class="event-card" data-kind="note">
+                    <div class="ev-avatar av3">O</div>
+                    <div class="ev-content">
+                      <div class="ev-meta"><span class="ev-name">ODELL</span><span class="ev-npub">npub1qny3...kj5h</span><span class="ev-kind-tag ev-kind-note">note</span><span class="ev-time">32m</span></div>
+                      <div class="ev-text">Running a personal relay is like running your own node. Don't trust, verify. 🫡</div>
+                      <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 24</button><button class="ev-action"><span class="icon">🔁</span> 67</button><button class="ev-action"><span class="icon">⚡</span> 4.2k</button></div>
+                    </div>
+                  </div>
+                  <div class="event-card" data-kind="long">
+                    <div class="ev-avatar av7">D</div>
+                    <div class="ev-content">
+                      <div class="ev-meta"><span class="ev-name">DerGigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="ev-kind-tag ev-kind-long">long-form</span><span class="ev-time">45m</span></div>
+                      <div class="ev-text">21 Lessons in Digital Sovereignty: What Bitcoin taught me about owning my data, my keys, and my future...</div>
+                      <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 67</button><button class="ev-action"><span class="icon">🔁</span> 134</button><button class="ev-action"><span class="icon">⚡</span> 8.9k</button></div>
+                    </div>
+                  </div>
+                  <div class="event-card" data-kind="repost">
+                    <div class="ev-avatar av4">G</div>
+                    <div class="ev-content">
+                      <div class="ev-meta"><span class="ev-name">Gigi</span><span class="ev-npub">npub1derg...ql3q</span><span class="ev-kind-tag ev-kind-repost">repost</span><span class="ev-time">1h</span></div>
+                      <div class="ev-text">🔁 The internet was supposed to be decentralized. Nostr actually delivers on that promise.</div>
+                      <div class="ev-actions"><button class="ev-action"><span class="icon">💬</span> 31</button><button class="ev-action"><span class="icon">🔁</span> 78</button><button class="ev-action"><span class="icon">⚡</span> 2.6k</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WoT -->
+              <div class="app-page" id="page-wot">
+                <div class="wot-page-inner">
+                  <div class="wot-stats">
+                    <div class="wot-stat-card"><div class="wot-stat-val">312</div><div class="wot-stat-label">1-hop</div></div>
+                    <div class="wot-stat-card"><div class="wot-stat-val">401</div><div class="wot-stat-label">2-hop</div></div>
+                    <div class="wot-stat-card"><div class="wot-stat-val">134</div><div class="wot-stat-label">3-hop</div></div>
+                  </div>
+                  <div class="wot-graph-wrap">
+                    <svg viewBox="0 0 400 300" width="360" height="270">
+                      <circle cx="200" cy="150" r="120" fill="none" stroke="#2a2a34" stroke-width="1" stroke-dasharray="4,4"/>
+                      <circle cx="200" cy="150" r="80" fill="none" stroke="#2a2a34" stroke-width="1" stroke-dasharray="4,4"/>
+                      <circle cx="200" cy="150" r="40" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,4"/>
+                      <!-- You -->
+                      <circle cx="200" cy="150" r="8" fill="#7c3aed"/>
+                      <text x="200" y="175" text-anchor="middle" fill="#8b5cf6" font-size="10" font-weight="600">You</text>
+                      <!-- 1-hop -->
+                      <circle cx="240" cy="130" r="5" fill="#a78bfa" opacity="0.9"/><circle cx="170" cy="120" r="5" fill="#a78bfa" opacity="0.9"/><circle cx="210" cy="115" r="4" fill="#a78bfa" opacity="0.8"/><circle cx="185" cy="180" r="5" fill="#a78bfa" opacity="0.9"/><circle cx="225" cy="175" r="4" fill="#a78bfa" opacity="0.8"/><circle cx="160" cy="150" r="5" fill="#a78bfa" opacity="0.9"/><circle cx="230" cy="150" r="4" fill="#a78bfa" opacity="0.8"/>
+                      <line x1="200" y1="150" x2="240" y2="130" stroke="#7c3aed" stroke-width="0.5" opacity="0.3"/><line x1="200" y1="150" x2="170" y2="120" stroke="#7c3aed" stroke-width="0.5" opacity="0.3"/><line x1="200" y1="150" x2="185" y2="180" stroke="#7c3aed" stroke-width="0.5" opacity="0.3"/><line x1="200" y1="150" x2="160" y2="150" stroke="#7c3aed" stroke-width="0.5" opacity="0.3"/><line x1="200" y1="150" x2="230" y2="150" stroke="#7c3aed" stroke-width="0.5" opacity="0.3"/>
+                      <!-- 2-hop -->
+                      <circle cx="280" cy="110" r="3.5" fill="#60a5fa" opacity="0.6"/><circle cx="130" cy="100" r="3.5" fill="#60a5fa" opacity="0.6"/><circle cx="260" cy="190" r="3" fill="#60a5fa" opacity="0.5"/><circle cx="140" cy="180" r="3.5" fill="#60a5fa" opacity="0.6"/><circle cx="200" cy="80" r="3" fill="#60a5fa" opacity="0.5"/><circle cx="270" cy="155" r="3" fill="#60a5fa" opacity="0.5"/><circle cx="135" cy="140" r="3.5" fill="#60a5fa" opacity="0.6"/><circle cx="250" cy="120" r="3" fill="#60a5fa" opacity="0.5"/><circle cx="155" cy="195" r="3" fill="#60a5fa" opacity="0.5"/>
+                      <line x1="240" y1="130" x2="280" y2="110" stroke="#60a5fa" stroke-width="0.4" opacity="0.2"/><line x1="170" y1="120" x2="130" y2="100" stroke="#60a5fa" stroke-width="0.4" opacity="0.2"/><line x1="185" y1="180" x2="140" y2="180" stroke="#60a5fa" stroke-width="0.4" opacity="0.2"/>
+                      <!-- 3-hop -->
+                      <circle cx="320" cy="90" r="2.5" fill="#34d399" opacity="0.4"/><circle cx="100" cy="80" r="2.5" fill="#34d399" opacity="0.4"/><circle cx="310" cy="200" r="2.5" fill="#34d399" opacity="0.4"/><circle cx="90" cy="170" r="2.5" fill="#34d399" opacity="0.4"/><circle cx="200" cy="40" r="2.5" fill="#34d399" opacity="0.4"/><circle cx="330" cy="150" r="2" fill="#34d399" opacity="0.3"/><circle cx="80" cy="130" r="2" fill="#34d399" opacity="0.3"/>
+                      <line x1="280" y1="110" x2="320" y2="90" stroke="#34d399" stroke-width="0.3" opacity="0.15"/><line x1="130" y1="100" x2="100" y2="80" stroke="#34d399" stroke-width="0.3" opacity="0.15"/>
+                      <!-- Legend -->
+                      <circle cx="30" cy="20" r="5" fill="#a78bfa"/><text x="42" y="24" fill="#7a7a90" font-size="9">1-hop (312)</text>
+                      <circle cx="30" cy="38" r="4" fill="#60a5fa"/><text x="42" y="42" fill="#7a7a90" font-size="9">2-hop (401)</text>
+                      <circle cx="30" cy="56" r="3" fill="#34d399"/><text x="42" y="60" fill="#7a7a90" font-size="9">3-hop (134)</text>
+                    </svg>
+                  </div>
+                  <div class="wot-trusted-title">Trusted Accounts</div>
+                  <div class="wot-trusted-list">
+                    <div class="wot-trusted-item"><div class="wot-trusted-avatar av1">F</div><span class="wot-trusted-name">fiatjaf</span><span class="wot-trusted-hop">1-hop</span></div>
+                    <div class="wot-trusted-item"><div class="wot-trusted-avatar av2">J</div><span class="wot-trusted-name">jb55</span><span class="wot-trusted-hop">1-hop</span></div>
+                    <div class="wot-trusted-item"><div class="wot-trusted-avatar av3">O</div><span class="wot-trusted-name">ODELL</span><span class="wot-trusted-hop">1-hop</span></div>
+                    <div class="wot-trusted-item"><div class="wot-trusted-avatar av4">G</div><span class="wot-trusted-name">Gigi</span><span class="wot-trusted-hop">1-hop</span></div>
+                    <div class="wot-trusted-item"><div class="wot-trusted-avatar av5">L</div><span class="wot-trusted-name">Lynalden</span><span class="wot-trusted-hop">2-hop</span></div>
+                    <div class="wot-trusted-item"><div class="wot-trusted-avatar av6">P</div><span class="wot-trusted-name">Preston</span><span class="wot-trusted-hop">2-hop</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Storage -->
+              <div class="app-page" id="page-storage">
+                <div class="storage-page-inner">
+                  <div class="storage-usage-bar">
+                    <div class="storage-usage-title">Storage Usage — 2.3 GB / 5.0 GB</div>
+                    <div class="storage-usage-visual">
+                      <div class="storage-seg storage-seg-notes" style="width:35%"></div>
+                      <div class="storage-seg storage-seg-media" style="width:25%"></div>
+                      <div class="storage-seg storage-seg-meta" style="width:10%"></div>
+                      <div class="storage-seg storage-seg-other" style="width:6%"></div>
+                    </div>
+                    <div class="storage-legend">
+                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--accent)"></div>Notes (805 MB)</div>
+                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--purple)"></div>Media (575 MB)</div>
+                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--blue)"></div>Metadata (230 MB)</div>
+                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--green)"></div>Other (138 MB)</div>
+                    </div>
+                  </div>
+                  <div class="kind-grid-page">
+                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">📝</span><span class="kind-name">Notes</span><span class="kind-count">8,421</span></div><span class="kind-meta">kind 1</span></div>
+                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">📰</span><span class="kind-name">Long-form</span><span class="kind-count">234</span></div><span class="kind-meta">kind 30023</span></div>
+                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">⚡</span><span class="kind-name">Zaps</span><span class="kind-count">1,847</span></div><span class="kind-meta">kind 9735</span></div>
+                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">🔁</span><span class="kind-name">Reposts</span><span class="kind-count">623</span></div><span class="kind-meta">kind 6</span></div>
+                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">❤️</span><span class="kind-name">Reactions</span><span class="kind-count">3,102</span></div><span class="kind-meta">kind 7</span></div>
+                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">🏷️</span><span class="kind-name">Metadata</span><span class="kind-count">847</span></div><span class="kind-meta">kind 0</span></div>
+                  </div>
+                  <div style="font-size:0.9rem;font-weight:700;margin-bottom:12px">Media Cache</div>
+                  <div class="media-grid">
+                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">🖼️</div></div>
+                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#2563eb,#60a5fa)">🎬</div></div>
+                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#059669,#34d399)">🖼️</div></div>
+                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#d97706,#fbbf24)">🔊</div></div>
+                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#dc2626,#f87171)">🖼️</div></div>
+                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#0891b2,#22d3ee)">🎬</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Settings -->
+              <div class="app-page" id="page-settings">
+                <div class="settings-container">
+                  <div class="settings-sub-nav">
+                    <div class="settings-sub-item active" data-settings="identity">🔑 Identity</div>
+                    <div class="settings-sub-item" data-settings="relays">📡 Relays</div>
+                    <div class="settings-sub-item" data-settings="your-storage">💾 Your Storage</div>
+                    <div class="settings-sub-item" data-settings="others-storage">👥 Others' Storage</div>
+                    <div class="settings-sub-item" data-settings="wot-settings">🕸️ WoT</div>
+                    <div class="settings-sub-item" data-settings="advanced">⚙️ Advanced</div>
+                  </div>
+                  <div class="settings-panel">
+                    <!-- Identity -->
+                    <div class="settings-pane active" id="pane-identity">
+                      <div class="settings-pane-title">Identity</div>
+                      <div class="settings-pane-desc">Your Nostr identity configuration.</div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Public Key</span><span class="settings-field-desc">Your npub used for WoT computation</span></div></div>
+                      <div class="settings-mono">npub1qe3e...7g8a</div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Display Name</span><span class="settings-field-desc">Fetched from kind:0 metadata</span></div></div>
+                      <div class="settings-mono">satoshi</div>
+                    </div>
+                    <!-- Relays -->
+                    <div class="settings-pane" id="pane-relays">
+                      <div class="settings-pane-title">Relays</div>
+                      <div class="settings-pane-desc">Manage relay connections.</div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">primal</span><span class="settings-field-desc">Fast global relay · 24ms</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">damus</span><span class="settings-field-desc">iOS community hub · 31ms</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">nostr.wine</span><span class="settings-field-desc">Premium paid relay · 18ms</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">yakihonne</span><span class="settings-field-desc">Long-form content · 42ms</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                    </div>
+                    <!-- Your Storage -->
+                    <div class="settings-pane" id="pane-your-storage">
+                      <div class="settings-pane-title">Your Storage</div>
+                      <div class="settings-pane-desc">What to keep from your own events.</div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">📝 Notes</span><span class="settings-field-desc">kind 1</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">📰 Long-form</span><span class="settings-field-desc">kind 30023</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">⚡ Zaps</span><span class="settings-field-desc">kind 9735</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">🔁 Reposts</span><span class="settings-field-desc">kind 6</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">🖼️ Media (Blossom)</span><span class="settings-field-desc">Images, Videos, Audio</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                    </div>
+                    <!-- Others' Storage -->
+                    <div class="settings-pane" id="pane-others-storage">
+                      <div class="settings-pane-title">Others' Storage</div>
+                      <div class="settings-pane-desc">Control storage for WoT contacts' events.</div>
+                      <div class="settings-field">
+                        <div class="settings-field-info"><span class="settings-field-label">WoT Depth</span><span class="settings-field-desc">How many hops to store</span></div>
+                        <div class="pill-group"><span class="pill">1</span><span class="pill active">2</span><span class="pill">3</span></div>
+                      </div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Events quota</span><span class="settings-field-desc">Max storage for others' events</span></div><span style="font-family:var(--mono);font-size:0.85rem;color:var(--accent-light)">5 GB</span></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Media quota</span><span class="settings-field-desc">Max storage for others' media</span></div><span style="font-family:var(--mono);font-size:0.85rem;color:var(--accent-light)">2 GB</span></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Store Notes</span><span class="settings-field-desc">kind 1 from WoT</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Store Long-form</span><span class="settings-field-desc">kind 30023 from WoT</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                    </div>
+                    <!-- WoT Settings -->
+                    <div class="settings-pane" id="pane-wot-settings">
+                      <div class="settings-pane-title">Web of Trust</div>
+                      <div class="settings-pane-desc">Configure trust graph computation.</div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Max depth</span><span class="settings-field-desc">How many hops to compute</span></div><span style="font-family:var(--mono);font-size:0.85rem;color:var(--accent-light)">3</span></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Auto-refresh</span><span class="settings-field-desc">Recompute WoT periodically</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Refresh interval</span><span class="settings-field-desc">How often to recompute</span></div><span style="font-family:var(--mono);font-size:0.85rem;color:var(--text-dim)">6 hours</span></div>
+                    </div>
+                    <!-- Advanced -->
+                    <div class="settings-pane" id="pane-advanced">
+                      <div class="settings-pane-title">Advanced</div>
+                      <div class="settings-pane-desc">Low-level configuration options.</div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Relay port</span><span class="settings-field-desc">Local WebSocket relay port</span></div><span style="font-family:var(--mono);font-size:0.85rem;color:var(--text-dim)">4869</span></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Auto-start</span><span class="settings-field-desc">Start nostrito on login</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Debug logging</span><span class="settings-field-desc">Verbose output for troubleshooting</span></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+                      <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Database path</span><span class="settings-field-desc">SQLite database location</span></div></div>
+                      <div class="settings-mono">~/.nostrito/data.db</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -784,474 +1294,6 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       INTERACTIVE DEMO
-       ═══════════════════════════════════════════════════ -->
-  <section id="demo" class="demo-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>See it in action.</h2>
-        <p>Explore the full nostrito experience. Every button works, every screen navigates — no sign-up needed.</p>
-      </div>
-
-      <div class="demo-window">
-        <div class="demo-titlebar">
-          <div class="demo-titlebar-dots">
-            <div class="demo-dot demo-dot--close"></div>
-            <div class="demo-dot demo-dot--min"></div>
-            <div class="demo-dot demo-dot--max"></div>
-          </div>
-          <div class="demo-titlebar-title" id="demo-title">nostrito — Setup</div>
-        </div>
-
-        <div class="demo-body">
-          <!-- Left sidebar nav (hidden during wizard) -->
-          <div class="demo-nav" id="demo-nav" style="display:none;">
-            <button class="demo-nav-item active" data-screen="dashboard"><span class="nav-icon">📊</span> Dashboard</button>
-            <button class="demo-nav-item" data-screen="feed"><span class="nav-icon">📰</span> Feed</button>
-            <button class="demo-nav-item" data-screen="wot"><span class="nav-icon">🕸️</span> WoT</button>
-            <button class="demo-nav-item" data-screen="storage"><span class="nav-icon">💾</span> Storage</button>
-            <button class="demo-nav-item" data-screen="settings"><span class="nav-icon">⚙️</span> Settings</button>
-            <div class="demo-nav-spacer"></div>
-            <button class="demo-nav-reset" id="demo-reset">↺ Start over</button>
-          </div>
-
-          <!-- Demo main area -->
-          <div class="demo-main">
-
-            <!-- ═══ WIZARD ═══ -->
-            <div class="demo-screen active" id="screen-wizard">
-              <div class="wiz-indicator">
-                <div class="wiz-dot-wrap active" id="wiz-ind-1"><span class="wiz-num">1</span><span class="wiz-label">Identity</span></div>
-                <div class="wiz-line" id="wiz-line-1"></div>
-                <div class="wiz-dot-wrap" id="wiz-ind-2"><span class="wiz-num">2</span><span class="wiz-label">Relays</span></div>
-                <div class="wiz-line" id="wiz-line-2"></div>
-                <div class="wiz-dot-wrap" id="wiz-ind-3"><span class="wiz-num">3</span><span class="wiz-label">Storage</span></div>
-              </div>
-
-              <!-- Step 1: npub -->
-              <div class="wiz-panel active" id="wiz-step-1">
-                <div class="wiz-content">
-                  <h3 class="wiz-title">Your npub</h3>
-                  <p class="wiz-subtitle">Paste your Nostr public key. Your relay, your identity.</p>
-                  <input type="text" class="wiz-input" id="wiz-npub" placeholder="npub1..." value="">
-                </div>
-              </div>
-
-              <!-- Step 2: Relays -->
-              <div class="wiz-panel" id="wiz-step-2">
-                <div class="wiz-content">
-                  <h3 class="wiz-title">Where do you want to sync from?</h3>
-                  <p class="wiz-subtitle">Pick by name. We handle the rest.</p>
-                  <div class="relay-grid" id="wiz-relay-grid">
-                    <!-- populated by JS -->
-                  </div>
-                </div>
-              </div>
-
-              <!-- Step 3: Storage -->
-              <div class="wiz-panel" id="wiz-step-3">
-                <div class="wiz-content">
-                  <h3 class="wiz-title">Storage</h3>
-                  <p class="wiz-subtitle">Control what gets stored and how much space to use.</p>
-
-                  <div class="storage-row storage-locked">
-                    <div class="storage-row-info">
-                      <span class="storage-row-label">Your events &amp; media</span>
-                      <span class="storage-row-meta">🔒 Always stored. No exceptions.</span>
-                    </div>
-                    <div class="storage-bar-wrap">
-                      <div class="storage-bar"><div class="storage-bar-fill" style="width:100%"></div></div>
-                      <span class="storage-bar-label">100%</span>
-                    </div>
-                  </div>
-
-                  <div class="storage-row">
-                    <div class="storage-row-info">
-                      <span class="storage-row-label">Others' events</span>
-                      <span class="storage-row-meta">From your Web of Trust</span>
-                    </div>
-                    <div class="storage-slider-wrap">
-                      <input type="range" class="storage-slider" min="1" max="50" value="5" id="wiz-others-slider">
-                      <span class="storage-slider-value" id="wiz-others-val">5 GB</span>
-                    </div>
-                  </div>
-
-                  <div class="storage-row">
-                    <div class="storage-row-info">
-                      <span class="storage-row-label">Others' media (Blossom)</span>
-                      <span class="storage-row-meta">Images, videos, audio from your network</span>
-                    </div>
-                    <div class="storage-slider-wrap">
-                      <input type="range" class="storage-slider" min="1" max="50" value="2" id="wiz-media-slider">
-                      <span class="storage-slider-value" id="wiz-media-val">2 GB</span>
-                    </div>
-                  </div>
-                  <div class="storage-toggles" id="wiz-media-toggles">
-                    <button class="mini-toggle active" data-media="images">🖼️ Images</button>
-                    <button class="mini-toggle active" data-media="videos">🎬 Videos</button>
-                    <button class="mini-toggle active" data-media="audio">🔊 Audio</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="wiz-nav">
-                <button class="btn btn-secondary" id="wiz-back" disabled>← Back</button>
-                <button class="btn btn-primary" id="wiz-next">Next →</button>
-              </div>
-            </div>
-
-            <!-- ═══ DASHBOARD ═══ -->
-            <div class="demo-screen" id="screen-dashboard">
-              <div class="dash-header">
-                <div class="dash-header-left">
-                  <span class="dash-header-name">🌶️ nostrito</span>
-                  <span class="status-badge status-live"><span class="status-dot"></span> Live</span>
-                </div>
-              </div>
-              <div class="dash-stats">
-                <div class="dash-stat"><div class="dash-stat-val">847</div><div class="dash-stat-label">Trusted Pubkeys</div></div>
-                <div class="dash-stat"><div class="dash-stat-val">4</div><div class="dash-stat-label">Relays Connected</div></div>
-                <div class="dash-stat"><div class="dash-stat-val" id="dash-events">12,483</div><div class="dash-stat-label">Events Cached</div></div>
-                <div class="dash-stat"><div class="dash-stat-val">2.3 GB</div><div class="dash-stat-label">Stored</div></div>
-              </div>
-              <div class="dash-body">
-                <div class="dash-feed" id="dash-feed">
-                  <!-- populated by JS -->
-                </div>
-                <div class="dash-sidebar">
-                  <div class="dash-sidebar-header">Connected Relays</div>
-                  <div class="relay-list-item"><div class="relay-dot on"></div><span class="relay-name">primal</span><span class="relay-latency">24ms</span></div>
-                  <div class="relay-list-item"><div class="relay-dot on"></div><span class="relay-name">damus</span><span class="relay-latency">31ms</span></div>
-                  <div class="relay-list-item"><div class="relay-dot on"></div><span class="relay-name">nos</span><span class="relay-latency">18ms</span></div>
-                  <div class="relay-list-item"><div class="relay-dot on"></div><span class="relay-name">snort</span><span class="relay-latency">56ms</span></div>
-                  <div class="relay-list-item"><div class="relay-dot off"></div><span class="relay-name">coracle</span><span class="relay-latency">—</span></div>
-                  <div class="sidebar-section">
-                    <div class="sidebar-section-title">WoT Coverage</div>
-                    <div class="mini-bar"><div class="mini-bar-fill" style="width:72%;background:linear-gradient(90deg,var(--accent),var(--accent-light))"></div></div>
-                    <div class="mini-bar-label"><span style="color:var(--accent-light)">72%</span> of your network synced</div>
-                  </div>
-                  <div class="sidebar-section">
-                    <div class="sidebar-section-title">Storage</div>
-                    <div class="mini-bar"><div class="mini-bar-fill" style="width:46%;background:linear-gradient(90deg,var(--green),#34d399)"></div></div>
-                    <div class="mini-bar-label"><span style="color:var(--green)">2.3 GB</span> / 5 GB limit</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ═══ FEED ═══ -->
-            <div class="demo-screen" id="screen-feed">
-              <div class="feed-header">
-                <div class="feed-title">Feed</div>
-                <div class="feed-filters" id="feed-filters">
-                  <button class="feed-filter active" data-filter="all">All</button>
-                  <button class="feed-filter" data-filter="notes">Notes</button>
-                  <button class="feed-filter" data-filter="longform">Long-form</button>
-                  <button class="feed-filter" data-filter="reposts">Reposts</button>
-                </div>
-              </div>
-              <div class="feed-list" id="feed-list">
-                <!-- populated by JS -->
-              </div>
-            </div>
-
-            <!-- ═══ WOT ═══ -->
-            <div class="demo-screen" id="screen-wot">
-              <div class="wot-header">
-                <div class="wot-title">Your Web of Trust</div>
-                <div class="wot-subtitle">Trust graph computed from your follow list</div>
-              </div>
-              <div class="wot-body">
-                <div class="wot-stats">
-                  <div class="wot-stat-card"><div class="wot-stat-val purple">847</div><div class="wot-stat-lbl">Total Trusted</div></div>
-                  <div class="wot-stat-card"><div class="wot-stat-val green">312</div><div class="wot-stat-lbl">1 Hop</div></div>
-                  <div class="wot-stat-card"><div class="wot-stat-val blue">401</div><div class="wot-stat-lbl">2 Hops</div></div>
-                  <div class="wot-stat-card"><div class="wot-stat-val orange">134</div><div class="wot-stat-lbl">3 Hops</div></div>
-                </div>
-
-                <div class="wot-graph-wrap">
-                  <div class="wot-graph">
-                    <div class="wot-ring wot-ring-3"></div>
-                    <div class="wot-ring wot-ring-2"></div>
-                    <div class="wot-ring wot-ring-1"></div>
-                    <div class="wot-center"></div>
-                    <!-- Hop 1 nodes -->
-                    <div class="wot-node" style="top:25%;left:58%"></div>
-                    <div class="wot-node" style="top:35%;left:28%"></div>
-                    <div class="wot-node" style="top:55%;left:62%"></div>
-                    <div class="wot-node" style="top:62%;left:35%"></div>
-                    <div class="wot-node" style="top:40%;left:55%"></div>
-                    <div class="wot-node" style="top:50%;left:38%"></div>
-                    <!-- Hop 2 nodes -->
-                    <div class="wot-node hop2" style="top:15%;left:45%"></div>
-                    <div class="wot-node hop2" style="top:18%;left:68%"></div>
-                    <div class="wot-node hop2" style="top:72%;left:58%"></div>
-                    <div class="wot-node hop2" style="top:68%;left:28%"></div>
-                    <div class="wot-node hop2" style="top:30%;left:18%"></div>
-                    <div class="wot-node hop2" style="top:78%;left:45%"></div>
-                    <div class="wot-node hop2" style="top:22%;left:32%"></div>
-                    <div class="wot-node hop2" style="top:65%;left:70%"></div>
-                    <!-- Hop 3 nodes -->
-                    <div class="wot-node hop3" style="top:5%;left:55%"></div>
-                    <div class="wot-node hop3" style="top:8%;left:38%"></div>
-                    <div class="wot-node hop3" style="top:88%;left:50%"></div>
-                    <div class="wot-node hop3" style="top:85%;left:32%"></div>
-                    <div class="wot-node hop3" style="top:10%;left:72%"></div>
-                    <div class="wot-node hop3" style="top:82%;left:68%"></div>
-                    <div class="wot-node hop3" style="top:42%;left:8%"></div>
-                    <div class="wot-node hop3" style="top:48%;left:90%"></div>
-                  </div>
-                </div>
-
-                <div class="wot-pubkey-list">
-                  <div class="wot-pubkey-header">Top Trusted Pubkeys</div>
-                  <div class="wot-pubkey-row">
-                    <div class="event-avatar av-1" style="width:30px;height:30px;font-size:0.75rem">F</div>
-                    <span class="wot-pubkey-name">fiatjaf</span>
-                    <span class="wot-pubkey-npub">npub1qe3e...7g8a</span>
-                    <span class="wot-depth-badge depth-1">1 hop</span>
-                    <span class="wot-mutual">48 mutual</span>
-                  </div>
-                  <div class="wot-pubkey-row">
-                    <div class="event-avatar av-2" style="width:30px;height:30px;font-size:0.75rem">J</div>
-                    <span class="wot-pubkey-name">jb55</span>
-                    <span class="wot-pubkey-npub">npub1xtsc...h2ts</span>
-                    <span class="wot-depth-badge depth-1">1 hop</span>
-                    <span class="wot-mutual">42 mutual</span>
-                  </div>
-                  <div class="wot-pubkey-row">
-                    <div class="event-avatar av-3" style="width:30px;height:30px;font-size:0.75rem">O</div>
-                    <span class="wot-pubkey-name">ODELL</span>
-                    <span class="wot-pubkey-npub">npub1qny3...kj5h</span>
-                    <span class="wot-depth-badge depth-1">1 hop</span>
-                    <span class="wot-mutual">67 mutual</span>
-                  </div>
-                  <div class="wot-pubkey-row">
-                    <div class="event-avatar av-4" style="width:30px;height:30px;font-size:0.75rem">G</div>
-                    <span class="wot-pubkey-name">Gigi</span>
-                    <span class="wot-pubkey-npub">npub1derg...ql3q</span>
-                    <span class="wot-depth-badge depth-1">1 hop</span>
-                    <span class="wot-mutual">53 mutual</span>
-                  </div>
-                  <div class="wot-pubkey-row">
-                    <div class="event-avatar av-5" style="width:30px;height:30px;font-size:0.75rem">P</div>
-                    <span class="wot-pubkey-name">PABLOF7z</span>
-                    <span class="wot-pubkey-npub">npub1l2vy...9x3k</span>
-                    <span class="wot-depth-badge depth-2">2 hops</span>
-                    <span class="wot-mutual">31 mutual</span>
-                  </div>
-                  <div class="wot-pubkey-row">
-                    <div class="event-avatar av-6" style="width:30px;height:30px;font-size:0.75rem">V</div>
-                    <span class="wot-pubkey-name">Vitor</span>
-                    <span class="wot-pubkey-npub">npub1gcx...4w2p</span>
-                    <span class="wot-depth-badge depth-2">2 hops</span>
-                    <span class="wot-mutual">28 mutual</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ═══ STORAGE ═══ -->
-            <div class="demo-screen" id="screen-storage">
-              <div class="stor-header">
-                <div class="stor-title">Storage</div>
-                <div class="stor-subtitle">Local data breakdown and media cache</div>
-              </div>
-              <div class="stor-body">
-                <div class="stor-breakdown">
-                  <div class="stor-bar-big">
-                    <div class="stor-bar-seg" style="flex:1.1;background:var(--accent)">1.1 GB</div>
-                    <div class="stor-bar-seg" style="flex:0.8;background:var(--blue)">0.8 GB</div>
-                    <div class="stor-bar-seg" style="flex:0.4;background:var(--green)">0.4 GB</div>
-                  </div>
-                  <div class="stor-bar-legend">
-                    <div class="stor-legend-item"><div class="stor-legend-dot" style="background:var(--accent)"></div> Your events · 1.1 GB</div>
-                    <div class="stor-legend-item"><div class="stor-legend-dot" style="background:var(--blue)"></div> Others' events · 0.8 GB</div>
-                    <div class="stor-legend-item"><div class="stor-legend-dot" style="background:var(--green)"></div> Media · 0.4 GB</div>
-                  </div>
-                </div>
-
-                <div class="stor-section-title">Your Event Kinds</div>
-                <div class="stor-kind-grid">
-                  <div class="stor-kind-card"><div class="stor-kind-name">📝 Notes</div><div class="stor-kind-count">2,847</div><div class="stor-kind-meta">kind 1</div></div>
-                  <div class="stor-kind-card"><div class="stor-kind-name">📰 Long-form</div><div class="stor-kind-count">23</div><div class="stor-kind-meta">kind 30023</div></div>
-                  <div class="stor-kind-card"><div class="stor-kind-name">⚡ Zaps</div><div class="stor-kind-count">1,204</div><div class="stor-kind-meta">kind 9735</div></div>
-                  <div class="stor-kind-card"><div class="stor-kind-name">🔁 Reposts</div><div class="stor-kind-count">389</div><div class="stor-kind-meta">kind 6</div></div>
-                  <div class="stor-kind-card"><div class="stor-kind-name">❤️ Reactions</div><div class="stor-kind-count">4,831</div><div class="stor-kind-meta">kind 7</div></div>
-                  <div class="stor-kind-card"><div class="stor-kind-name">💬 DMs</div><div class="stor-kind-count">156</div><div class="stor-kind-meta">kind 4</div></div>
-                  <div class="stor-kind-card"><div class="stor-kind-name">📋 Lists</div><div class="stor-kind-count">12</div><div class="stor-kind-meta">kind 30000</div></div>
-                  <div class="stor-kind-card"><div class="stor-kind-name">🏷️ Metadata</div><div class="stor-kind-count">1</div><div class="stor-kind-meta">kind 0</div></div>
-                  <div class="stor-kind-card"><div class="stor-kind-name">👥 Contacts</div><div class="stor-kind-count">1</div><div class="stor-kind-meta">kind 3</div></div>
-                </div>
-
-                <div class="stor-media-title">🖼️ Media Gallery</div>
-                <div class="stor-media-grid">
-                  <div class="stor-media-tile">🖼️</div>
-                  <div class="stor-media-tile">🖼️</div>
-                  <div class="stor-media-tile">🖼️</div>
-                  <div class="stor-media-tile">🖼️</div>
-                  <div class="stor-media-tile">🖼️</div>
-                  <div class="stor-media-tile">🖼️</div>
-                </div>
-                <div class="stor-media-stats">47 images · 3 videos · 0.4 GB total</div>
-              </div>
-            </div>
-
-            <!-- ═══ SETTINGS ═══ -->
-            <div class="demo-screen" id="screen-settings">
-              <div class="sett-body">
-                <div class="sett-sidebar">
-                  <button class="sett-nav-item active" data-sett="identity">🔑 Identity</button>
-                  <button class="sett-nav-item" data-sett="relays">📡 Relays</button>
-                  <button class="sett-nav-item" data-sett="your-storage">💾 Your Storage</button>
-                  <button class="sett-nav-item" data-sett="others-storage">👥 Others' Storage</button>
-                  <button class="sett-nav-item" data-sett="wot-settings">🕸️ WoT</button>
-                  <button class="sett-nav-item" data-sett="advanced">⚙️ Advanced</button>
-                </div>
-                <div class="sett-content">
-
-                  <!-- Identity -->
-                  <div class="sett-panel active" id="sett-identity">
-                    <h3 class="sett-title">Identity</h3>
-                    <p class="sett-subtitle">Your Nostr public key</p>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Your npub</label>
-                      <div class="sett-field-row">
-                        <div class="sett-npub-display">npub1qe3e5a...7g8a</div>
-                        <button class="sett-btn-sm">Change npub</button>
-                      </div>
-                    </div>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Profile</label>
-                      <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:10px;">
-                        <div class="event-avatar av-1" style="width:36px;height:36px;font-size:0.85rem">Y</div>
-                        <div><div style="font-weight:600;font-size:0.88rem;">You</div><div style="font-size:0.72rem;color:var(--text-muted);font-family:var(--mono)">npub1qe3e5a...7g8a</div></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Relays -->
-                  <div class="sett-panel" id="sett-relays">
-                    <h3 class="sett-title">Relays</h3>
-                    <p class="sett-subtitle">Choose which relays to sync from</p>
-                    <div class="relay-grid" id="sett-relay-grid">
-                      <!-- populated by JS -->
-                    </div>
-                  </div>
-
-                  <!-- Your Storage -->
-                  <div class="sett-panel" id="sett-your-storage">
-                    <h3 class="sett-title">Your Storage</h3>
-                    <p class="sett-subtitle">What do you want to keep from yourself?</p>
-                    <div class="kind-grid" id="sett-your-kind-grid">
-                      <!-- populated by JS -->
-                    </div>
-                  </div>
-
-                  <!-- Others' Storage -->
-                  <div class="sett-panel" id="sett-others-storage">
-                    <h3 class="sett-title">Others' Storage</h3>
-                    <p class="sett-subtitle">Control what you keep from your WoT network</p>
-                    <div class="sett-field">
-                      <label class="sett-field-label">WoT trust depth</label>
-                      <div class="pill-group" id="sett-wot-depth">
-                        <button class="pill" data-depth="1">1 hop</button>
-                        <button class="pill active" data-depth="2">2 hops</button>
-                        <button class="pill" data-depth="3">3 hops</button>
-                        <button class="pill" data-depth="4">4 hops</button>
-                      </div>
-                    </div>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Storage quota</label>
-                      <div class="storage-slider-wrap">
-                        <input type="range" class="storage-slider" min="1" max="50" value="5" id="sett-others-quota">
-                        <span class="storage-slider-value" id="sett-others-quota-val">5 GB</span>
-                      </div>
-                    </div>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Event kinds to store</label>
-                      <div class="kind-grid" id="sett-others-kind-grid">
-                        <!-- populated by JS -->
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- WoT Settings -->
-                  <div class="sett-panel" id="sett-wot-settings">
-                    <h3 class="sett-title">Web of Trust</h3>
-                    <p class="sett-subtitle">Configure trust graph computation</p>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Max depth</label>
-                      <div class="pill-group" id="sett-wot-max-depth">
-                        <button class="pill" data-val="1">1 hop</button>
-                        <button class="pill" data-val="2">2 hops</button>
-                        <button class="pill active" data-val="3">3 hops</button>
-                        <button class="pill" data-val="4">4 hops</button>
-                      </div>
-                    </div>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Refresh interval</label>
-                      <div class="pill-group" id="sett-wot-refresh">
-                        <button class="pill">1 hour</button>
-                        <button class="pill active">6 hours</button>
-                        <button class="pill">24 hours</button>
-                        <button class="pill">Manual</button>
-                      </div>
-                    </div>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Trusted pubkeys per depth</label>
-                      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                        <div style="padding:10px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;text-align:center;flex:1;min-width:80px;">
-                          <div style="font-size:1rem;font-weight:700;color:var(--green)">312</div>
-                          <div style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase">1 hop</div>
-                        </div>
-                        <div style="padding:10px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;text-align:center;flex:1;min-width:80px;">
-                          <div style="font-size:1rem;font-weight:700;color:var(--blue)">401</div>
-                          <div style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase">2 hops</div>
-                        </div>
-                        <div style="padding:10px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;text-align:center;flex:1;min-width:80px;">
-                          <div style="font-size:1rem;font-weight:700;color:var(--orange)">134</div>
-                          <div style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase">3 hops</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Advanced -->
-                  <div class="sett-panel" id="sett-advanced">
-                    <h3 class="sett-title">Advanced</h3>
-                    <p class="sett-subtitle">Low-level configuration</p>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Relay port</label>
-                      <input type="text" class="sett-port-input" value="4869" readonly>
-                    </div>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Auto-start on login</label>
-                      <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
-                    </div>
-                    <div class="sett-field">
-                      <label class="sett-field-label">Log level</label>
-                      <select class="sett-select">
-                        <option>Error</option>
-                        <option>Warn</option>
-                        <option selected>Info</option>
-                        <option>Debug</option>
-                        <option>Trace</option>
-                      </select>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /demo-main -->
-        </div><!-- /demo-body -->
-      </div><!-- /demo-window -->
-    </div>
-  </section>
-
   <!-- CTA -->
   <section class="cta-section">
     <div class="container">
@@ -1279,340 +1321,127 @@
 
   <script>
   (function() {
-    'use strict';
-
-    // ═══ MOCK DATA ═══════════════════════════════════
-
-    const RELAYS = [
-      { name: 'primal', desc: 'Fast global relay', on: true },
-      { name: 'damus', desc: 'iOS community hub', on: true },
-      { name: 'nos', desc: 'Curated social relay', on: true },
-      { name: 'snort', desc: 'Web client relay', on: false },
-      { name: 'coracle', desc: 'Discovery-focused', on: false },
-      { name: 'nostr.wine', desc: 'Premium paid relay', on: true },
-      { name: 'amethyst', desc: 'Android community', on: false },
-      { name: 'yakihonne', desc: 'Long-form content', on: false },
-    ];
-
-    const EVENTS = [
-      { name: 'fiatjaf', npub: 'npub1qe3e...7g8a', av: 'av-1', letter: 'F', time: '2m ago',
-        text: 'Nostr is the most censorship-resistant protocol we have. Your relay, your rules. That\'s the whole point.',
-        replies: 12, reposts: 34, zaps: '2.1k', type: 'notes' },
-      { name: 'jb55', npub: 'npub1xtsc...h2ts', av: 'av-2', letter: 'J', time: '8m ago',
-        text: 'Just shipped a new notedeck build. The local relay approach is the way — your data should live on your machine, not someone else\'s server.',
-        replies: 8, reposts: 21, zaps: '890', type: 'notes' },
-      { name: 'ODELL', npub: 'npub1qny3...kj5h', av: 'av-3', letter: 'O', time: '15m ago',
-        text: 'Running a personal relay is like running your own node. Don\'t trust, verify. Don\'t outsource, self-host. 🫡',
-        replies: 24, reposts: 67, zaps: '4.2k', type: 'notes' },
-      { name: 'Gigi', npub: 'npub1derg...ql3q', av: 'av-4', letter: 'G', time: '23m ago',
-        text: 'Sovereignty isn\'t just about money. It\'s about your communications, your data, your identity. Nostr gets this right.',
-        replies: 18, reposts: 45, zaps: '3.7k', type: 'notes' },
-      { name: 'Gigi', npub: 'npub1derg...ql3q', av: 'av-4', letter: 'G', time: '1h ago',
-        text: 'The Case for Personal Relays — Why running your own infrastructure matters more than ever. A deep dive into data sovereignty and the Nostr protocol...',
-        replies: 31, reposts: 89, zaps: '5.4k', type: 'longform', badge: 'Long-form' },
-      { name: 'PABLOF7z', npub: 'npub1l2vy...9x3k', av: 'av-5', letter: 'P', time: '1h ago',
-        text: 'Nostr is not a social media protocol. It\'s a communications protocol. The social media part is just one application.',
-        replies: 15, reposts: 52, zaps: '1.8k', type: 'notes' },
-      { name: 'Vitor', npub: 'npub1gcx...4w2p', av: 'av-6', letter: 'V', time: '2h ago',
-        text: '🔁 Reposted: "Every note you write should be backed up somewhere you control. Personal relays solve this."',
-        replies: 3, reposts: 12, zaps: '340', type: 'reposts', badge: 'Repost' },
-      { name: 'Karnage', npub: 'npub1r0rs...ht4k', av: 'av-7', letter: 'K', time: '3h ago',
-        text: 'Building on Nostr feels like building on the early web. Permissionless innovation at its finest.',
-        replies: 7, reposts: 19, zaps: '620', type: 'notes' },
-    ];
-
-    const YOUR_KINDS = [
-      { icon: '📝', name: 'Notes', meta: 'kind 1', on: true, locked: false },
-      { icon: '📰', name: 'Long-form', meta: 'kind 30023', on: true, locked: false },
-      { icon: '⚡', name: 'Zaps', meta: 'kind 9735', on: true, locked: false },
-      { icon: '🔁', name: 'Reposts', meta: 'kind 6', on: true, locked: false },
-      { icon: '❤️', name: 'Reactions', meta: 'kind 7', on: true, locked: false },
-      { icon: '💬', name: 'DMs', meta: 'kind 4', on: true, locked: false },
-      { icon: '📋', name: 'Lists', meta: 'kind 30000', on: true, locked: false },
-      { icon: '🏷️', name: 'Metadata', meta: 'kind 0 · 🔒', on: true, locked: true },
-      { icon: '🖼️', name: 'Media', meta: 'Blossom', on: true, locked: false },
-    ];
-
-    const OTHERS_KINDS = [
-      { icon: '📝', name: 'Notes', on: true },
-      { icon: '📰', name: 'Long-form', on: true },
-      { icon: '⚡', name: 'Zaps', on: true },
-      { icon: '🔁', name: 'Reposts', on: true },
-      { icon: '❤️', name: 'Reactions', on: true },
-      { icon: '💬', name: 'DMs', on: false },
-      { icon: '🖼️', name: 'Images', on: true },
-      { icon: '🎬', name: 'Videos', on: true },
-      { icon: '🔊', name: 'Audio', on: false },
-    ];
-
-    // ═══ HELPERS ══════════════════════════════════════
-
-    function renderEvent(ev) {
-      const badgeHtml = ev.badge
-        ? `<span class="event-badge ${ev.type === 'longform' ? 'badge-long' : 'badge-repost'}">${ev.badge}</span>`
-        : '';
-      return `<div class="event-card" data-type="${ev.type}">
-        <div class="event-avatar ${ev.av}">${ev.letter}</div>
-        <div class="event-content">
-          <div class="event-meta">
-            <span class="event-name">${ev.name}</span>
-            ${badgeHtml}
-            <span class="event-npub">${ev.npub}</span>
-            <span class="event-time">${ev.time}</span>
-          </div>
-          <div class="event-text">${ev.text}</div>
-          <div class="event-actions">
-            <button class="event-action"><span class="ic">💬</span> ${ev.replies}</button>
-            <button class="event-action"><span class="ic">🔁</span> ${ev.reposts}</button>
-            <button class="event-action"><span class="ic">⚡</span> ${ev.zaps}</button>
-          </div>
-        </div>
-      </div>`;
-    }
-
-    function renderRelayCard(relay, clickable) {
-      const cls = relay.on ? 'relay-card relay-on' : 'relay-card';
-      return `<div class="${cls}" data-relay="${relay.name}" ${clickable ? 'style="cursor:pointer"' : ''}>
-        <div class="relay-card-info">
-          <span class="relay-card-name">${relay.name}</span>
-          <span class="relay-card-desc">${relay.desc}</span>
-        </div>
-        <label class="toggle"><input type="checkbox" ${relay.on ? 'checked' : ''}><span class="toggle-slider"></span></label>
-      </div>`;
-    }
-
-    function renderKindCard(kind) {
-      const lockedCls = kind.locked ? ' kind-locked' : '';
-      return `<div class="kind-card${lockedCls}">
-        <div class="kind-card-left">
-          <span class="kind-card-icon">${kind.icon}</span>
-          <div><div class="kind-card-name">${kind.name}</div><div class="kind-card-meta">${kind.meta || ''}</div></div>
-        </div>
-        <label class="toggle"><input type="checkbox" ${kind.on ? 'checked' : ''} ${kind.locked ? 'disabled' : ''}><span class="toggle-slider"></span></label>
-      </div>`;
-    }
-
-    function renderOthersKindCard(kind) {
-      return `<div class="kind-card">
-        <div class="kind-card-left">
-          <span class="kind-card-icon">${kind.icon}</span>
-          <div class="kind-card-name">${kind.name}</div>
-        </div>
-        <label class="toggle"><input type="checkbox" ${kind.on ? 'checked' : ''}><span class="toggle-slider"></span></label>
-      </div>`;
-    }
-
-    // ═══ STATE ════════════════════════════════════════
-
-    let wizStep = 1;
-    let relayState = RELAYS.map(r => ({ ...r }));
-
-    // ═══ WIZARD ══════════════════════════════════════
-
-    const wizBack = document.getElementById('wiz-back');
-    const wizNext = document.getElementById('wiz-next');
-    const wizNpub = document.getElementById('wiz-npub');
+    // ═══ WIZARD ═══
+    var step = 1;
+    var dots = [document.getElementById('wizDot1'), document.getElementById('wizDot2'), document.getElementById('wizDot3')];
+    var lines = [document.getElementById('wizLine1'), document.getElementById('wizLine2')];
+    var panels = [document.getElementById('wizPanel1'), document.getElementById('wizPanel2'), document.getElementById('wizPanel3')];
+    var backBtn = document.getElementById('wizBack');
+    var nextBtn = document.getElementById('wizNext');
 
     function updateWizard() {
-      // Panels
-      for (let i = 1; i <= 3; i++) {
-        document.getElementById('wiz-step-' + i).classList.toggle('active', i === wizStep);
-      }
-      // Indicators
-      for (let i = 1; i <= 3; i++) {
-        const ind = document.getElementById('wiz-ind-' + i);
-        ind.classList.remove('active', 'completed');
-        if (i < wizStep) { ind.classList.add('completed'); ind.querySelector('.wiz-num').textContent = '✓'; }
-        else if (i === wizStep) { ind.classList.add('active'); ind.querySelector('.wiz-num').textContent = i; }
-        else { ind.querySelector('.wiz-num').textContent = i; }
-      }
-      // Lines
-      document.getElementById('wiz-line-1').classList.toggle('completed', wizStep > 1);
-      document.getElementById('wiz-line-2').classList.toggle('completed', wizStep > 2);
-      // Buttons
-      wizBack.disabled = wizStep === 1;
-      wizNext.textContent = wizStep === 3 ? 'Finish ✓' : 'Next →';
+      dots.forEach(function(d, i) {
+        d.className = 'wiz-dot-wrap';
+        if (i + 1 < step) d.classList.add('done');
+        else if (i + 1 === step) d.classList.add('active');
+        // Update number content
+        d.querySelector('.wiz-dot-num').textContent = (i + 1 < step) ? '✓' : (i + 1);
+      });
+      lines.forEach(function(l, i) {
+        l.className = 'wiz-line';
+        if (i + 1 < step) l.classList.add('done');
+      });
+      panels.forEach(function(p, i) {
+        p.classList.toggle('active', i + 1 === step);
+      });
+      backBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
+      nextBtn.textContent = step === 3 ? 'Finish →' : 'Next →';
     }
 
-    // Relay grid in wizard
-    function renderWizRelays() {
-      const grid = document.getElementById('wiz-relay-grid');
-      grid.innerHTML = relayState.map(r => renderRelayCard(r, true)).join('');
-      grid.querySelectorAll('.relay-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const name = card.dataset.relay;
-          const relay = relayState.find(r => r.name === name);
-          relay.on = !relay.on;
-          renderWizRelays();
+    nextBtn.addEventListener('click', function() {
+      if (step < 3) { step++; updateWizard(); }
+      else { showApp(); }
+    });
+    backBtn.addEventListener('click', function() {
+      if (step > 1) { step--; updateWizard(); }
+    });
+
+    function showApp() {
+      document.getElementById('wizardMode').style.display = 'none';
+      document.getElementById('appMode').style.display = 'flex';
+      document.getElementById('demoTitle').textContent = 'nostrito — Dashboard';
+    }
+
+    // Relay card toggles
+    document.getElementById('relayGrid').addEventListener('click', function(e) {
+      var card = e.target.closest('.relay-card');
+      if (!card) return;
+      card.classList.toggle('selected');
+      var check = card.querySelector('.relay-check');
+      check.textContent = card.classList.contains('selected') ? '✓' : '';
+    });
+
+    // Storage sliders
+    var othersEventsSlider = document.getElementById('othersEventsSlider');
+    var othersEventsVal = document.getElementById('othersEventsVal');
+    var othersMediaSlider = document.getElementById('othersMediaSlider');
+    var othersMediaVal = document.getElementById('othersMediaVal');
+    othersEventsSlider.addEventListener('input', function() { othersEventsVal.textContent = this.value + ' GB'; });
+    othersMediaSlider.addEventListener('input', function() { othersMediaVal.textContent = this.value + ' GB'; });
+
+    // Media toggles
+    document.getElementById('mediaToggles').addEventListener('click', function(e) {
+      var t = e.target.closest('.media-toggle');
+      if (t) t.classList.toggle('active');
+    });
+
+    // Cleanup radios
+    document.getElementById('cleanupGroup').addEventListener('click', function(e) {
+      var r = e.target.closest('.cleanup-radio');
+      if (!r) return;
+      this.querySelectorAll('.cleanup-radio').forEach(function(el) { el.classList.remove('active'); });
+      r.classList.add('active');
+    });
+
+    // ═══ APP NAV ═══
+    var navItems = document.querySelectorAll('.app-nav-item');
+    var pages = document.querySelectorAll('.app-page');
+    navItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        var page = this.getAttribute('data-page');
+        navItems.forEach(function(n) { n.classList.remove('active'); });
+        this.classList.add('active');
+        pages.forEach(function(p) { p.classList.remove('active'); });
+        document.getElementById('page-' + page).classList.add('active');
+        document.getElementById('demoTitle').textContent = 'nostrito — ' + this.textContent.replace(/^[^\s]+\s/, '');
+      });
+    });
+
+    // ═══ FEED FILTERS ═══
+    var filters = document.querySelectorAll('.feed-filter');
+    var feedItems = document.querySelectorAll('#feedList .event-card');
+    filters.forEach(function(f) {
+      f.addEventListener('click', function() {
+        var filter = this.getAttribute('data-filter');
+        filters.forEach(function(el) { el.classList.remove('active'); });
+        this.classList.add('active');
+        feedItems.forEach(function(item) {
+          if (filter === 'all') { item.style.display = 'flex'; }
+          else { item.style.display = item.getAttribute('data-kind') === filter ? 'flex' : 'none'; }
         });
       });
-    }
-
-    wizNext.addEventListener('click', () => {
-      if (wizStep < 3) { wizStep++; updateWizard(); }
-      else { enterApp(); }
-    });
-    wizBack.addEventListener('click', () => {
-      if (wizStep > 1) { wizStep--; updateWizard(); }
     });
 
-    // Wizard sliders
-    document.getElementById('wiz-others-slider').addEventListener('input', function() {
-      document.getElementById('wiz-others-val').textContent = this.value + ' GB';
-    });
-    document.getElementById('wiz-media-slider').addEventListener('input', function() {
-      document.getElementById('wiz-media-val').textContent = this.value + ' GB';
-    });
-
-    // Wizard media toggles
-    document.getElementById('wiz-media-toggles').addEventListener('click', function(e) {
-      const btn = e.target.closest('.mini-toggle');
-      if (btn) btn.classList.toggle('active');
-    });
-
-    renderWizRelays();
-    updateWizard();
-
-    // ═══ APP NAVIGATION ══════════════════════════════
-
-    const demoNav = document.getElementById('demo-nav');
-    const demoTitle = document.getElementById('demo-title');
-    const screens = ['wizard', 'dashboard', 'feed', 'wot', 'storage', 'settings'];
-
-    function showScreen(name) {
-      screens.forEach(s => {
-        const el = document.getElementById('screen-' + s);
-        if (el) el.classList.toggle('active', s === name);
+    // ═══ SETTINGS SUB-NAV ═══
+    var settingsItems = document.querySelectorAll('.settings-sub-item');
+    var settingsPanes = document.querySelectorAll('.settings-pane');
+    settingsItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        var pane = this.getAttribute('data-settings');
+        settingsItems.forEach(function(s) { s.classList.remove('active'); });
+        this.classList.add('active');
+        settingsPanes.forEach(function(p) { p.classList.remove('active'); });
+        document.getElementById('pane-' + pane).classList.add('active');
       });
-      demoNav.querySelectorAll('.demo-nav-item').forEach(item => {
-        item.classList.toggle('active', item.dataset.screen === name);
-      });
-      const titles = {
-        wizard: 'nostrito — Setup',
-        dashboard: 'nostrito',
-        feed: 'nostrito — Feed',
-        wot: 'nostrito — Web of Trust',
-        storage: 'nostrito — Storage',
-        settings: 'nostrito — Settings',
-      };
-      demoTitle.textContent = titles[name] || 'nostrito';
-    }
-
-    function enterApp() {
-      demoNav.style.display = 'flex';
-      showScreen('dashboard');
-    }
-
-    demoNav.querySelectorAll('.demo-nav-item').forEach(item => {
-      item.addEventListener('click', () => showScreen(item.dataset.screen));
     });
 
-    document.getElementById('demo-reset').addEventListener('click', () => {
-      wizStep = 1;
-      relayState = RELAYS.map(r => ({ ...r }));
-      renderWizRelays();
-      updateWizard();
-      wizNpub.value = '';
-      demoNav.style.display = 'none';
-      showScreen('wizard');
-    });
-
-    // ═══ DASHBOARD FEED ══════════════════════════════
-
-    document.getElementById('dash-feed').innerHTML = EVENTS.slice(0, 4).map(renderEvent).join('');
-
-    // Animate event counter
-    let eventCount = 12483;
-    setInterval(() => {
-      eventCount += Math.floor(Math.random() * 3) + 1;
-      const el = document.getElementById('dash-events');
-      if (el) el.textContent = eventCount.toLocaleString();
+    // ═══ LIVE COUNTER ═══
+    var dashEventsEl = document.getElementById('dashEvents');
+    var count = 12483;
+    setInterval(function() {
+      count += Math.floor(Math.random() * 3) + 1;
+      dashEventsEl.textContent = count.toLocaleString();
     }, 4000);
-
-    // ═══ FEED ════════════════════════════════════════
-
-    function renderFeed(filter) {
-      const filtered = filter === 'all' ? EVENTS : EVENTS.filter(e => e.type === filter);
-      document.getElementById('feed-list').innerHTML = filtered.length
-        ? filtered.map(renderEvent).join('')
-        : '<div style="padding:40px;text-align:center;color:var(--text-muted)">No events match this filter</div>';
-    }
-
-    document.getElementById('feed-filters').addEventListener('click', function(e) {
-      const btn = e.target.closest('.feed-filter');
-      if (!btn) return;
-      this.querySelectorAll('.feed-filter').forEach(f => f.classList.remove('active'));
-      btn.classList.add('active');
-      renderFeed(btn.dataset.filter);
-    });
-
-    renderFeed('all');
-
-    // ═══ SETTINGS ════════════════════════════════════
-
-    // Settings sidebar nav
-    document.querySelector('.sett-sidebar').addEventListener('click', function(e) {
-      const item = e.target.closest('.sett-nav-item');
-      if (!item) return;
-      this.querySelectorAll('.sett-nav-item').forEach(n => n.classList.remove('active'));
-      item.classList.add('active');
-      document.querySelectorAll('.sett-panel').forEach(p => p.classList.remove('active'));
-      document.getElementById('sett-' + item.dataset.sett).classList.add('active');
-    });
-
-    // Settings relay grid
-    function renderSettRelays() {
-      const grid = document.getElementById('sett-relay-grid');
-      grid.innerHTML = relayState.map(r => renderRelayCard(r, true)).join('');
-      grid.querySelectorAll('.relay-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const name = card.dataset.relay;
-          const relay = relayState.find(r => r.name === name);
-          relay.on = !relay.on;
-          renderSettRelays();
-        });
-      });
-    }
-    renderSettRelays();
-
-    // Your storage kind grid
-    document.getElementById('sett-your-kind-grid').innerHTML = YOUR_KINDS.map(renderKindCard).join('');
-
-    // Others' storage kind grid
-    document.getElementById('sett-others-kind-grid').innerHTML = OTHERS_KINDS.map(renderOthersKindCard).join('');
-
-    // Others' storage quota slider
-    document.getElementById('sett-others-quota').addEventListener('input', function() {
-      document.getElementById('sett-others-quota-val').textContent = this.value + ' GB';
-    });
-
-    // Pill groups (generic toggle)
-    document.querySelectorAll('.pill-group').forEach(group => {
-      group.addEventListener('click', function(e) {
-        const pill = e.target.closest('.pill');
-        if (!pill) return;
-        this.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-      });
-    });
-
-    // Toggle switches (make them interactive)
-    document.addEventListener('change', function(e) {
-      if (e.target.matches('.toggle input')) {
-        // Just let the checkbox toggle — no extra logic needed
-      }
-    });
-
-    // Make kind card toggles work
-    document.addEventListener('click', function(e) {
-      const kindCard = e.target.closest('.kind-card');
-      if (!kindCard) return;
-      const toggle = kindCard.querySelector('.toggle input');
-      if (toggle && !toggle.disabled && e.target !== toggle) {
-        toggle.checked = !toggle.checked;
-      }
-    });
-
   })();
   </script>
 
