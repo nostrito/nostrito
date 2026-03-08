@@ -159,6 +159,20 @@
 .radio-group label { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 13px; color: var(--text); text-transform: none; letter-spacing: 0; }
 .radio-group input { accent-color: var(--accent); }
 
+/* ── Wizard identity & signer options ── */
+.wiz-identity-option {
+  padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px;
+  cursor: pointer; transition: all .2s; background: var(--bg-dark);
+}
+.wiz-identity-option:hover { border-color: var(--accent); }
+.wiz-identity-option.selected { border-color: var(--accent); background: var(--accent-bg); }
+.wiz-signer-option {
+  padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px;
+  cursor: pointer; font-size: 13px; font-weight: 500;
+  background: var(--bg-dark); color: var(--text); transition: all .2s;
+}
+.wiz-signer-option:hover { border-color: var(--accent); background: var(--accent-bg); }
+
 /* ── App layout ── */
 .app-layout { display: flex; width: 100%; height: 100%; }
 .app-layout.hidden { display: none; }
@@ -200,7 +214,7 @@
 
 /* ── Dashboard ── */
 .stats-row {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px;
 }
 .stat-card {
   background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px;
@@ -289,6 +303,42 @@
 }
 .wot-item .wi-depth.d1 { background: rgba(124,58,237,.2); color: var(--accent); }
 .wot-item .wi-depth.d2 { background: rgba(59,130,246,.2); color: var(--blue); }
+
+/* ── DMs ── */
+.dm-item {
+  display: flex; align-items: center; padding: 12px 14px;
+  border-bottom: 1px solid var(--border); cursor: pointer; gap: 10px;
+  transition: background .15s;
+}
+.dm-item:hover { background: rgba(255,255,255,.03); }
+.dm-item .dm-avatar {
+  width: 36px; height: 36px; min-width: 36px; border-radius: 50%;
+}
+.dm-item .dm-mid { flex: 1; min-width: 0; }
+.dm-item .dm-name-row { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+.dm-item .dm-name { font-weight: 600; font-size: 13px; }
+.dm-item .dm-unread { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+.dm-item .dm-preview { font-size: 12px; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dm-item .dm-time { font-size: 11px; color: var(--text-dim); flex-shrink: 0; margin-left: 8px; }
+.dm-bubble { border-radius: 12px; font-size: 13px; padding: 10px 14px; max-width: 75%; margin-bottom: 8px; line-height: 1.4; }
+.dm-bubble.theirs { background: var(--bg-dark); border: 1px solid var(--border); align-self: flex-start; }
+.dm-bubble.mine { background: var(--accent); color: #fff; align-self: flex-end; }
+
+/* ── Hop badges ── */
+.hop-badge { font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: 10px; }
+.hop-badge.hop-1 { background: rgba(124,58,237,.2); color: #a78bfa; }
+.hop-badge.hop-2 { background: rgba(59,130,246,.2); color: #60a5fa; }
+
+/* ── Sync Engine ── */
+.sync-tier { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.sync-tier:last-of-type { border-bottom: none; }
+.tier-header { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.tier-label { font-size: 11px; font-weight: 600; color: var(--text); flex: 1; }
+.tier-badge.fast { font-size: 9px; padding: 2px 6px; border-radius: 4px; background: rgba(52,211,153,.15); color: var(--green); font-weight: 700; }
+.tier-meta { font-size: 11px; color: var(--text-dim); }
+.tier-relay-list { margin-top: 4px; display: flex; flex-direction: column; gap: 3px; }
+.tier-relay { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-dim); }
+.tier-latency { margin-left: auto; font-size: 10px; color: var(--text-dim); opacity: .7; }
 
 /* ── Storage ── */
 .usage-bar-container { margin-bottom: 20px; }
@@ -417,6 +467,7 @@
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .dash-main { flex-direction: column; }
   .dash-relays { width: 100%; min-width: unset; }
+  .sync-engine-panel { width: 100% !important; min-width: unset !important; }
   .kind-grid { grid-template-columns: repeat(2, 1fr); }
   .kind-toggle-grid { grid-template-columns: 1fr 1fr; }
   .wot-depth-counts { grid-template-columns: repeat(2, 1fr); }
@@ -445,13 +496,39 @@
           <span data-dot="2"></span>
         </div>
 
-        <!-- Step 1 -->
+        <!-- Step 1 — Identity mode selector -->
         <div class="wizard-step active" data-step="0">
           <h3>Your identity</h3>
-          <p class="ws-sub">Your relay, your rules. Only you connect to it.</p>
-          <input type="text" id="npubInput" value="npub1fabri3k7x9d2c8qy5m..." placeholder="npub1..." />
+          <p class="ws-sub">Choose how to connect. You can always upgrade later.</p>
+
+          <!-- Path selector -->
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;width:100%;max-width:480px;text-align:left">
+            <!-- Read-only (default, highlighted) -->
+            <div class="wiz-identity-option selected" id="opt-readonly" onclick="selectIdentityMode('readonly')">
+              <div style="font-weight:600;font-size:13px">📖 Read-only <span style="font-size:11px;font-weight:400;color:var(--green);margin-left:6px">Recommended</span></div>
+              <div style="font-size:12px;color:var(--text-dim);margin-top:2px">Paste your npub. DMs disabled, everything else works.</div>
+            </div>
+            <!-- Full access -->
+            <div class="wiz-identity-option" id="opt-full" onclick="selectIdentityMode('full')">
+              <div style="font-weight:600;font-size:13px">🔑 Full access</div>
+              <div style="font-size:12px;color:var(--text-dim);margin-top:2px">Connect nsec, NBunker, or Nostr Connect. Unlocks DMs.</div>
+            </div>
+          </div>
+
+          <!-- Read-only input (visible by default) -->
+          <div id="wiz-readonly-input" style="width:100%;max-width:480px">
+            <input type="text" id="npubInput" value="npub1fabri3k7x9d2c8qy5m..." placeholder="npub1..." />
+          </div>
+
+          <!-- Full access options (hidden by default) -->
+          <div id="wiz-full-input" style="display:none;width:100%;max-width:480px;flex-direction:column;gap:8px">
+            <div class="wiz-signer-option" onclick="selectSigner(this, 'nsec')">🔑 Paste nsec</div>
+            <div class="wiz-signer-option" onclick="selectSigner(this, 'bunker')">🏰 NBunker / NIP-46</div>
+            <div class="wiz-signer-option" onclick="selectSigner(this, 'new')">✨ Create new account</div>
+          </div>
+
           <div class="wizard-btns">
-            <button class="btn-primary" onclick="wizardNext()">Next</button>
+            <button class="btn-primary" onclick="wizardNext()">Next →</button>
           </div>
         </div>
 
@@ -522,6 +599,7 @@
           <nav>
             <a class="active" data-view="dashboard" onclick="switchView(this)">📊 <span>Dashboard</span></a>
             <a data-view="feed" onclick="switchView(this)">📡 <span>Feed</span></a>
+            <a data-view="dms" onclick="switchView(this)">💬 <span>DMs</span></a>
             <a data-view="wot" onclick="switchView(this)">🕸️ <span>WoT</span></a>
             <a data-view="storage" onclick="switchView(this)">💾 <span>Storage</span></a>
             <a data-view="settings" onclick="switchView(this)">⚙️ <span>Settings</span></a>
@@ -534,37 +612,179 @@
           <!-- Dashboard -->
           <div class="view-panel active" id="view-dashboard">
             <div class="stats-row">
-              <div class="stat-card"><div class="sv">847</div><div class="sl">Trusted pubkeys</div></div>
-              <div class="stat-card"><div class="sv">4</div><div class="sl">Relays</div></div>
-              <div class="stat-card"><div class="sv" id="eventCount">12,483</div><div class="sl">Events</div></div>
-              <div class="stat-card"><div class="sv">2.3 GB</div><div class="sl">Storage</div></div>
+              <div class="stat-card"><div class="sv" id="eventCount">12,483</div><div class="sl">Events Synced</div></div>
+              <div class="stat-card"><div class="sv">847</div><div class="sl">WoT Peers</div></div>
+              <div class="stat-card"><div class="sv">1,204</div><div class="sl">Media Cached</div></div>
+              <div class="stat-card"><div class="sv" id="syncRate">~3/min</div><div class="sl">Sync Rate</div></div>
+              <div class="stat-card"><div class="sv" id="uptime">4h 23m</div><div class="sl">Uptime</div></div>
             </div>
+
+            <!-- 24h activity chart -->
+            <div class="activity-chart" style="margin-bottom:16px">
+              <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Last 24h activity</div>
+              <div style="display:flex;align-items:flex-end;gap:3px;height:40px">
+                <div style="flex:1;height:4px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:3px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:2px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:2px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:3px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:5px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:8px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:14px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:20px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:28px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:32px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:35px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:38px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:40px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:36px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:34px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:30px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:25px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:20px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:16px;border-radius:2px 2px 0 0;background:var(--border)"></div>
+                <div style="flex:1;height:12px;border-radius:2px 2px 0 0;background:rgba(124,58,237,.7)"></div>
+                <div style="flex:1;height:9px;border-radius:2px 2px 0 0;background:rgba(124,58,237,.7)"></div>
+                <div style="flex:1;height:7px;border-radius:2px 2px 0 0;background:var(--accent)"></div>
+                <div style="flex:1;height:5px;border-radius:2px 2px 0 0;background:var(--accent)"></div>
+              </div>
+            </div>
+
             <div class="dash-main">
               <div class="dash-events">
                 <div class="event-card">
-                  <div class="ec-head"><div class="ec-avatar"></div><div><div class="ec-name">fiatjaf</div><div class="ec-npub">npub1fiat...j4f</div></div></div>
+                  <div class="ec-head"><div class="ec-avatar"></div><div><div class="ec-name">fiatjaf</div><div class="ec-npub">npub1fiat...j4f <span class="hop-badge hop-1">1-hop</span></div></div></div>
                   <div class="ec-text">Running your own relay is the most sovereign thing you can do on Nostr.</div>
                   <div class="ec-actions"><span>⚡ 47</span><span>💬 23</span></div>
                 </div>
                 <div class="event-card">
-                  <div class="ec-head"><div class="ec-avatar" style="background:linear-gradient(135deg,#3b82f6,#06b6d4)"></div><div><div class="ec-name">jb55</div><div class="ec-npub">npub1jb55...w9k</div></div></div>
+                  <div class="ec-head"><div class="ec-avatar" style="background:linear-gradient(135deg,#3b82f6,#06b6d4)"></div><div><div class="ec-name">jb55</div><div class="ec-npub">npub1jb55...w9k <span class="hop-badge hop-1">1-hop</span></div></div></div>
                   <div class="ec-text">The social graph IS the infrastructure. Everything else follows.</div>
                   <div class="ec-actions"><span>⚡ 31</span><span>💬 12</span></div>
                 </div>
                 <div class="event-card">
-                  <div class="ec-head"><div class="ec-avatar" style="background:linear-gradient(135deg,#f97316,#eab308)"></div><div><div class="ec-name">ODELL</div><div class="ec-npub">npub1odll...x2m</div></div></div>
+                  <div class="ec-head"><div class="ec-avatar" style="background:linear-gradient(135deg,#f97316,#eab308)"></div><div><div class="ec-name">ODELL</div><div class="ec-npub">npub1odll...x2m <span class="hop-badge hop-1">1-hop</span></div></div></div>
                   <div class="ec-text">Signal, not noise. WoT filtering is the answer.</div>
                   <div class="ec-actions"><span>⚡ 89</span><span>💬 44</span></div>
                 </div>
               </div>
-              <div class="dash-relays">
-                <h4>Relays</h4>
-                <div class="dash-relay-item"><span class="dot-g">●</span> primal <span class="latency">24ms</span></div>
-                <div class="dash-relay-item"><span class="dot-g">●</span> damus <span class="latency">31ms</span></div>
-                <div class="dash-relay-item"><span class="dot-g">●</span> nos <span class="latency">18ms</span></div>
-                <div class="dash-relay-item"><span class="dot-g">●</span> snort <span class="latency">56ms</span></div>
-                <div class="dash-relay-item"><span class="dot-r">●</span> coracle <span class="latency">offline</span></div>
+
+              <!-- Sync Engine panel (replaces old dash-relays) -->
+              <div class="sync-engine-panel" style="width:180px;min-width:180px;align-self:flex-start">
+                <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;font-weight:600">Sync Engine</div>
+
+                <!-- Tier 1 -->
+                <div class="sync-tier">
+                  <div class="tier-header">
+                    <span class="tier-label">Tier 1 — Local</span>
+                    <span class="tier-badge fast">FAST</span>
+                  </div>
+                  <div class="tier-meta">Hit rate: 94%</div>
+                </div>
+
+                <!-- Tier 2 -->
+                <div class="sync-tier">
+                  <div class="tier-header">
+                    <span class="tier-label">Tier 2 — WoT Peers</span>
+                    <span style="width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0"></span>
+                  </div>
+                  <div class="tier-meta">2 active peers</div>
+                </div>
+
+                <!-- Tier 3 — Relays -->
+                <div class="sync-tier">
+                  <div class="tier-header"><span class="tier-label">Tier 3 — Relays</span></div>
+                  <div class="tier-relay-list">
+                    <div class="tier-relay"><span style="color:var(--green)">●</span> primal <span class="tier-latency">24ms</span></div>
+                    <div class="tier-relay"><span style="color:var(--green)">●</span> damus <span class="tier-latency">31ms</span></div>
+                    <div class="tier-relay"><span style="color:var(--green)">●</span> nos <span class="tier-latency">18ms</span></div>
+                    <div class="tier-relay"><span style="color:var(--green)">●</span> snort <span class="tier-latency">56ms</span></div>
+                  </div>
+                </div>
+
+                <!-- Tier 4 -->
+                <div class="sync-tier" style="opacity:.4">
+                  <div class="tier-header"><span class="tier-label">Tier 4 — Fallback</span></div>
+                  <div class="tier-meta">Idle</div>
+                </div>
+
+                <!-- Blossom -->
+                <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+                  <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">🌸 Blossom</div>
+                  <div style="font-size:11px;color:var(--text-dim)">3 images, 1 video<br>cached this hour</div>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <!-- DMs -->
+          <div class="view-panel" id="view-dms">
+            <div id="dm-list">
+              <div class="dm-item" onclick="openDM('fiatjaf','1-hop')">
+                <div class="dm-avatar" style="background:linear-gradient(135deg,#7c3aed,#a855f7)"></div>
+                <div class="dm-mid">
+                  <div class="dm-name-row">
+                    <span class="dm-name">fiatjaf</span>
+                    <span class="dm-unread"></span>
+                    <span class="hop-badge hop-1" style="margin-left:2px">1-hop</span>
+                  </div>
+                  <div class="dm-preview">did you see the mleku post?</div>
+                </div>
+                <span class="dm-time">3m ago</span>
+              </div>
+              <div class="dm-item" onclick="openDM('jb55','1-hop')">
+                <div class="dm-avatar" style="background:linear-gradient(135deg,#3b82f6,#06b6d4)"></div>
+                <div class="dm-mid">
+                  <div class="dm-name-row">
+                    <span class="dm-name">jb55</span>
+                    <span class="hop-badge hop-1" style="margin-left:2px">1-hop</span>
+                  </div>
+                  <div class="dm-preview">notedeck update is huge</div>
+                </div>
+                <span class="dm-time">18m ago</span>
+              </div>
+              <div class="dm-item" onclick="openDM('Gigi','1-hop')">
+                <div class="dm-avatar" style="background:linear-gradient(135deg,#34d399,#06b6d4)"></div>
+                <div class="dm-mid">
+                  <div class="dm-name-row">
+                    <span class="dm-name">Gigi</span>
+                    <span class="hop-badge hop-1" style="margin-left:2px">1-hop</span>
+                  </div>
+                  <div class="dm-preview">writing something about personal relays</div>
+                </div>
+                <span class="dm-time">1h ago</span>
+              </div>
+              <div class="dm-item" onclick="openDM('nvk','2-hop')">
+                <div class="dm-avatar" style="background:linear-gradient(135deg,#ef4444,#f97316)"></div>
+                <div class="dm-mid">
+                  <div class="dm-name-row">
+                    <span class="dm-name">nvk</span>
+                    <span class="hop-badge hop-2" style="margin-left:2px">2-hop</span>
+                  </div>
+                  <div class="dm-preview">coldcard update shipping soon</div>
+                </div>
+                <span class="dm-time">3h ago</span>
+              </div>
+              <div class="dm-item" onclick="openDM('ODELL','2-hop')">
+                <div class="dm-avatar" style="background:linear-gradient(135deg,#f97316,#eab308)"></div>
+                <div class="dm-mid">
+                  <div class="dm-name-row">
+                    <span class="dm-name">ODELL</span>
+                    <span class="hop-badge hop-2" style="margin-left:2px">2-hop</span>
+                  </div>
+                  <div class="dm-preview">podcast next week?</div>
+                </div>
+                <span class="dm-time">5h ago</span>
+              </div>
+            </div>
+            <div id="dm-conversation" style="display:none">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)">
+                <button onclick="document.getElementById('dm-list').style.display='';document.getElementById('dm-conversation').style.display='none'" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px">←</button>
+                <span style="font-weight:600" id="dm-conv-name"></span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:rgba(124,58,237,.15);color:var(--accent);margin-left:4px" id="dm-conv-hop"></span>
+                <span style="font-size:11px;color:var(--green);margin-left:auto">🔒 NIP-44</span>
+              </div>
+              <div id="dm-messages" style="display:flex;flex-direction:column;gap:8px"></div>
             </div>
           </div>
 
@@ -580,13 +800,13 @@
               <div class="feed-event" data-type="notes">
                 <div class="fe-avatar" style="background:linear-gradient(135deg,#7c3aed,#a855f7)"></div>
                 <div class="fe-body">
-                  <div class="fe-head"><span class="fe-name">fiatjaf</span><span class="fe-npub">npub1fiat...j4f</span><span class="fe-time">2m ago</span></div>
+                  <div class="fe-head"><span class="fe-name">fiatjaf</span><span class="fe-npub">npub1fiat...j4f</span><span class="hop-badge hop-1">1-hop</span><span class="fe-time">2m ago</span></div>
                   <div class="fe-text">Every relay should be personal. The era of giant public relays is ending.</div>
                   <div class="fe-actions"><span>💬 14</span><span>🔁 8</span><span>⚡ 52</span></div>
                 </div>
               </div>
               <div class="feed-event longform" data-type="longform">
-                <div class="lf-head"><div class="lf-avatar" style="background:linear-gradient(135deg,#3b82f6,#06b6d4)"></div><span class="fe-name">jb55</span><span class="fe-npub">npub1jb55...w9k</span><span class="fe-time">15m ago</span></div>
+                <div class="lf-head"><div class="lf-avatar" style="background:linear-gradient(135deg,#3b82f6,#06b6d4)"></div><span class="fe-name">jb55</span><span class="fe-npub">npub1jb55...w9k</span><span class="hop-badge hop-1">1-hop</span><span class="fe-time">15m ago</span></div>
                 <div class="lf-title">Why Nostr's Social Graph Will Replace DNS</div>
                 <div class="fe-text">The web of trust isn't just spam filtering — it's the foundation of a new naming system. Here's how relay discovery through social proximity changes everything...</div>
                 <div class="fe-actions"><span>💬 31</span><span>🔁 22</span><span>⚡ 127</span></div>
@@ -594,7 +814,7 @@
               <div class="feed-event" data-type="notes">
                 <div class="fe-avatar" style="background:linear-gradient(135deg,#f97316,#eab308)"></div>
                 <div class="fe-body">
-                  <div class="fe-head"><span class="fe-name">ODELL</span><span class="fe-npub">npub1odll...x2m</span><span class="fe-time">28m ago</span></div>
+                  <div class="fe-head"><span class="fe-name">ODELL</span><span class="fe-npub">npub1odll...x2m</span><span class="hop-badge hop-1">1-hop</span><span class="fe-time">28m ago</span></div>
                   <div class="fe-text">Just set up nostrito on my Start9. Sovereign relay running in 45 seconds. This is the way.</div>
                   <div class="fe-actions"><span>💬 37</span><span>🔁 19</span><span>⚡ 203</span></div>
                 </div>
@@ -602,13 +822,13 @@
               <div class="feed-event" data-type="reposts">
                 <div class="fe-avatar" style="background:linear-gradient(135deg,#34d399,#06b6d4)"></div>
                 <div class="fe-body">
-                  <div class="fe-head"><span class="fe-name">Gigi</span><span class="fe-npub">npub1gigi...8fk</span><span class="fe-time">1h ago</span></div>
+                  <div class="fe-head"><span class="fe-name">Gigi</span><span class="fe-npub">npub1gigi...8fk</span><span class="hop-badge hop-2">2-hop</span><span class="fe-time">1h ago</span></div>
                   <div class="fe-text">🔁 Reposted: "Running your own relay is the most sovereign thing you can do on Nostr." — fiatjaf</div>
                   <div class="fe-actions"><span>💬 5</span><span>🔁 42</span><span>⚡ 18</span></div>
                 </div>
               </div>
               <div class="feed-event longform" data-type="longform">
-                <div class="lf-head"><div class="lf-avatar" style="background:linear-gradient(135deg,#ef4444,#f97316)"></div><span class="fe-name">nvk</span><span class="fe-npub">npub1nvkk...3pm</span><span class="fe-time">2h ago</span></div>
+                <div class="lf-head"><div class="lf-avatar" style="background:linear-gradient(135deg,#ef4444,#f97316)"></div><span class="fe-name">nvk</span><span class="fe-npub">npub1nvkk...3pm</span><span class="hop-badge hop-1">1-hop</span><span class="fe-time">2h ago</span></div>
                 <div class="lf-title">Personal Relays: The Missing Piece of Nostr Infrastructure</div>
                 <div class="fe-text">We've been thinking about relays wrong. They're not servers — they're extensions of your identity. Let me explain why every bitcoiner should run one...</div>
                 <div class="fe-actions"><span>💬 18</span><span>🔁 11</span><span>⚡ 94</span></div>
@@ -616,7 +836,7 @@
               <div class="feed-event" data-type="notes">
                 <div class="fe-avatar" style="background:linear-gradient(135deg,#a855f7,#ec4899)"></div>
                 <div class="fe-body">
-                  <div class="fe-head"><span class="fe-name">walker</span><span class="fe-npub">npub1walk...7rq</span><span class="fe-time">3h ago</span></div>
+                  <div class="fe-head"><span class="fe-name">walker</span><span class="fe-npub">npub1walk...7rq</span><span class="hop-badge hop-1">1-hop</span><span class="fe-time">3h ago</span></div>
                   <div class="fe-text">WoT depth 2 filters out 99% of spam on my relay. The signal-to-noise ratio is unreal.</div>
                   <div class="fe-actions"><span>💬 9</span><span>🔁 6</span><span>⚡ 41</span></div>
                 </div>
@@ -722,6 +942,19 @@
               <div class="s-field">
                 <input type="text" value="npub1fabri3k7x9d2c8qy5m..." readonly style="opacity:.7" />
                 <button disabled>Change npub</button>
+              </div>
+
+              <div class="s-label">Signing Mode</div>
+              <div style="background:var(--bg-dark);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:8px">
+                <div style="font-size:13px;color:var(--text-dim);margin-bottom:2px">🔒 Read-only mode</div>
+                <div style="font-size:11px;color:var(--text-dim)">DMs disabled. Connect a signer to unlock.</div>
+              </div>
+              <div class="s-label">Connect Signer</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div class="s-field" style="cursor:pointer"><span style="flex:1;font-size:13px">🔑 Paste nsec</span><span style="font-size:11px;color:var(--text-dim)">Full access</span></div>
+                <div class="s-field" style="cursor:pointer"><span style="flex:1;font-size:13px">🏰 NBunker</span><span style="font-size:11px;color:var(--text-dim)">Remote signer</span></div>
+                <div class="s-field" style="cursor:pointer"><span style="flex:1;font-size:13px">🔌 Nostr Connect</span><span style="font-size:11px;color:var(--text-dim)">NIP-46</span></div>
+                <div class="s-field" style="cursor:pointer"><span style="flex:1;font-size:13px">✨ Create new account</span><span style="font-size:11px;color:var(--text-dim)">Generate nsec</span></div>
               </div>
             </div>
 
@@ -862,6 +1095,18 @@
     c.addEventListener('click', () => c.classList.toggle('on'));
   });
 
+  // Wizard identity mode selector
+  window.selectIdentityMode = function(mode) {
+    document.getElementById('opt-readonly').classList.toggle('selected', mode === 'readonly');
+    document.getElementById('opt-full').classList.toggle('selected', mode === 'full');
+    document.getElementById('wiz-readonly-input').style.display = mode === 'readonly' ? 'block' : 'none';
+    document.getElementById('wiz-full-input').style.display = mode === 'full' ? 'flex' : 'none';
+  };
+  window.selectSigner = function(el, type) {
+    document.querySelectorAll('.wiz-signer-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  };
+
   // App nav
   window.switchView = function(el) {
     document.querySelectorAll('.app-sidebar nav a').forEach(a => a.classList.remove('active'));
@@ -869,6 +1114,19 @@
     const view = el.getAttribute('data-view');
     document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('view-' + view).classList.add('active');
+  };
+
+  // DM conversation
+  window.openDM = function(name, hop) {
+    document.getElementById('dm-list').style.display = 'none';
+    document.getElementById('dm-conversation').style.display = 'block';
+    document.getElementById('dm-conv-name').textContent = name;
+    document.getElementById('dm-conv-hop').textContent = hop;
+    var msgs = document.getElementById('dm-messages');
+    msgs.innerHTML =
+      '<div class="dm-bubble theirs">hey, did you see mleku\'s post about sovereign relay mesh?</div>' +
+      '<div class="dm-bubble mine">yeah that was wild. jurisdictional arbitrage in clusters of 5</div>' +
+      '<div class="dm-bubble theirs">exactly what nostrito should support eventually</div>';
   };
 
   // Feed filter
@@ -908,5 +1166,24 @@
       document.getElementById('eventCount').textContent = eventCount.toLocaleString();
     }, 4000);
   }
+
+  // Sync rate cycling
+  const rates = ['~2/min', '~3/min', '~4/min', '~3/min'];
+  let rateIdx = 0;
+  setInterval(() => {
+    const el = document.getElementById('syncRate');
+    if (el) { rateIdx = (rateIdx + 1) % rates.length; el.textContent = rates[rateIdx]; }
+  }, 5000);
+
+  // Uptime increment
+  let uptimeMinutes = 4 * 60 + 23;
+  setInterval(() => {
+    const el = document.getElementById('uptime');
+    if (!el) return;
+    uptimeMinutes++;
+    const h = Math.floor(uptimeMinutes / 60);
+    const m = uptimeMinutes % 60;
+    el.textContent = h + 'h ' + m + 'm';
+  }, 60000);
 })();
 </script>
