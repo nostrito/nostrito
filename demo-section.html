@@ -1,0 +1,912 @@
+<style>
+.demo-section {
+  --accent: #7c3aed;
+  --accent-bg: rgba(124, 58, 237, 0.12);
+  --green: #34d399;
+  --red: #ef4444;
+  --yellow: #fbbf24;
+  --text: #e8e8f0;
+  --text-dim: #8888a0;
+  --bg: #111113;
+  --bg-dark: #0d0d0f;
+  --border: #1e1e24;
+  --blue: #3b82f6;
+  --orange: #f97316;
+  padding: 80px 20px;
+  text-align: center;
+}
+.demo-section * { box-sizing: border-box; }
+.demo-section h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+}
+.demo-section .demo-subtitle {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  margin: 0 0 48px;
+}
+.app-window {
+  max-width: 900px;
+  width: 100%;
+  height: 620px;
+  margin: 0 auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  font-size: 13px;
+  position: relative;
+}
+.app-window .window-chrome {
+  height: 40px;
+  min-height: 40px;
+  background: var(--bg-dark);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+.app-window .window-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+}
+.app-window .window-dot.r { background: var(--red); }
+.app-window .window-dot.y { background: var(--yellow); }
+.app-window .window-dot.g { background: var(--green); }
+.app-window .window-title {
+  flex: 1;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 12px;
+  margin-right: 44px;
+}
+.app-window .window-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+/* ── Wizard ── */
+.wizard-screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+  overflow-y: auto;
+}
+.wizard-screen.hidden { display: none; }
+.wizard-dots {
+  display: flex; gap: 8px; margin-bottom: 28px;
+}
+.wizard-dots span {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--border);
+  transition: background .2s;
+}
+.wizard-dots span.active { background: var(--accent); }
+.wizard-step { display: none; width: 100%; max-width: 520px; text-align: center; }
+.wizard-step.active { display: block; }
+.wizard-step h3 { font-size: 1.3rem; color: #fff; margin: 0 0 6px; }
+.wizard-step .ws-sub { color: var(--text-dim); font-size: .9rem; margin: 0 0 24px; }
+.wizard-step input[type="text"] {
+  width: 100%; padding: 12px 16px; background: var(--bg-dark); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-size: 14px; outline: none;
+  transition: border-color .2s;
+}
+.wizard-step input[type="text"]:focus { border-color: var(--accent); }
+.wizard-btns { display: flex; gap: 10px; justify-content: center; margin-top: 24px; }
+.wizard-btns button {
+  padding: 10px 28px; border-radius: 8px; border: none; cursor: pointer;
+  font-size: 14px; font-weight: 600; transition: all .2s;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #6d28d9; }
+.btn-secondary { background: var(--border); color: var(--text); }
+.btn-secondary:hover { background: #2a2a34; }
+
+/* Relay grid */
+.relay-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin: 0 auto 0; max-width: 440px; text-align: left;
+}
+.relay-card {
+  padding: 12px 16px; background: var(--bg-dark); border: 1.5px solid var(--border);
+  border-radius: 8px; cursor: pointer; transition: all .2s; user-select: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.relay-card .rc-icon {
+  width: 28px; height: 28px; border-radius: 6px; display: flex;
+  align-items: center; justify-content: center; font-size: 14px;
+  background: linear-gradient(135deg, #2a2a3a, #1a1a28);
+}
+.relay-card .rc-name { font-weight: 600; font-size: 13px; }
+.relay-card .rc-url { font-size: 11px; color: var(--text-dim); }
+.relay-card.on {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+/* Step 3 storage */
+.storage-config { text-align: left; width: 100%; max-width: 480px; margin: 0 auto; }
+.storage-config label { display: block; color: var(--text-dim); font-size: 12px; margin: 14px 0 4px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+.storage-bar-locked {
+  width: 100%; height: 32px; border-radius: 6px; background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; color: #fff; position: relative;
+}
+.slider-row { display: flex; align-items: center; gap: 12px; }
+.slider-row input[type="range"] { flex: 1; accent-color: var(--accent); }
+.slider-row .slider-val { min-width: 44px; text-align: right; font-weight: 600; color: var(--accent); }
+.toggle-group { display: flex; gap: 8px; margin-top: 6px; }
+.toggle-pill {
+  padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--bg-dark); cursor: pointer; font-size: 12px; color: var(--text-dim);
+  transition: all .2s; user-select: none;
+}
+.toggle-pill.on { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+.radio-group { display: flex; gap: 12px; margin-top: 6px; }
+.radio-group label { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 13px; color: var(--text); text-transform: none; letter-spacing: 0; }
+.radio-group input { accent-color: var(--accent); }
+
+/* ── App layout ── */
+.app-layout { display: flex; width: 100%; height: 100%; }
+.app-layout.hidden { display: none; }
+.app-sidebar {
+  width: 160px; min-width: 160px; background: var(--bg-dark);
+  display: flex; flex-direction: column; border-right: 1px solid var(--border);
+}
+.app-sidebar .sidebar-logo {
+  padding: 16px 14px; font-size: 15px; font-weight: 700; color: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.app-sidebar nav { flex: 1; padding: 8px 0; }
+.app-sidebar nav a {
+  display: flex; align-items: center; gap: 8px; padding: 0 14px;
+  height: 36px; color: var(--text-dim); text-decoration: none;
+  font-size: 13px; font-weight: 500; transition: all .2s; cursor: pointer;
+}
+.app-sidebar nav a:hover { color: var(--text); background: rgba(255,255,255,.04); }
+.app-sidebar nav a.active { color: #fff; background: var(--accent); border-radius: 0; }
+.sidebar-status {
+  padding: 12px 14px; font-size: 12px; color: var(--green);
+  border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px;
+}
+.sidebar-status .pulse {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+.app-content {
+  flex: 1; overflow-y: auto; overflow-x: hidden; padding: 20px 24px;
+}
+.app-content::-webkit-scrollbar { width: 4px; }
+.app-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.view-panel { display: none; }
+.view-panel.active { display: block; }
+
+/* ── Dashboard ── */
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px;
+}
+.stat-card {
+  background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px; text-align: center;
+}
+.stat-card .sv { font-size: 1.3rem; font-weight: 700; color: #fff; }
+.stat-card .sl { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.dash-main { display: flex; gap: 16px; }
+.dash-events { flex: 1; }
+.dash-relays {
+  width: 170px; min-width: 170px; background: var(--bg-dark);
+  border: 1px solid var(--border); border-radius: 8px; padding: 12px;
+  align-self: flex-start;
+}
+.dash-relays h4 { margin: 0 0 10px; font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .5px; }
+.dash-relay-item { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 12px; }
+.dash-relay-item .dot-g { color: var(--green); }
+.dash-relay-item .dot-r { color: var(--red); }
+.dash-relay-item .latency { color: var(--text-dim); margin-left: auto; }
+.event-card {
+  background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px; margin-bottom: 10px;
+}
+.event-card .ec-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.event-card .ec-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #a855f7);
+}
+.event-card .ec-name { font-weight: 600; font-size: 13px; }
+.event-card .ec-npub { font-size: 11px; color: var(--text-dim); }
+.event-card .ec-text { font-size: 13px; line-height: 1.5; color: var(--text); margin-bottom: 10px; }
+.event-card .ec-actions { display: flex; gap: 16px; font-size: 12px; color: var(--text-dim); }
+.event-card .ec-actions span { cursor: default; }
+
+/* ── Feed ── */
+.filter-tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+.filter-tabs button {
+  padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); font-size: 12px;
+  cursor: pointer; transition: all .2s;
+}
+.filter-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.feed-event {
+  display: flex; gap: 12px; padding: 14px; background: var(--bg-dark);
+  border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px;
+}
+.feed-event .fe-avatar {
+  width: 36px; height: 36px; min-width: 36px; border-radius: 50%;
+}
+.feed-event .fe-body { flex: 1; }
+.feed-event .fe-head { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.feed-event .fe-name { font-weight: 600; font-size: 13px; }
+.feed-event .fe-npub { font-size: 11px; color: var(--text-dim); }
+.feed-event .fe-time { font-size: 11px; color: var(--text-dim); margin-left: auto; }
+.feed-event .fe-text { font-size: 13px; line-height: 1.5; margin-bottom: 8px; }
+.feed-event .fe-actions { display: flex; gap: 16px; font-size: 12px; color: var(--text-dim); }
+.feed-event .fe-actions span { cursor: default; }
+.feed-event.longform { flex-direction: column; }
+.feed-event.longform .lf-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.feed-event.longform .lf-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.feed-event.longform .lf-avatar { width: 24px; height: 24px; border-radius: 50%; }
+
+/* ── WoT ── */
+.wot-header { margin-bottom: 20px; }
+.wot-header h3 { font-size: 1.2rem; color: #fff; margin: 0 0 8px; }
+.wot-stats { display: flex; gap: 16px; font-size: 13px; color: var(--text-dim); }
+.wot-stats strong { color: var(--accent); }
+.wot-graph {
+  width: 260px; height: 260px; margin: 0 auto 24px;
+}
+.wot-graph svg { width: 100%; height: 100%; }
+.wot-list { display: flex; flex-direction: column; gap: 8px; }
+.wot-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px;
+}
+.wot-item .wi-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #a855f7);
+}
+.wot-item .wi-info { flex: 1; }
+.wot-item .wi-name { font-weight: 600; font-size: 13px; }
+.wot-item .wi-meta { font-size: 11px; color: var(--text-dim); }
+.wot-item .wi-depth {
+  padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+}
+.wot-item .wi-depth.d1 { background: rgba(124,58,237,.2); color: var(--accent); }
+.wot-item .wi-depth.d2 { background: rgba(59,130,246,.2); color: var(--blue); }
+
+/* ── Storage ── */
+.usage-bar-container { margin-bottom: 20px; }
+.usage-bar-container h4 { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .5px; margin: 0 0 8px; }
+.usage-bar {
+  display: flex; height: 28px; border-radius: 6px; overflow: hidden;
+  background: var(--bg-dark); border: 1px solid var(--border);
+}
+.usage-bar .ub-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; }
+.usage-bar .ub-purple { background: var(--accent); }
+.usage-bar .ub-blue { background: var(--blue); }
+.usage-bar .ub-orange { background: var(--orange); }
+.usage-legend { display: flex; gap: 16px; margin-top: 8px; font-size: 12px; color: var(--text-dim); }
+.usage-legend span::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+.usage-legend .lg-p::before { background: var(--accent); }
+.usage-legend .lg-b::before { background: var(--blue); }
+.usage-legend .lg-o::before { background: var(--orange); }
+.kind-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px; margin-bottom: 20px;
+}
+.kind-card {
+  background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px; text-align: center;
+}
+.kind-card .kv { font-size: 1.1rem; font-weight: 700; color: #fff; }
+.kind-card .kl { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.media-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.media-tile {
+  height: 80px; border-radius: 8px;
+  background: linear-gradient(135deg, #1a1a28, #222234);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; border: 1px solid var(--border);
+}
+
+/* ── Settings ── */
+.settings-tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+.settings-tabs button {
+  padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); font-size: 12px;
+  cursor: pointer; transition: all .2s;
+}
+.settings-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.settings-panel { display: none; }
+.settings-panel.active { display: block; }
+.s-label { display: block; font-size: 12px; color: var(--text-dim); margin: 16px 0 6px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+.s-field {
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px;
+  margin-bottom: 8px;
+}
+.s-field input[type="text"], .s-field input[type="number"], .s-field select {
+  background: transparent; border: none; color: var(--text); font-size: 13px; outline: none; flex: 1;
+}
+.s-field select { cursor: pointer; }
+.s-field select option { background: var(--bg-dark); }
+.s-field button {
+  padding: 5px 12px; border-radius: 6px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); font-size: 12px; cursor: pointer;
+}
+.s-field button:disabled { opacity: .4; cursor: not-allowed; }
+.s-toggle-switch {
+  width: 36px; height: 20px; border-radius: 10px; background: var(--border);
+  position: relative; cursor: pointer; transition: background .2s; flex-shrink: 0;
+}
+.s-toggle-switch.on { background: var(--accent); }
+.s-toggle-switch::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; border-radius: 50%; background: #fff;
+  transition: transform .2s;
+}
+.s-toggle-switch.on::after { transform: translateX(16px); }
+.kind-toggle-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+}
+.kind-toggle-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 12px; background: var(--bg-dark); border: 1px solid var(--border);
+  border-radius: 8px; font-size: 12px;
+}
+.kind-toggle-item .kti-label { font-weight: 500; }
+.kind-toggle-item .kti-locked { font-size: 10px; color: var(--text-dim); }
+.depth-pills { display: flex; gap: 6px; margin-bottom: 12px; }
+.depth-pills .dp {
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); font-size: 12px;
+  cursor: pointer; transition: all .2s; user-select: none;
+}
+.depth-pills .dp.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.compact-kind-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 6px;
+}
+.compact-kind-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; background: var(--bg-dark); border: 1px solid var(--border);
+  border-radius: 6px; font-size: 11px;
+}
+.wot-depth-counts {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 12px;
+}
+.wot-depth-counts .wdc {
+  text-align: center; padding: 10px; background: var(--bg-dark);
+  border: 1px solid var(--border); border-radius: 8px;
+}
+.wot-depth-counts .wdc .wdc-v { font-size: 1.1rem; font-weight: 700; color: #fff; }
+.wot-depth-counts .wdc .wdc-l { font-size: 11px; color: var(--text-dim); }
+.interval-btns { display: flex; gap: 6px; }
+.interval-btns button {
+  padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-dim); font-size: 12px;
+  cursor: pointer; transition: all .2s;
+}
+.interval-btns button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-window { height: auto; min-height: 500px; max-height: 80vh; }
+  .app-sidebar { width: 48px; min-width: 48px; }
+  .app-sidebar .sidebar-logo { font-size: 16px; padding: 12px 0; text-align: center; }
+  .app-sidebar .sidebar-logo span { display: none; }
+  .app-sidebar nav a { justify-content: center; padding: 0; font-size: 16px; }
+  .app-sidebar nav a span { display: none; }
+  .sidebar-status span { display: none; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .dash-main { flex-direction: column; }
+  .dash-relays { width: 100%; min-width: unset; }
+  .kind-grid { grid-template-columns: repeat(2, 1fr); }
+  .kind-toggle-grid { grid-template-columns: 1fr 1fr; }
+  .wot-depth-counts { grid-template-columns: repeat(2, 1fr); }
+  .relay-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<section class="demo-section" id="demo">
+  <h2>See it in action</h2>
+  <p class="demo-subtitle">A full relay setup in under 60 seconds. Click through the demo below.</p>
+
+  <div class="app-window">
+    <div class="window-chrome">
+      <div class="window-dot r"></div>
+      <div class="window-dot y"></div>
+      <div class="window-dot g"></div>
+      <div class="window-title">nostrito — ws://localhost:4869</div>
+    </div>
+    <div class="window-body">
+
+      <!-- ═══ WIZARD ═══ -->
+      <div class="wizard-screen" id="wizardScreen">
+        <div class="wizard-dots">
+          <span class="active" data-dot="0"></span>
+          <span data-dot="1"></span>
+          <span data-dot="2"></span>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="wizard-step active" data-step="0">
+          <h3>Your identity</h3>
+          <p class="ws-sub">Your relay, your rules. Only you connect to it.</p>
+          <input type="text" id="npubInput" value="npub1fabri3k7x9d2c8qy5m..." placeholder="npub1..." />
+          <div class="wizard-btns">
+            <button class="btn-primary" onclick="wizardNext()">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="wizard-step" data-step="1">
+          <h3>Connect relays</h3>
+          <p class="ws-sub">Pick by name. We handle the rest.</p>
+          <div class="relay-grid" id="wizardRelays">
+            <div class="relay-card on" data-relay="primal"><div class="rc-icon">⚡</div><div><div class="rc-name">primal</div><div class="rc-url">wss://relay.primal.net</div></div></div>
+            <div class="relay-card on" data-relay="damus"><div class="rc-icon">🟣</div><div><div class="rc-name">damus</div><div class="rc-url">wss://relay.damus.io</div></div></div>
+            <div class="relay-card" data-relay="nos"><div class="rc-icon">🔵</div><div><div class="rc-name">nos</div><div class="rc-url">wss://relay.nos.social</div></div></div>
+            <div class="relay-card on" data-relay="snort"><div class="rc-icon">🐝</div><div><div class="rc-name">snort</div><div class="rc-url">wss://relay.snort.social</div></div></div>
+            <div class="relay-card" data-relay="coracle"><div class="rc-icon">🐚</div><div><div class="rc-name">coracle</div><div class="rc-url">wss://relay.coracle.social</div></div></div>
+            <div class="relay-card" data-relay="nostr.wine"><div class="rc-icon">🍷</div><div><div class="rc-name">nostr.wine</div><div class="rc-url">wss://nostr.wine</div></div></div>
+            <div class="relay-card on" data-relay="amethyst"><div class="rc-icon">💎</div><div><div class="rc-name">amethyst</div><div class="rc-url">wss://relay.amethyst.social</div></div></div>
+            <div class="relay-card" data-relay="yakihonne"><div class="rc-icon">🍯</div><div><div class="rc-name">yakihonne</div><div class="rc-url">wss://relay.yakihonne.com</div></div></div>
+          </div>
+          <div class="wizard-btns">
+            <button class="btn-secondary" onclick="wizardBack()">Back</button>
+            <button class="btn-primary" onclick="wizardNext()">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="wizard-step" data-step="2">
+          <h3>Storage rules</h3>
+          <p class="ws-sub">Set limits for what your relay keeps.</p>
+          <div class="storage-config">
+            <label>Your events</label>
+            <div class="storage-bar-locked">🔒 100% — Always stored. No exceptions.</div>
+
+            <label>Others' events</label>
+            <div class="slider-row">
+              <input type="range" min="1" max="50" value="5" id="othersSlider" oninput="document.getElementById('othersVal').textContent=this.value+'GB'" />
+              <div class="slider-val" id="othersVal">5GB</div>
+            </div>
+
+            <label>Media storage</label>
+            <div class="slider-row">
+              <input type="range" min="1" max="20" value="2" id="mediaSlider" oninput="document.getElementById('mediaVal').textContent=this.value+'GB'" />
+              <div class="slider-val" id="mediaVal">2GB</div>
+            </div>
+
+            <label>Media types</label>
+            <div class="toggle-group">
+              <div class="toggle-pill on" onclick="this.classList.toggle('on')">🖼️ Images</div>
+              <div class="toggle-pill on" onclick="this.classList.toggle('on')">🎬 Videos</div>
+              <div class="toggle-pill" onclick="this.classList.toggle('on')">🔊 Audio</div>
+            </div>
+
+            <label>Cleanup strategy</label>
+            <div class="radio-group">
+              <label><input type="radio" name="cleanup" checked /> Oldest first</label>
+              <label><input type="radio" name="cleanup" /> Least interacted</label>
+            </div>
+          </div>
+          <div class="wizard-btns">
+            <button class="btn-secondary" onclick="wizardBack()">Back</button>
+            <button class="btn-primary" onclick="finishWizard()">Finish</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ APP ═══ -->
+      <div class="app-layout hidden" id="appLayout">
+        <div class="app-sidebar">
+          <div class="sidebar-logo">🌶️ <span>nostrito</span></div>
+          <nav>
+            <a class="active" data-view="dashboard" onclick="switchView(this)">📊 <span>Dashboard</span></a>
+            <a data-view="feed" onclick="switchView(this)">📡 <span>Feed</span></a>
+            <a data-view="wot" onclick="switchView(this)">🕸️ <span>WoT</span></a>
+            <a data-view="storage" onclick="switchView(this)">💾 <span>Storage</span></a>
+            <a data-view="settings" onclick="switchView(this)">⚙️ <span>Settings</span></a>
+          </nav>
+          <div class="sidebar-status"><div class="pulse"></div> <span>Live</span></div>
+        </div>
+
+        <div class="app-content">
+
+          <!-- Dashboard -->
+          <div class="view-panel active" id="view-dashboard">
+            <div class="stats-row">
+              <div class="stat-card"><div class="sv">847</div><div class="sl">Trusted pubkeys</div></div>
+              <div class="stat-card"><div class="sv">4</div><div class="sl">Relays</div></div>
+              <div class="stat-card"><div class="sv" id="eventCount">12,483</div><div class="sl">Events</div></div>
+              <div class="stat-card"><div class="sv">2.3 GB</div><div class="sl">Storage</div></div>
+            </div>
+            <div class="dash-main">
+              <div class="dash-events">
+                <div class="event-card">
+                  <div class="ec-head"><div class="ec-avatar"></div><div><div class="ec-name">fiatjaf</div><div class="ec-npub">npub1fiat...j4f</div></div></div>
+                  <div class="ec-text">Running your own relay is the most sovereign thing you can do on Nostr.</div>
+                  <div class="ec-actions"><span>⚡ 47</span><span>💬 23</span></div>
+                </div>
+                <div class="event-card">
+                  <div class="ec-head"><div class="ec-avatar" style="background:linear-gradient(135deg,#3b82f6,#06b6d4)"></div><div><div class="ec-name">jb55</div><div class="ec-npub">npub1jb55...w9k</div></div></div>
+                  <div class="ec-text">The social graph IS the infrastructure. Everything else follows.</div>
+                  <div class="ec-actions"><span>⚡ 31</span><span>💬 12</span></div>
+                </div>
+                <div class="event-card">
+                  <div class="ec-head"><div class="ec-avatar" style="background:linear-gradient(135deg,#f97316,#eab308)"></div><div><div class="ec-name">ODELL</div><div class="ec-npub">npub1odll...x2m</div></div></div>
+                  <div class="ec-text">Signal, not noise. WoT filtering is the answer.</div>
+                  <div class="ec-actions"><span>⚡ 89</span><span>💬 44</span></div>
+                </div>
+              </div>
+              <div class="dash-relays">
+                <h4>Relays</h4>
+                <div class="dash-relay-item"><span class="dot-g">●</span> primal <span class="latency">24ms</span></div>
+                <div class="dash-relay-item"><span class="dot-g">●</span> damus <span class="latency">31ms</span></div>
+                <div class="dash-relay-item"><span class="dot-g">●</span> nos <span class="latency">18ms</span></div>
+                <div class="dash-relay-item"><span class="dot-g">●</span> snort <span class="latency">56ms</span></div>
+                <div class="dash-relay-item"><span class="dot-r">●</span> coracle <span class="latency">offline</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feed -->
+          <div class="view-panel" id="view-feed">
+            <div class="filter-tabs" id="feedFilters">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="notes">Notes</button>
+              <button data-filter="longform">Long-form</button>
+              <button data-filter="reposts">Reposts</button>
+            </div>
+            <div id="feedList">
+              <div class="feed-event" data-type="notes">
+                <div class="fe-avatar" style="background:linear-gradient(135deg,#7c3aed,#a855f7)"></div>
+                <div class="fe-body">
+                  <div class="fe-head"><span class="fe-name">fiatjaf</span><span class="fe-npub">npub1fiat...j4f</span><span class="fe-time">2m ago</span></div>
+                  <div class="fe-text">Every relay should be personal. The era of giant public relays is ending.</div>
+                  <div class="fe-actions"><span>💬 14</span><span>🔁 8</span><span>⚡ 52</span></div>
+                </div>
+              </div>
+              <div class="feed-event longform" data-type="longform">
+                <div class="lf-head"><div class="lf-avatar" style="background:linear-gradient(135deg,#3b82f6,#06b6d4)"></div><span class="fe-name">jb55</span><span class="fe-npub">npub1jb55...w9k</span><span class="fe-time">15m ago</span></div>
+                <div class="lf-title">Why Nostr's Social Graph Will Replace DNS</div>
+                <div class="fe-text">The web of trust isn't just spam filtering — it's the foundation of a new naming system. Here's how relay discovery through social proximity changes everything...</div>
+                <div class="fe-actions"><span>💬 31</span><span>🔁 22</span><span>⚡ 127</span></div>
+              </div>
+              <div class="feed-event" data-type="notes">
+                <div class="fe-avatar" style="background:linear-gradient(135deg,#f97316,#eab308)"></div>
+                <div class="fe-body">
+                  <div class="fe-head"><span class="fe-name">ODELL</span><span class="fe-npub">npub1odll...x2m</span><span class="fe-time">28m ago</span></div>
+                  <div class="fe-text">Just set up nostrito on my Start9. Sovereign relay running in 45 seconds. This is the way.</div>
+                  <div class="fe-actions"><span>💬 37</span><span>🔁 19</span><span>⚡ 203</span></div>
+                </div>
+              </div>
+              <div class="feed-event" data-type="reposts">
+                <div class="fe-avatar" style="background:linear-gradient(135deg,#34d399,#06b6d4)"></div>
+                <div class="fe-body">
+                  <div class="fe-head"><span class="fe-name">Gigi</span><span class="fe-npub">npub1gigi...8fk</span><span class="fe-time">1h ago</span></div>
+                  <div class="fe-text">🔁 Reposted: "Running your own relay is the most sovereign thing you can do on Nostr." — fiatjaf</div>
+                  <div class="fe-actions"><span>💬 5</span><span>🔁 42</span><span>⚡ 18</span></div>
+                </div>
+              </div>
+              <div class="feed-event longform" data-type="longform">
+                <div class="lf-head"><div class="lf-avatar" style="background:linear-gradient(135deg,#ef4444,#f97316)"></div><span class="fe-name">nvk</span><span class="fe-npub">npub1nvkk...3pm</span><span class="fe-time">2h ago</span></div>
+                <div class="lf-title">Personal Relays: The Missing Piece of Nostr Infrastructure</div>
+                <div class="fe-text">We've been thinking about relays wrong. They're not servers — they're extensions of your identity. Let me explain why every bitcoiner should run one...</div>
+                <div class="fe-actions"><span>💬 18</span><span>🔁 11</span><span>⚡ 94</span></div>
+              </div>
+              <div class="feed-event" data-type="notes">
+                <div class="fe-avatar" style="background:linear-gradient(135deg,#a855f7,#ec4899)"></div>
+                <div class="fe-body">
+                  <div class="fe-head"><span class="fe-name">walker</span><span class="fe-npub">npub1walk...7rq</span><span class="fe-time">3h ago</span></div>
+                  <div class="fe-text">WoT depth 2 filters out 99% of spam on my relay. The signal-to-noise ratio is unreal.</div>
+                  <div class="fe-actions"><span>💬 9</span><span>🔁 6</span><span>⚡ 41</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WoT -->
+          <div class="view-panel" id="view-wot">
+            <div class="wot-header">
+              <h3>Your Web of Trust</h3>
+              <div class="wot-stats">
+                <span><strong>847</strong> trusted</span>
+                <span>1 hop: <strong>312</strong></span>
+                <span>2 hops: <strong>401</strong></span>
+                <span>3 hops: <strong>134</strong></span>
+              </div>
+            </div>
+            <div class="wot-graph">
+              <svg viewBox="0 0 260 260">
+                <circle cx="130" cy="130" r="120" fill="none" stroke="#1e1e24" stroke-width="1"/>
+                <circle cx="130" cy="130" r="80" fill="none" stroke="#1e1e24" stroke-width="1"/>
+                <circle cx="130" cy="130" r="40" fill="none" stroke="#1e1e24" stroke-width="1"/>
+                <circle cx="130" cy="130" r="8" fill="#7c3aed"/>
+                <!-- hop 1 dots -->
+                <circle cx="130" cy="88" r="4" fill="#7c3aed" opacity=".8"/><circle cx="160" cy="98" r="3.5" fill="#7c3aed" opacity=".7"/>
+                <circle cx="170" cy="130" r="4" fill="#7c3aed" opacity=".8"/><circle cx="158" cy="160" r="3" fill="#7c3aed" opacity=".6"/>
+                <circle cx="130" cy="172" r="4" fill="#7c3aed" opacity=".8"/><circle cx="100" cy="158" r="3.5" fill="#7c3aed" opacity=".7"/>
+                <circle cx="90" cy="130" r="4" fill="#7c3aed" opacity=".8"/><circle cx="102" cy="100" r="3" fill="#7c3aed" opacity=".6"/>
+                <!-- hop 2 dots -->
+                <circle cx="130" cy="48" r="3.5" fill="#3b82f6" opacity=".7"/><circle cx="175" cy="62" r="3" fill="#3b82f6" opacity=".6"/>
+                <circle cx="200" cy="100" r="3.5" fill="#3b82f6" opacity=".7"/><circle cx="210" cy="140" r="3" fill="#3b82f6" opacity=".5"/>
+                <circle cx="195" cy="175" r="3.5" fill="#3b82f6" opacity=".7"/><circle cx="168" cy="198" r="3" fill="#3b82f6" opacity=".6"/>
+                <circle cx="130" cy="210" r="3.5" fill="#3b82f6" opacity=".7"/><circle cx="92" cy="198" r="3" fill="#3b82f6" opacity=".5"/>
+                <circle cx="65" cy="175" r="3.5" fill="#3b82f6" opacity=".7"/><circle cx="50" cy="140" r="3" fill="#3b82f6" opacity=".6"/>
+                <circle cx="58" cy="100" r="3.5" fill="#3b82f6" opacity=".7"/><circle cx="85" cy="62" r="3" fill="#3b82f6" opacity=".5"/>
+                <!-- hop 3 dots -->
+                <circle cx="130" cy="12" r="2.5" fill="#34d399" opacity=".5"/><circle cx="190" cy="25" r="2" fill="#34d399" opacity=".4"/>
+                <circle cx="235" cy="75" r="2.5" fill="#34d399" opacity=".5"/><circle cx="248" cy="130" r="2" fill="#34d399" opacity=".4"/>
+                <circle cx="235" cy="185" r="2.5" fill="#34d399" opacity=".5"/><circle cx="190" cy="235" r="2" fill="#34d399" opacity=".4"/>
+                <circle cx="130" cy="248" r="2.5" fill="#34d399" opacity=".5"/><circle cx="70" cy="235" r="2" fill="#34d399" opacity=".4"/>
+                <circle cx="25" cy="185" r="2.5" fill="#34d399" opacity=".5"/><circle cx="12" cy="130" r="2" fill="#34d399" opacity=".4"/>
+                <circle cx="25" cy="75" r="2.5" fill="#34d399" opacity=".5"/><circle cx="70" cy="25" r="2" fill="#34d399" opacity=".4"/>
+              </svg>
+            </div>
+            <div class="wot-list">
+              <div class="wot-item"><div class="wi-avatar"></div><div class="wi-info"><div class="wi-name">fiatjaf</div><div class="wi-meta">47 mutual follows</div></div><span class="wi-depth d1">Depth 1</span></div>
+              <div class="wot-item"><div class="wi-avatar" style="background:linear-gradient(135deg,#3b82f6,#06b6d4)"></div><div class="wi-info"><div class="wi-name">jb55</div><div class="wi-meta">31 mutual follows</div></div><span class="wi-depth d1">Depth 1</span></div>
+              <div class="wot-item"><div class="wi-avatar" style="background:linear-gradient(135deg,#f97316,#eab308)"></div><div class="wi-info"><div class="wi-name">ODELL</div><div class="wi-meta">18 mutual follows</div></div><span class="wi-depth d2">Depth 2</span></div>
+              <div class="wot-item"><div class="wi-avatar" style="background:linear-gradient(135deg,#34d399,#06b6d4)"></div><div class="wi-info"><div class="wi-name">Gigi</div><div class="wi-meta">12 mutual follows</div></div><span class="wi-depth d2">Depth 2</span></div>
+              <div class="wot-item"><div class="wi-avatar" style="background:linear-gradient(135deg,#ef4444,#f97316)"></div><div class="wi-info"><div class="wi-name">nvk</div><div class="wi-meta">28 mutual follows</div></div><span class="wi-depth d1">Depth 1</span></div>
+            </div>
+          </div>
+
+          <!-- Storage -->
+          <div class="view-panel" id="view-storage">
+            <div class="usage-bar-container">
+              <h4>Storage Usage — 2.3 GB total</h4>
+              <div class="usage-bar">
+                <div class="ub-seg ub-purple" style="width:47.8%">1.1 GB</div>
+                <div class="ub-seg ub-blue" style="width:34.8%">0.8 GB</div>
+                <div class="ub-seg ub-orange" style="width:17.4%">0.4 GB</div>
+              </div>
+              <div class="usage-legend">
+                <span class="lg-p">Your events</span>
+                <span class="lg-b">Others</span>
+                <span class="lg-o">Media</span>
+              </div>
+            </div>
+            <div class="kind-grid">
+              <div class="kind-card"><div class="kv">2,847</div><div class="kl">Notes</div></div>
+              <div class="kind-card"><div class="kv">23</div><div class="kl">Long-form</div></div>
+              <div class="kind-card"><div class="kv">1,204</div><div class="kl">Zaps</div></div>
+              <div class="kind-card"><div class="kv">892</div><div class="kl">Reposts</div></div>
+              <div class="kind-card"><div class="kv">4,521</div><div class="kl">Reactions</div></div>
+              <div class="kind-card"><div class="kv">156</div><div class="kl">DMs</div></div>
+              <div class="kind-card"><div class="kv">89 files</div><div class="kl">Media</div></div>
+            </div>
+            <div class="media-grid">
+              <div class="media-tile">🖼️</div>
+              <div class="media-tile">🖼️</div>
+              <div class="media-tile">🖼️</div>
+              <div class="media-tile">🖼️</div>
+              <div class="media-tile">🖼️</div>
+              <div class="media-tile">🖼️</div>
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="view-panel" id="view-settings">
+            <div class="settings-tabs" id="settingsTabs">
+              <button class="active" data-stab="s-identity">Identity</button>
+              <button data-stab="s-relays">Relays</button>
+              <button data-stab="s-yourstorage">Your Storage</button>
+              <button data-stab="s-othersstorage">Others' Storage</button>
+              <button data-stab="s-wot">WoT</button>
+              <button data-stab="s-advanced">Advanced</button>
+            </div>
+
+            <!-- Identity -->
+            <div class="settings-panel active" id="s-identity">
+              <div class="s-label">Public Key</div>
+              <div class="s-field">
+                <input type="text" value="npub1fabri3k7x9d2c8qy5m..." readonly style="opacity:.7" />
+                <button disabled>Change npub</button>
+              </div>
+            </div>
+
+            <!-- Relays -->
+            <div class="settings-panel" id="s-relays">
+              <div class="s-label">Connected Relays</div>
+              <div class="relay-grid" id="settingsRelays">
+                <div class="relay-card on" data-relay="primal" onclick="this.classList.toggle('on')"><div class="rc-icon">⚡</div><div><div class="rc-name">primal</div><div class="rc-url">wss://relay.primal.net</div></div></div>
+                <div class="relay-card on" data-relay="damus" onclick="this.classList.toggle('on')"><div class="rc-icon">🟣</div><div><div class="rc-name">damus</div><div class="rc-url">wss://relay.damus.io</div></div></div>
+                <div class="relay-card" data-relay="nos" onclick="this.classList.toggle('on')"><div class="rc-icon">🔵</div><div><div class="rc-name">nos</div><div class="rc-url">wss://relay.nos.social</div></div></div>
+                <div class="relay-card on" data-relay="snort" onclick="this.classList.toggle('on')"><div class="rc-icon">🐝</div><div><div class="rc-name">snort</div><div class="rc-url">wss://relay.snort.social</div></div></div>
+                <div class="relay-card" data-relay="coracle" onclick="this.classList.toggle('on')"><div class="rc-icon">🐚</div><div><div class="rc-name">coracle</div><div class="rc-url">wss://relay.coracle.social</div></div></div>
+                <div class="relay-card" data-relay="nostr.wine" onclick="this.classList.toggle('on')"><div class="rc-icon">🍷</div><div><div class="rc-name">nostr.wine</div><div class="rc-url">wss://nostr.wine</div></div></div>
+                <div class="relay-card on" data-relay="amethyst" onclick="this.classList.toggle('on')"><div class="rc-icon">💎</div><div><div class="rc-name">amethyst</div><div class="rc-url">wss://relay.amethyst.social</div></div></div>
+                <div class="relay-card" data-relay="yakihonne" onclick="this.classList.toggle('on')"><div class="rc-icon">🍯</div><div><div class="rc-name">yakihonne</div><div class="rc-url">wss://relay.yakihonne.com</div></div></div>
+              </div>
+            </div>
+
+            <!-- Your Storage -->
+            <div class="settings-panel" id="s-yourstorage">
+              <div class="s-label">Event kinds to store</div>
+              <div class="kind-toggle-grid">
+                <div class="kind-toggle-item"><span class="kti-label">Metadata</span><span class="kti-locked">🔒 Required</span></div>
+                <div class="kind-toggle-item"><span class="kti-label">Notes</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="kind-toggle-item"><span class="kti-label">Contacts</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="kind-toggle-item"><span class="kti-label">DMs</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="kind-toggle-item"><span class="kti-label">Reactions</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="kind-toggle-item"><span class="kti-label">Reposts</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="kind-toggle-item"><span class="kti-label">Zaps</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="kind-toggle-item"><span class="kti-label">Long-form</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="kind-toggle-item"><span class="kti-label">Media</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+              </div>
+            </div>
+
+            <!-- Others' Storage -->
+            <div class="settings-panel" id="s-othersstorage">
+              <div class="s-label">WoT depth to store</div>
+              <div class="depth-pills">
+                <div class="dp on" onclick="this.classList.toggle('on')">1 hop</div>
+                <div class="dp on" onclick="this.classList.toggle('on')">2 hops</div>
+                <div class="dp" onclick="this.classList.toggle('on')">3 hops</div>
+              </div>
+              <div class="s-label">Storage quota</div>
+              <div class="slider-row">
+                <input type="range" min="1" max="50" value="5" oninput="this.nextElementSibling.textContent=this.value+'GB'" />
+                <div class="slider-val">5GB</div>
+              </div>
+              <div class="s-label">Event kinds</div>
+              <div class="compact-kind-grid">
+                <div class="compact-kind-item"><span>Notes</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="compact-kind-item"><span>Long-form</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="compact-kind-item"><span>Reactions</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="compact-kind-item"><span>Reposts</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="compact-kind-item"><span>Zaps</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="compact-kind-item"><span>DMs</span><div class="s-toggle-switch" onclick="this.classList.toggle('on')"></div></div>
+                <div class="compact-kind-item"><span>Media</span><div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="compact-kind-item"><span>Audio</span><div class="s-toggle-switch" onclick="this.classList.toggle('on')"></div></div>
+              </div>
+            </div>
+
+            <!-- WoT -->
+            <div class="settings-panel" id="s-wot">
+              <div class="s-label">Trust depth</div>
+              <div class="slider-row">
+                <input type="range" min="1" max="4" value="3" id="wotDepthSlider" oninput="document.getElementById('wotDepthVal').textContent=this.value+' hops'" />
+                <div class="slider-val" id="wotDepthVal">3 hops</div>
+              </div>
+              <div class="s-label">Refresh interval</div>
+              <div class="interval-btns" id="intervalBtns">
+                <button onclick="setInterval_(this)">1h</button>
+                <button onclick="setInterval_(this)">6h</button>
+                <button class="active" onclick="setInterval_(this)">24h</button>
+              </div>
+              <div class="s-label">Pubkeys per depth</div>
+              <div class="wot-depth-counts">
+                <div class="wdc"><div class="wdc-v">312</div><div class="wdc-l">1 hop</div></div>
+                <div class="wdc"><div class="wdc-v">401</div><div class="wdc-l">2 hops</div></div>
+                <div class="wdc"><div class="wdc-v">134</div><div class="wdc-l">3 hops</div></div>
+                <div class="wdc"><div class="wdc-v">0</div><div class="wdc-l">4 hops</div></div>
+              </div>
+            </div>
+
+            <!-- Advanced -->
+            <div class="settings-panel" id="s-advanced">
+              <div class="s-label">Port</div>
+              <div class="s-field">
+                <input type="number" value="4869" />
+              </div>
+              <div class="s-label">Auto-start on boot</div>
+              <div class="s-field">
+                <span style="flex:1">Start nostrito when system boots</span>
+                <div class="s-toggle-switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="s-label">Log level</div>
+              <div class="s-field">
+                <select>
+                  <option value="info" selected>info</option>
+                  <option value="debug">debug</option>
+                  <option value="error">error</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  let wizardStep = 0;
+  const steps = document.querySelectorAll('.wizard-step');
+  const dots = document.querySelectorAll('.wizard-dots span');
+
+  function showStep(n) {
+    steps.forEach((s, i) => s.classList.toggle('active', i === n));
+    dots.forEach((d, i) => d.classList.toggle('active', i <= n));
+    wizardStep = n;
+  }
+
+  window.wizardNext = function() {
+    if (wizardStep < 2) showStep(wizardStep + 1);
+  };
+  window.wizardBack = function() {
+    if (wizardStep > 0) showStep(wizardStep - 1);
+  };
+  window.finishWizard = function() {
+    document.getElementById('wizardScreen').classList.add('hidden');
+    document.getElementById('appLayout').classList.remove('hidden');
+    startEventCounter();
+  };
+
+  // Wizard relay toggles
+  document.querySelectorAll('#wizardRelays .relay-card').forEach(c => {
+    c.addEventListener('click', () => c.classList.toggle('on'));
+  });
+
+  // App nav
+  window.switchView = function(el) {
+    document.querySelectorAll('.app-sidebar nav a').forEach(a => a.classList.remove('active'));
+    el.classList.add('active');
+    const view = el.getAttribute('data-view');
+    document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('view-' + view).classList.add('active');
+  };
+
+  // Feed filter
+  document.querySelectorAll('#feedFilters button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#feedFilters button').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.getAttribute('data-filter');
+      document.querySelectorAll('#feedList > div').forEach(ev => {
+        if (filter === 'all') { ev.style.display = ''; return; }
+        ev.style.display = ev.getAttribute('data-type') === filter ? '' : 'none';
+      });
+    });
+  });
+
+  // Settings tabs
+  document.querySelectorAll('#settingsTabs button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#settingsTabs button').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      document.querySelectorAll('#view-settings .settings-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(this.getAttribute('data-stab')).classList.add('active');
+    });
+  });
+
+  // Interval buttons
+  window.setInterval_ = function(el) {
+    document.querySelectorAll('#intervalBtns button').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  };
+
+  // Event counter auto-increment
+  let eventCount = 12483;
+  function startEventCounter() {
+    setInterval(() => {
+      eventCount += Math.floor(Math.random() * 3) + 1;
+      document.getElementById('eventCount').textContent = eventCount.toLocaleString();
+    }, 4000);
+  }
+})();
+</script>
