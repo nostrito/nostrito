@@ -180,6 +180,7 @@
       </div>
       <div class="docs-sidebar-section">
         <div class="docs-sidebar-title">Features</div>
+        <a class="docs-sidebar-link" data-doc="sync">Sync Engine</a>
         <a class="docs-sidebar-link" data-doc="storage">Storage</a>
         <a class="docs-sidebar-link" data-doc="wot">Web of Trust</a>
         <a class="docs-sidebar-link" data-doc="blossom">Blossom Media</a>
@@ -307,72 +308,199 @@ cargo build --release</div>
       <!-- Relay Aliases -->
       <div class="docs-page" id="doc-relay-aliases">
         <h1>Relay Aliases</h1>
-        <p class="docs-lead">nostrito ships with built-in aliases so you don't need to memorize WebSocket URLs.</p>
-        <p>Instead of writing full relay URLs in your config, just use the friendly name:</p>
+        <p class="docs-lead">You never have to type a <code>wss://</code> URL. nostrito uses friendly names for every relay, and handles the mapping internally.</p>
+
+        <h2>Why aliases?</h2>
+        <p>WebSocket URLs are ugly and easy to mistype. nostrito lets you refer to relays by short, memorable names — in the setup wizard, in the config file, and everywhere else. When you pick "damus" during onboarding, nostrito knows that means <code>wss://relay.damus.io</code>. You never see the raw URL unless you go looking for it.</p>
+
+        <h2>Built-in aliases</h2>
+        <p>nostrito ships with 8 built-in aliases covering the most popular Nostr relays:</p>
         <table class="docs-table">
-          <thead><tr><th>Alias</th><th>Description</th></tr></thead>
+          <thead><tr><th>Alias</th><th>Resolves to</th><th>Description</th></tr></thead>
           <tbody>
-            <tr><td><code>primal</code></td><td>Fast global relay</td></tr>
-            <tr><td><code>damus</code></td><td>iOS community hub</td></tr>
-            <tr><td><code>nos</code></td><td>Curated social relay</td></tr>
-            <tr><td><code>snort</code></td><td>Web client relay</td></tr>
-            <tr><td><code>coracle</code></td><td>Discovery-focused relay</td></tr>
-            <tr><td><code>nostr.wine</code></td><td>Premium paid relay</td></tr>
-            <tr><td><code>amethyst</code></td><td>Android community relay</td></tr>
-            <tr><td><code>yakihonne</code></td><td>Long-form content relay</td></tr>
+            <tr><td><code>primal</code></td><td><code>wss://relay.primal.net</code></td><td>Popular social relay with fast global coverage</td></tr>
+            <tr><td><code>damus</code></td><td><code>wss://relay.damus.io</code></td><td>iOS-first community, one of the largest relays</td></tr>
+            <tr><td><code>nos</code></td><td><code>wss://relay.nos.social</code></td><td>Open social network relay</td></tr>
+            <tr><td><code>snort</code></td><td><code>wss://relay.snort.social</code></td><td>Web client relay, popular with browser users</td></tr>
+            <tr><td><code>coracle</code></td><td><code>wss://relay.coracle.social</code></td><td>Privacy-focused, good for discovery</td></tr>
+            <tr><td><code>nostr.wine</code></td><td><code>wss://nostr.wine</code></td><td>Curated content, paid relay with quality filtering</td></tr>
+            <tr><td><code>amethyst</code></td><td><code>wss://nostr.band</code></td><td>Android community relay and search index</td></tr>
+            <tr><td><code>yakihonne</code></td><td><code>wss://relay.yakihonne.com</code></td><td>Long-form content and articles</td></tr>
           </tbody>
         </table>
-        <h2>Custom Aliases</h2>
-        <p>Add your own aliases in the config file:</p>
+
+        <h2>How resolution works</h2>
+        <p>When nostrito sees a relay name, it checks the alias table first. If the name matches a built-in alias, it uses the corresponding <code>wss://</code> URL. If no alias matches, nostrito treats the name as a raw URL — so you can always use a full <code>wss://</code> address if you need to connect to a relay that isn't in the alias list.</p>
+
+        <div class="docs-callout">
+          <strong>💡 Tip:</strong> In the setup wizard, you just toggle relay names on and off. nostrito resolves them to real URLs behind the scenes. You can mix aliases and raw URLs freely in the config file.
+        </div>
+
+        <h2>Custom aliases</h2>
+        <p>Add your own aliases in the config file. Useful for private relays or relays that aren't in the built-in list:</p>
         <div class="docs-code-block"><span class="key">[aliases]</span>
-<span class="val">myrelay</span> = <span class="str">"wss://relay.example.com"</span></div>
+<span class="val">myrelay</span> = <span class="str">"wss://relay.example.com"</span>
+<span class="val">work</span> = <span class="str">"wss://internal-relay.company.io"</span></div>
+        <p>Custom aliases work exactly like built-in ones — use them anywhere you'd use a relay name.</p>
       </div>
 
       <!-- Storage -->
       <div class="docs-page" id="doc-storage">
         <h1>Storage</h1>
-        <p class="docs-lead">nostrito gives you fine-grained control over what gets stored and how much space to use.</p>
-        <h2>Your Events</h2>
-        <p>Your own events and media are <strong>always stored at 100%</strong>. This is non-negotiable — your data is yours, and nostrito always keeps it.</p>
-        <h2>Others' Events</h2>
-        <p>You control how much storage to allocate for events from your Web of Trust contacts. Configure by:</p>
+        <p class="docs-lead">nostrito gives you full control over what gets stored and how much disk space to use. Your data is always safe; everyone else's is quota-based.</p>
+
+        <h2>Your events — always 100%</h2>
+        <p>Every event you've authored (notes, reactions, zaps, profile updates — everything) is stored permanently. So is any media you've posted via Blossom. This is non-negotiable: your data is yours, and nostrito never deletes it, no matter how tight storage gets.</p>
+        <p>This guarantee extends to all event kinds, all media types, and all time periods. If you wrote it, nostrito keeps it.</p>
+
+        <h2>Others' events — quota-based</h2>
+        <p>Events from people in your Web of Trust are stored up to the quota you set during setup. You configure two separate limits:</p>
         <ul>
-          <li><strong>Quota</strong> — max GB for events and media separately</li>
-          <li><strong>WoT depth</strong> — only store events from 1-hop, 2-hop, or 3-hop contacts</li>
-          <li><strong>Event kinds</strong> — choose which kinds to store (notes, long-form, zaps, etc.)</li>
-          <li><strong>Media types</strong> — toggle images, videos, audio independently</li>
+          <li><strong>Events quota</strong> — how many GB to allocate for text events (notes, replies, reactions, etc.) from others</li>
+          <li><strong>Media quota</strong> — how many GB to allocate for Blossom media (images, videos, audio) from others</li>
         </ul>
-        <h2>Auto-Cleanup</h2>
-        <p>When storage limits are reached, nostrito automatically cleans up using your chosen strategy:</p>
+        <p>Within the media quota, you can toggle which types to cache: images, videos, and audio are each independently selectable. If you only care about images, turn off videos and audio to save space.</p>
+
+        <h2>Blossom media verification</h2>
+        <p>When nostrito downloads media from a Blossom URL, it doesn't just save the file blindly. Every download is verified against the SHA-256 hash embedded in the Blossom URL. If the hash doesn't match, the file is discarded. This prevents tampered or corrupted media from polluting your local cache.</p>
+        <p>Verified media is stored in <code>~/.nostrito/blossom/</code>, organized by hash. When your Nostr client requests the file, nostrito serves it directly from disk — no network round-trip needed.</p>
+
+        <h2>Auto-cleanup</h2>
+        <p>When either quota fills up, nostrito automatically makes room using your chosen strategy:</p>
         <ul>
-          <li><strong>Oldest first</strong> — removes the oldest events first</li>
-          <li><strong>Least interacted</strong> — removes events you've engaged with least</li>
+          <li><strong>Oldest first</strong> — deletes the oldest events and media first. Simple and predictable.</li>
+          <li><strong>Least interacted</strong> — keeps events you've engaged with (replied to, reacted to, zapped) and removes the ones you haven't. Smarter, but slightly more complex.</li>
         </ul>
+        <p>Cleanup never touches your own events. Only others' data is subject to quota limits.</p>
+
+        <h2>WoT-aware storage priority</h2>
+        <p>Not all contacts are equal. Events from 1-hop contacts (people you directly follow) get storage priority over 2-hop or 3-hop contacts. When cleanup runs, it removes distant contacts' data first.</p>
+
         <h2>Database</h2>
-        <p>All data is stored in a single SQLite database at <code>~/.nostrito/data.db</code>. Media files are stored in <code>~/.nostrito/blossom/</code>.</p>
+        <p>All event data lives in a single SQLite database at <code>~/.nostrito/data.db</code>, using WAL mode for fast concurrent reads. Media files are stored separately in <code>~/.nostrito/blossom/</code>. To back up everything, just copy the <code>~/.nostrito/</code> directory.</p>
       </div>
 
       <!-- WoT -->
       <div class="docs-page" id="doc-wot">
         <h1>Web of Trust</h1>
-        <p class="docs-lead">nostrito computes your trust graph and uses it to decide which events to store and serve.</p>
-        <h2>How It Works</h2>
-        <p>Starting from your npub, nostrito traverses follow lists (kind:3 events) to build a multi-hop trust graph:</p>
+        <p class="docs-lead">nostrito builds a trust graph from the Nostr network and uses it to decide which events to store, serve, and prioritize. No centralized authority — just math on follow lists.</p>
+
+        <h2>The core idea</h2>
+        <p>On Nostr, every user publishes a <strong>follow list</strong> (a kind:3 event) that says "these are the people I follow." nostrito reads these lists and builds a graph of who trusts whom. The closer someone is to you in this graph, the more nostrito trusts them.</p>
+
+        <h2>How the graph is built</h2>
+        <p>It starts with you. nostrito fetches your kind:3 event from a relay and extracts every pubkey you follow. Those are your <strong>1-hop contacts</strong> — people you directly trust.</p>
+        <p>Then nostrito fetches the kind:3 events for each of your follows. The people <em>they</em> follow (but you don't) become your <strong>2-hop contacts</strong>. One more round gives you <strong>3-hop contacts</strong>.</p>
+        <p>The result is a directed graph with you at the center. nostrito stores this graph in memory for fast lookups and persists it to SQLite so it survives restarts.</p>
+
+        <h2>BFS algorithm</h2>
+        <p>nostrito uses <strong>breadth-first search (BFS)</strong> to compute trust distances. Starting from your pubkey, it explores the graph layer by layer:</p>
+        <ol>
+          <li><strong>Layer 0:</strong> You. Trust distance = 0.</li>
+          <li><strong>Layer 1:</strong> Everyone in your follow list. Trust distance = 1.</li>
+          <li><strong>Layer 2:</strong> Everyone followed by layer-1 contacts (who isn't already in layer 0 or 1). Trust distance = 2.</li>
+          <li><strong>Layer 3:</strong> Same pattern, one more hop out. Trust distance = 3.</li>
+        </ol>
+        <p>BFS guarantees that the first time nostrito reaches a pubkey is via the <em>shortest</em> path, so the assigned trust distance is always the minimum number of hops from you.</p>
+
+        <h2>Trust scoring</h2>
+        <p>Distance alone isn't the whole picture. nostrito also factors in:</p>
         <ul>
-          <li><strong>1-hop:</strong> People you follow directly</li>
-          <li><strong>2-hop:</strong> People followed by your follows</li>
-          <li><strong>3-hop:</strong> One more degree of separation</li>
+          <li><strong>Follower count from your WoT</strong> — if many of your follows also follow someone, that person is more trusted than someone reached by a single chain</li>
+          <li><strong>Mutual follows</strong> — bidirectional follow relationships carry more weight than one-way follows</li>
+          <li><strong>Bridge nodes</strong> — nostrito can identify which contacts act as "bridges" connecting you to a distant pubkey</li>
         </ul>
+
+        <h2>Hop depths in practice</h2>
+        <table class="docs-table">
+          <thead><tr><th>Depth</th><th>Who's included</th><th>Typical size</th><th>Trust level</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1-hop</strong></td><td>People you directly follow</td><td>50–500 pubkeys</td><td>High — you chose to follow them</td></tr>
+            <tr><td><strong>2-hop</strong></td><td>People your follows follow</td><td>5,000–50,000 pubkeys</td><td>Medium — vouched for by someone you trust</td></tr>
+            <tr><td><strong>3-hop</strong></td><td>One more degree out</td><td>100,000+ pubkeys</td><td>Low — useful for spam filtering, not for curation</td></tr>
+          </tbody>
+        </table>
+
+        <div class="docs-callout">
+          <strong>💡 Why 3 hops max?</strong> Beyond 3 hops, the graph expands so rapidly that nearly everyone on Nostr is included. At that point, trust distance stops being meaningful. nostrito defaults to 3 but you can lower it to 2 or 1 if you want a tighter circle.
+        </div>
+
         <h2>Configuration</h2>
         <div class="docs-code-block"><span class="key">[wot]</span>
-<span class="val">max_depth</span> = <span class="str">3</span>        <span class="comment"># how many hops to compute</span>
-<span class="val">refresh_hours</span> = <span class="str">6</span>    <span class="comment"># recompute interval</span></div>
-        <h2>Storage Integration</h2>
-        <p>You can set different storage policies per WoT depth. For example, store all events from 1-hop contacts but only notes from 2-hop:</p>
+<span class="val">max_depth</span> = <span class="str">3</span>        <span class="comment"># how many hops to compute (1, 2, or 3)</span>
+<span class="val">refresh_hours</span> = <span class="str">6</span>    <span class="comment"># how often to re-crawl follow lists</span></div>
+
+        <h2>Storage integration</h2>
+        <p>WoT depth directly controls what nostrito stores. You can set different policies per depth — for example, store all event types from 1-hop contacts but only short notes from 2-hop:</p>
         <div class="docs-code-block"><span class="key">[storage.others]</span>
-<span class="val">wot_depth</span> = <span class="str">2</span>          <span class="comment"># store up to 2 hops</span>
+<span class="val">wot_depth</span> = <span class="str">2</span>          <span class="comment"># store events up to 2 hops away</span>
 <span class="val">depth_1_kinds</span> = <span class="str">"all"</span>  <span class="comment"># everything from direct follows</span>
-<span class="val">depth_2_kinds</span> = [<span class="str">1</span>]    <span class="comment"># only notes from 2-hop</span></div>
+<span class="val">depth_2_kinds</span> = [<span class="str">1</span>]    <span class="comment"># only notes (kind:1) from 2-hop contacts</span></div>
+        <p>Events from pubkeys outside your configured WoT depth are silently dropped — they never touch your database.</p>
+      </div>
+
+      <!-- Sync Engine -->
+      <div class="docs-page" id="doc-sync">
+        <h1>Sync Engine</h1>
+        <p class="docs-lead">nostrito syncs your data from the Nostr network using a 4-tier priority system. It fetches the most important things first, works its way through less urgent data in the background, and is always polite to the relays it connects to.</p>
+
+        <h2>The 4-tier system</h2>
+        <p>Not all data is equally urgent. When you first launch nostrito (or after a long time offline), it needs to fetch your profile, your follows, recent notes, and eventually the broader social graph. Instead of trying to do everything at once, nostrito works through four tiers in order:</p>
+
+        <h3>Tier 1 — Critical (completes in seconds)</h3>
+        <p>The first thing nostrito does is fetch <strong>your own profile</strong> (kind:0 metadata) and <strong>your follow list</strong> (kind:3 contact list). This is a single request to one relay — fast and lightweight. Your follow list seeds the entire Web of Trust graph, so everything else depends on it.</p>
+        <p>Once tier 1 completes, nostrito knows who you follow. The app becomes usable immediately.</p>
+
+        <h3>Tier 2 — Important (completes in minutes)</h3>
+        <p>Now that nostrito knows your follow list, it fetches <strong>recent notes</strong> (kind:1 events) from your direct follows. It only looks at the last 7 days and caps at 500 events, so this stays fast.</p>
+        <p>Pubkeys are processed in batches of 20, with a short 300ms pause between batches to avoid hammering the relay. After tier 2, your feed is populated with recent content from the people you care about most.</p>
+
+        <h3>Tier 3 — Background (completes in hours)</h3>
+        <p>This is the WoT crawl. For each person you follow, nostrito fetches <em>their</em> follow list (kind:3) to discover follows-of-follows. This builds out the 2-hop and 3-hop layers of your trust graph.</p>
+        <p>Tier 3 runs slowly on purpose — 10 pubkeys per batch with 2-second pauses between them. If you're actively using the app (scrolling your feed, interacting with the UI), tier 3 pauses entirely and resumes when you're idle. It also checkpoints its progress to the database, so if you quit and reopen nostrito, it picks up where it left off instead of starting over.</p>
+
+        <h3>Tier 4 — Archive (completes in days)</h3>
+        <p>The lowest priority tier handles everything else:</p>
+        <ul>
+          <li><strong>Blossom media downloads</strong> — images, videos, and audio from events nostrito has already stored</li>
+          <li><strong>Historical events</strong> — notes older than 7 days from your follows</li>
+          <li><strong>Deep WoT</strong> — 3-hop+ pubkeys, if configured</li>
+        </ul>
+        <p>Tier 4 only starts after tiers 1–3 are complete. It runs very slowly — 5 seconds between batches — and can take days to finish for a large social graph. That's fine. This is background work that fills in the gaps over time.</p>
+
+        <div class="docs-callout">
+          <strong>💡 Why tiers?</strong> Most relay apps try to fetch everything at once, which overwhelms relays and makes the app feel slow on first launch. nostrito's tiered approach means your feed is usable in seconds, even while the full graph takes hours to build.
+        </div>
+
+        <h2>Politeness policies</h2>
+        <p>nostrito is designed to be a good citizen on the Nostr network. It never floods relays with requests.</p>
+
+        <h3>Rate limiting</h3>
+        <p>By default, nostrito sends no more than <strong>10 requests per minute</strong> to any single relay. If a relay sends a NOTICE message containing the words "rate" or "limit," nostrito immediately pauses all requests to that relay for 60 seconds.</p>
+
+        <h3>Exponential backoff</h3>
+        <p>When a relay connection fails, nostrito doesn't retry immediately. It backs off exponentially:</p>
+        <ul>
+          <li>1st failure: wait 5 seconds</li>
+          <li>2nd failure: wait 10 seconds</li>
+          <li>3rd failure: wait 30 seconds</li>
+          <li>4th failure: wait 60 seconds</li>
+          <li>5th failure: wait 120 seconds</li>
+          <li>Maximum: 300 seconds (5 minutes)</li>
+        </ul>
+        <p>The backoff resets after a successful connection. This prevents nostrito from hammering a relay that's temporarily down.</p>
+
+        <h3>The <code>since</code> filter — never re-fetch old events</h3>
+        <p>After the initial sync, every subsequent request includes a <code>since</code> timestamp set to the most recent event nostrito has seen from that relay. This means nostrito only asks for <em>new</em> events — it never re-downloads data it already has. This dramatically reduces bandwidth and relay load over time.</p>
+
+        <h3>Primary relay</h3>
+        <p>The first relay in your configuration is treated as the <strong>primary relay</strong>. nostrito sends most of its requests there. Other relays are used as fallbacks — if the primary doesn't have what nostrito needs, it tries the others in order. This concentrates load on a single relay (which you presumably trust) rather than spreading requests across many.</p>
+
+        <h2>Sync progress</h2>
+        <p>nostrito emits real-time progress events as it syncs. The dashboard shows which tier is currently active, how many events have been fetched, and which relay is being queried. When a tier completes, the app updates automatically.</p>
+
+        <h2>Surviving restarts</h2>
+        <p>All sync progress is persisted to the database. If you quit nostrito mid-sync and reopen it later, it resumes from where it left off. Tier 3 in particular tracks exactly which pubkeys have been processed, so it doesn't re-crawl follow lists it's already seen.</p>
       </div>
 
       <!-- Blossom -->
