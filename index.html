@@ -1295,6 +1295,67 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq" style="padding: 80px 0; border-top: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Common questions.</h2>
+        <p>Things people ask before running their own relay.</p>
+      </div>
+      <div style="max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0;">
+
+        <details style="border-bottom: 1px solid var(--border); padding: 24px 0;" open>
+          <summary style="font-weight: 600; font-size: 1rem; cursor: pointer; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            Does this replace my main relay?
+            <span style="color: var(--accent); font-size: 1.2rem; transition: transform 0.2s;">+</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-dim); line-height: 1.7;">No — it complements them. Think of nostrito as your personal cache and backup layer. Your existing relays still work exactly as before. nostrito just makes sure a copy of your network's data lives on <em>your</em> machine, not only on someone else's server.</p>
+        </details>
+
+        <details style="border-bottom: 1px solid var(--border); padding: 24px 0;">
+          <summary style="font-weight: 600; font-size: 1rem; cursor: pointer; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            What happens when my laptop is off?
+            <span style="color: var(--accent); font-size: 1.2rem;">+</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-dim); line-height: 1.7;">Your clients fall back to your regular relays, exactly as they do today. When your machine wakes up, nostrito catches up automatically — pulling everything it missed while you were away. No manual sync, no data loss.</p>
+        </details>
+
+        <details style="border-bottom: 1px solid var(--border); padding: 24px 0;">
+          <summary style="font-weight: 600; font-size: 1rem; cursor: pointer; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            How much storage does it use?
+            <span style="color: var(--accent); font-size: 1.2rem;">+</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-dim); line-height: 1.7;">You decide. Your own events are always kept in full — typically a few MB at most. For others' events and media, you set the quota during setup and can change it anytime in settings. Start small, expand if you want more.</p>
+        </details>
+
+        <details style="border-bottom: 1px solid var(--border); padding: 24px 0;">
+          <summary style="font-weight: 600; font-size: 1rem; cursor: pointer; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            Can other people connect to my relay?
+            <span style="color: var(--accent); font-size: 1.2rem;">+</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-dim); line-height: 1.7;">No. Your npub is the only authorized key. nostrito is private by design — it runs locally, serves only you, and is not exposed to the internet by default. Trusted peer pacts (for sharing with specific friends) are a planned future feature.</p>
+        </details>
+
+        <details style="border-bottom: 1px solid var(--border); padding: 24px 0;">
+          <summary style="font-weight: 600; font-size: 1rem; cursor: pointer; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            Do I need to leave it running 24/7?
+            <span style="color: var(--accent); font-size: 1.2rem;">+</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-dim); line-height: 1.7;">No — and that's the whole point. nostrito lives when you live. It runs while your machine is on, sleeps when it's off, and catches up when it wakes. No cloud required, no always-on VPS, no monthly bill.</p>
+        </details>
+
+        <details style="padding: 24px 0;">
+          <summary style="font-weight: 600; font-size: 1rem; cursor: pointer; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+            Does it work with my existing Nostr client?
+            <span style="color: var(--accent); font-size: 1.2rem;">+</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-dim); line-height: 1.7;">Yes. nostrito speaks standard Nostr relay protocol (NIP-01). Add it as a relay in any client — Damus, Primal, Amethyst, Snort, whatever you use — and it works immediately. Your WoT-filtered feed, served locally.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section">
     <div class="container">
