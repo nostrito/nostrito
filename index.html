@@ -482,6 +482,21 @@
     .dash-activity-bar.recent { background: var(--accent) !important; }
 
     /* Sync Engine panel */
+    /* Wizard identity & signer options */
+    .wiz-identity-option {
+      padding: 14px 18px; border: 1.5px solid var(--border); border-radius: 10px;
+      cursor: pointer; transition: all 0.2s; background: var(--bg);
+    }
+    .wiz-identity-option:hover { border-color: rgba(124,58,237,0.3); }
+    .wiz-identity-option.selected { border-color: rgba(124,58,237,0.5); background: var(--accent-glow); }
+    .wiz-signer-option {
+      padding: 14px 18px; border: 1px solid var(--border); border-radius: 10px;
+      cursor: pointer; font-size: 0.88rem; font-weight: 500;
+      background: var(--bg); color: var(--text); transition: all 0.2s;
+    }
+    .wiz-signer-option:hover { border-color: rgba(124,58,237,0.3); background: var(--accent-glow); }
+    .wiz-signer-option.selected { border-color: rgba(124,58,237,0.5); background: var(--accent-glow); }
+
     .sync-engine-header {
       padding: 14px 16px; font-size: 0.72rem; font-weight: 600;
       text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted);
@@ -948,9 +963,30 @@
 
             <!-- Step 1 -->
             <div class="wiz-panel active" id="wizPanel1">
-              <h3 class="wiz-title">Your npub</h3>
-              <p class="wiz-subtitle">Your relay, your rules. Only you connect to it.</p>
-              <input type="text" class="wiz-input" placeholder="npub1..." value="npub1qe3e...7g8a" readonly>
+              <h3 class="wiz-title">Your identity</h3>
+              <p class="wiz-subtitle">Choose how to connect. You can always upgrade later.</p>
+
+              <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;width:100%;max-width:480px">
+                <div class="wiz-identity-option selected" id="opt-readonly" onclick="selectIdentityMode('readonly')">
+                  <div style="font-weight:600;font-size:0.9rem">📖 Read-only <span style="font-size:0.75rem;font-weight:500;color:var(--green);margin-left:6px">Recommended</span></div>
+                  <div style="font-size:0.8rem;color:var(--text-muted);margin-top:3px">Paste your npub. DMs disabled, everything else works.</div>
+                </div>
+                <div class="wiz-identity-option" id="opt-full" onclick="selectIdentityMode('full')">
+                  <div style="font-weight:600;font-size:0.9rem">🔑 Full access</div>
+                  <div style="font-size:0.8rem;color:var(--text-muted);margin-top:3px">Connect nsec, NBunker, or Nostr Connect. Unlocks DMs.</div>
+                </div>
+              </div>
+
+              <div id="wiz-readonly-input" style="width:100%;max-width:480px">
+                <input type="text" class="wiz-input" placeholder="npub1..." value="npub1qe3e...7g8a" readonly>
+              </div>
+
+              <div id="wiz-full-input" style="display:none;width:100%;max-width:480px;flex-direction:column;gap:10px">
+                <div class="wiz-signer-option" onclick="selectSigner(this,'nsec')">🔑 Paste nsec</div>
+                <div class="wiz-signer-option" onclick="selectSigner(this,'bunker')">🏰 NBunker / NIP-46</div>
+                <div class="wiz-signer-option" onclick="selectSigner(this,'connect')">🔌 Nostr Connect</div>
+                <div class="wiz-signer-option" onclick="selectSigner(this,'new')">✨ Create new account</div>
+              </div>
             </div>
 
             <!-- Step 2 -->
@@ -1481,6 +1517,20 @@
                       <div class="settings-mono">npub1qe3e...7g8a</div>
                       <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Display Name</span><span class="settings-field-desc">Fetched from kind:0 metadata</span></div></div>
                       <div class="settings-mono">satoshi</div>
+
+                      <div class="settings-field" style="border-bottom:none;padding-bottom:8px"><div class="settings-field-info"><span class="settings-field-label">Signing Mode</span><span class="settings-field-desc">How events are signed</span></div></div>
+                      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:16px">
+                        <div style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2px">🔒 Read-only mode</div>
+                        <div style="font-size:0.75rem;color:var(--text-muted)">DMs disabled. Connect a signer to unlock full access.</div>
+                      </div>
+
+                      <div class="settings-field" style="border-bottom:none;padding-bottom:8px"><div class="settings-field-info"><span class="settings-field-label">Connect Signer</span><span class="settings-field-desc">Upgrade to full access</span></div></div>
+                      <div style="display:flex;flex-direction:column;gap:8px">
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='rgba(124,58,237,0.3)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:0.85rem;font-weight:500">🔑 Paste nsec</span><span style="font-size:0.72rem;color:var(--text-muted)">Full access</span></div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='rgba(124,58,237,0.3)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:0.85rem;font-weight:500">🏰 NBunker</span><span style="font-size:0.72rem;color:var(--text-muted)">Remote signer</span></div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='rgba(124,58,237,0.3)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:0.85rem;font-weight:500">🔌 Nostr Connect</span><span style="font-size:0.72rem;color:var(--text-muted)">NIP-46</span></div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='rgba(124,58,237,0.3)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:0.85rem;font-weight:500">✨ Create new account</span><span style="font-size:0.72rem;color:var(--text-muted)">Generate nsec</span></div>
+                      </div>
                     </div>
                     <!-- Relays -->
                     <div class="settings-pane" id="pane-relays">
@@ -1722,6 +1772,18 @@
       backBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
       nextBtn.textContent = step === 3 ? 'Finish →' : 'Next →';
     }
+
+    // Wizard identity mode selector
+    window.selectIdentityMode = function(mode) {
+      document.getElementById('opt-readonly').classList.toggle('selected', mode === 'readonly');
+      document.getElementById('opt-full').classList.toggle('selected', mode === 'full');
+      document.getElementById('wiz-readonly-input').style.display = mode === 'readonly' ? 'block' : 'none';
+      document.getElementById('wiz-full-input').style.display = mode === 'full' ? 'flex' : 'none';
+    };
+    window.selectSigner = function(el, type) {
+      document.querySelectorAll('.wiz-signer-option').forEach(function(o) { o.classList.remove('selected'); });
+      el.classList.add('selected');
+    };
 
     nextBtn.addEventListener('click', function() {
       if (step < 3) { step++; updateWizard(); }
