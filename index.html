@@ -880,8 +880,8 @@
         </div>
         <div class="feature-card">
           <div class="feature-icon fi-offline">🔒</div>
-          <h3>Sovereign</h3>
-          <p>Your data never depends on someone else's server. Relay goes down? Doesn't matter. Your events, your media — always available.</p>
+          <h3>Offline Mode</h3>
+          <p>One toggle to go fully offline — disable all outbound relay sync instantly. Your data stays local, no leaks, no connections. Go dark whenever you want.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon fi-wot">🕸️</div>
@@ -890,8 +890,8 @@
         </div>
         <div class="feature-card">
           <div class="feature-icon fi-daemon">⚡</div>
-          <h3>Background Daemon</h3>
-          <p>Starts with your computer, syncs when online, sleeps when you sleep. Single Rust binary, minimal CPU and memory footprint.</p>
+          <h3>Track Anyone</h3>
+          <p>Pin profiles you care about — their events, media, and activity stay synced and cached on your machine. Browse their media gallery, see stats, all offline.</p>
         </div>
       </div>
     </div>
@@ -911,11 +911,11 @@
         </div>
         <div class="step">
           <h3>Watch it sync</h3>
-          <p>nostrito discovers your network, builds your Web of Trust, and starts pulling events from people you actually follow.</p>
+          <p>nostrito discovers your network, builds your Web of Trust, and starts pulling events from people you actually follow. Track specific profiles to cache their full media history.</p>
         </div>
         <div class="step">
           <h3>Use any client</h3>
-          <p>Your favorite Nostr app connects to nostrito automatically. Your feed, served from your machine — fast, private, always available.</p>
+          <p>Your favorite Nostr app connects to nostrito automatically. Your feed with infinite scroll, profile pages with banners and follows — all served from your machine.</p>
         </div>
       </div>
     </div>
@@ -1121,6 +1121,7 @@
                 <div class="dash-stats">
                   <div class="dash-stat"><div class="dash-stat-val" id="dashEvents">12,483</div><div class="dash-stat-label">Events Synced</div></div>
                   <div class="dash-stat"><div class="dash-stat-val">847</div><div class="dash-stat-label">WoT Peers</div></div>
+                  <div class="dash-stat"><div class="dash-stat-val">12</div><div class="dash-stat-label">Tracked</div></div>
                   <div class="dash-stat"><div class="dash-stat-val">1,204</div><div class="dash-stat-label">Media Cached</div></div>
                   <div class="dash-stat"><div class="dash-stat-val" id="dashSyncRate">~3/min</div><div class="dash-stat-label">Sync Rate</div></div>
                   <div class="dash-stat"><div class="dash-stat-val" id="dashUptime">4h 23m</div><div class="dash-stat-label">Uptime</div></div>
@@ -1465,34 +1466,63 @@
                   <div class="storage-usage-bar">
                     <div class="storage-usage-title">Storage Usage — 2.3 GB / 5.0 GB</div>
                     <div class="storage-usage-visual">
-                      <div class="storage-seg storage-seg-notes" style="width:35%"></div>
-                      <div class="storage-seg storage-seg-media" style="width:25%"></div>
-                      <div class="storage-seg storage-seg-meta" style="width:10%"></div>
-                      <div class="storage-seg storage-seg-other" style="width:6%"></div>
+                      <div class="storage-seg storage-seg-notes" style="width:20%"></div>
+                      <div class="storage-seg storage-seg-media" style="width:12%"></div>
+                      <div class="storage-seg storage-seg-meta" style="width:18%"></div>
+                      <div class="storage-seg storage-seg-other" style="width:26%"></div>
                     </div>
                     <div class="storage-legend">
-                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--accent)"></div>Notes (805 MB)</div>
-                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--purple)"></div>Media (575 MB)</div>
-                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--blue)"></div>Metadata (230 MB)</div>
-                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--green)"></div>Other (138 MB)</div>
+                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--accent)"></div>Your Events (460 MB)</div>
+                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--purple)"></div>Your Media (276 MB)</div>
+                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--blue)"></div>Tracked Profiles (414 MB)</div>
+                      <div class="storage-legend-item"><div class="storage-legend-dot" style="background:var(--green)"></div>WoT Peers (598 MB)</div>
                     </div>
                   </div>
-                  <div class="kind-grid-page">
-                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">📝</span><span class="kind-name">Notes</span><span class="kind-count">8,421</span></div><span class="kind-meta">kind 1</span></div>
-                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">📰</span><span class="kind-name">Long-form</span><span class="kind-count">234</span></div><span class="kind-meta">kind 30023</span></div>
-                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">⚡</span><span class="kind-name">Zaps</span><span class="kind-count">1,847</span></div><span class="kind-meta">kind 9735</span></div>
-                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">🔁</span><span class="kind-name">Reposts</span><span class="kind-count">623</span></div><span class="kind-meta">kind 6</span></div>
-                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">❤️</span><span class="kind-name">Reactions</span><span class="kind-count">3,102</span></div><span class="kind-meta">kind 7</span></div>
-                    <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">🏷️</span><span class="kind-name">Metadata</span><span class="kind-count">847</span></div><span class="kind-meta">kind 0</span></div>
+
+                  <!-- Storage sub-tabs -->
+                  <div class="feed-filters" style="margin-bottom:16px">
+                    <div class="feed-filter active storage-tab" data-stab="own">📦 Your Events</div>
+                    <div class="feed-filter storage-tab" data-stab="tracked">📌 Tracked Profiles</div>
+                    <div class="feed-filter storage-tab" data-stab="wot">🕸️ WoT Peers</div>
                   </div>
-                  <div style="font-size:0.9rem;font-weight:700;margin-bottom:12px">Media Cache</div>
-                  <div class="media-grid">
-                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">🖼️</div></div>
-                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#2563eb,#60a5fa)">🎬</div></div>
-                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#059669,#34d399)">🖼️</div></div>
-                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#d97706,#fbbf24)">🔊</div></div>
-                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#dc2626,#f87171)">🖼️</div></div>
-                    <div class="media-tile"><div class="media-tile-gradient" style="background:linear-gradient(135deg,#0891b2,#22d3ee)">🎬</div></div>
+
+                  <!-- Own Events tab -->
+                  <div class="storage-tab-pane active" id="stab-own">
+                    <div class="kind-grid-page">
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">📝</span><span class="kind-name">Notes</span><span class="kind-count">1,247</span></div><span class="kind-meta">kind 1 · 128 MB</span></div>
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">📰</span><span class="kind-name">Long-form</span><span class="kind-count">18</span></div><span class="kind-meta">kind 30023 · 4 MB</span></div>
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">⚡</span><span class="kind-name">Zaps</span><span class="kind-count">342</span></div><span class="kind-meta">kind 9735 · 12 MB</span></div>
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">🔁</span><span class="kind-name">Reposts</span><span class="kind-count">89</span></div><span class="kind-meta">kind 6 · 3 MB</span></div>
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">❤️</span><span class="kind-name">Reactions</span><span class="kind-count">2,104</span></div><span class="kind-meta">kind 7 · 18 MB</span></div>
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">🖼️</span><span class="kind-name">Media</span><span class="kind-count">156</span></div><span class="kind-meta">blossom · 276 MB</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Tracked Profiles tab -->
+                  <div class="storage-tab-pane" id="stab-tracked" style="display:none">
+                    <div style="display:flex;flex-direction:column;gap:10px">
+                      <div class="wot-trusted-item" style="justify-content:space-between">
+                        <div style="display:flex;align-items:center;gap:12px"><div class="wot-trusted-avatar av1">F</div><span class="wot-trusted-name">fiatjaf</span></div>
+                        <div style="text-align:right"><span style="font-family:var(--mono);font-size:0.75rem;color:var(--accent-light)">3,421 events</span><br><span style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted)">82 media · 156 MB</span></div>
+                      </div>
+                      <div class="wot-trusted-item" style="justify-content:space-between">
+                        <div style="display:flex;align-items:center;gap:12px"><div class="wot-trusted-avatar av2">J</div><span class="wot-trusted-name">jb55</span></div>
+                        <div style="text-align:right"><span style="font-family:var(--mono);font-size:0.75rem;color:var(--accent-light)">2,847 events</span><br><span style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted)">64 media · 128 MB</span></div>
+                      </div>
+                      <div class="wot-trusted-item" style="justify-content:space-between">
+                        <div style="display:flex;align-items:center;gap:12px"><div class="wot-trusted-avatar av3">O</div><span class="wot-trusted-name">ODELL</span></div>
+                        <div style="text-align:right"><span style="font-family:var(--mono);font-size:0.75rem;color:var(--accent-light)">1,923 events</span><br><span style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted)">41 media · 94 MB</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- WoT Peers tab -->
+                  <div class="storage-tab-pane" id="stab-wot" style="display:none">
+                    <div class="kind-grid-page">
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">📝</span><span class="kind-name">Notes</span><span class="kind-count">7,174</span></div><span class="kind-meta">from 847 peers</span></div>
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">📰</span><span class="kind-name">Long-form</span><span class="kind-count">216</span></div><span class="kind-meta">from 34 peers</span></div>
+                      <div class="kind-card-p"><div class="kind-card-top"><span class="kind-icon">🖼️</span><span class="kind-name">Media</span><span class="kind-count">948</span></div><span class="kind-meta">blossom · 299 MB</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1576,6 +1606,13 @@
                     <div class="settings-pane" id="pane-advanced">
                       <div class="settings-pane-title">Advanced</div>
                       <div class="settings-pane-desc">Low-level configuration options.</div>
+                      <div class="settings-field">
+                        <div class="settings-field-info">
+                          <span class="settings-field-label">✈️ Offline Mode</span>
+                          <span class="settings-field-desc">Disable all outbound relay connections. Your relay keeps serving locally.</span>
+                        </div>
+                        <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+                      </div>
                       <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Relay port</span><span class="settings-field-desc">Local WebSocket relay port</span></div><span style="font-family:var(--mono);font-size:0.85rem;color:var(--text-dim)">4869</span></div>
                       <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Auto-start</span><span class="settings-field-desc">Start nostrito on login</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
                       <div class="settings-field"><div class="settings-field-info"><span class="settings-field-label">Debug logging</span><span class="settings-field-desc">Verbose output for troubleshooting</span></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
@@ -1704,7 +1741,7 @@
             Do I need to leave it running 24/7?
             <span style="color: var(--accent); font-size: 1.2rem;">+</span>
           </summary>
-          <p style="margin-top: 12px; color: var(--text-dim); line-height: 1.7;">No — and that's the whole point. nostrito lives when you live. It runs while your machine is on, sleeps when it's off, and catches up when it wakes. No cloud required, no always-on VPS, no monthly bill.</p>
+          <p style="margin-top: 12px; color: var(--text-dim); line-height: 1.7;">No — and that's the whole point. nostrito lives when you live. It runs while your machine is on, sleeps when it's off, and catches up when it wakes. No cloud required, no always-on VPS, no monthly bill. You can even toggle Offline Mode to cut all outbound connections instantly — your local relay keeps serving your data.</p>
         </details>
 
         <details style="padding: 24px 0;">
@@ -1911,6 +1948,20 @@
       bar.style.background = 'rgba(124,58,237,0.2)';
       if (i >= 20) bar.classList.add('recent');
       chartEl.appendChild(bar);
+    });
+
+    // ═══ STORAGE TABS ═══
+    var storageTabs = document.querySelectorAll('.storage-tab');
+    var storageTabPanes = document.querySelectorAll('.storage-tab-pane');
+    storageTabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var stab = this.getAttribute('data-stab');
+        storageTabs.forEach(function(t) { t.classList.remove('active'); });
+        this.classList.add('active');
+        storageTabPanes.forEach(function(p) { p.style.display = 'none'; p.classList.remove('active'); });
+        var pane = document.getElementById('stab-' + stab);
+        if (pane) { pane.style.display = 'block'; pane.classList.add('active'); }
+      });
     });
 
     // ═══ DM NAVIGATION ═══
