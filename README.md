@@ -42,5 +42,5 @@ It's not always live. It lives when you live. But whenever it's up, it's working
 
 ## Links
 
-- Landing: [nostrito.fabri.lat](https://nostrito.fabri.lat)
+- Landing: [nostrito.com](https://nostrito.com)
 - Spec: coming soon
