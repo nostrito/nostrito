@@ -9,7 +9,8 @@
   <meta property="og:description" content="Give it your npub. It builds your Web of Trust, syncs your feed, caches your media. Runs on your machine, offline-first, always yours.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nostrito.com">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>">
+  <link rel="icon" href="assets/logo-128.png" type="image/png">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -828,7 +829,7 @@
   <!-- Nav -->
   <nav>
     <div class="container">
-      <a href="#" class="logo"><span>🌶️</span> nostrito</a>
+      <a href="#" class="logo"><img src="assets/logo-128.png" alt="nostrito" style="width:32px;height:32px;vertical-align:middle;margin-right:6px;border-radius:4px;"> nostrito</a>
       <ul class="nav-links">
         <li><a href="#features">Features</a></li>
         <li><a href="#how">How it works</a></li>
@@ -836,6 +837,7 @@
         <li><a href="#architecture">Architecture</a></li>
         <li><a href="#gossip">Gossip</a></li>
         <li><a href="docs.html">Docs</a></li>
+        <li><a href="media.html" class="nav-link">Media Kit</a></li>
         <li><a href="https://github.com/nostrito/nostrito" class="nav-cta">GitHub →</a></li>
       </ul>
     </div>
@@ -968,7 +970,7 @@
 
               <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;width:100%;max-width:480px">
                 <div class="wiz-identity-option selected" id="opt-readonly" onclick="selectIdentityMode('readonly')">
-                  <div style="font-weight:600;font-size:0.9rem">📖 Read-only <span style="font-size:0.75rem;font-weight:500;color:var(--green);margin-left:6px">Recommended</span></div>
+                  <div style="font-weight:600;font-size:0.9rem">📖 Read-only</div>
                   <div style="font-size:0.8rem;color:var(--text-muted);margin-top:3px">Paste your npub. DMs disabled, everything else works.</div>
                 </div>
                 <div class="wiz-identity-option" id="opt-full" onclick="selectIdentityMode('full')">
@@ -1777,7 +1779,7 @@
         <a href="https://github.com/nostrito/nostrito/blob/main/SPEC.md">Spec</a>
         <a href="https://github.com/nostrito/nostrito/blob/main/LICENSE">MIT License</a>
       </div>
-      <p>🌶️ nostrito — your relay, your data, your rules.</p>
+      <p><img src="assets/logo-128.png" alt="nostrito" style="width:24px;height:24px;vertical-align:middle;margin-right:6px;border-radius:3px;"> nostrito — your relay, your data, your rules.</p>
     </div>
   </footer>
 
