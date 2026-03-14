@@ -1,0 +1,85 @@
+.wotHeader {
+  margin-bottom: 20px;
+}
+
+.wotTitle {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.wotStats {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.wotStats strong {
+  color: var(--accent);
+}
+
+.wotGraph {
+  width: 260px;
+  height: 260px;
+  margin: 0 auto 24px;
+}
+
+.wotGraph svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wotList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wotItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #0d0d0f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.wiAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #a855f7);
+}
+
+.wiInfo {
+  flex: 1;
+}
+
+.wiName {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.wiMeta {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.wiDepth {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.d1 {
+  background: rgba(124, 58, 237, 0.2);
+  color: var(--accent);
+}
+
+.d2 {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}

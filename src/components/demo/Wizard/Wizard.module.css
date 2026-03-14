@@ -1,0 +1,338 @@
+.wizardScreen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+  overflow-y: auto;
+}
+
+.wizardDots {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.2s;
+}
+
+.dotActive {
+  background: var(--accent);
+}
+
+.dotDone {
+  background: #34d399;
+}
+
+.wizardStep {
+  display: none;
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.wizardStepActive {
+  display: block;
+}
+
+.stepTitle {
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.stepSubtitle {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin: 0 0 24px;
+}
+
+.wizardBtns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.wizardBtns button {
+  padding: 10px 28px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btnPrimary:hover {
+  background: #6d28d9;
+}
+
+.btnSecondary {
+  background: var(--border);
+  color: var(--text);
+}
+
+.btnSecondary:hover {
+  background: #2a2a34;
+}
+
+/* Step 1 - Identity */
+.identityOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 480px;
+  text-align: left;
+}
+
+.identityOption {
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #0d0d0f;
+}
+
+.identityOption:hover {
+  border-color: var(--accent);
+}
+
+.identityOptionSelected {
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.12);
+}
+
+.identityOptionTitle {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.identityOptionRecommended {
+  font-size: 11px;
+  font-weight: 400;
+  color: #34d399;
+  margin-left: 6px;
+}
+
+.identityOptionDesc {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.npubInputWrap {
+  width: 100%;
+  max-width: 480px;
+}
+
+.npubInput {
+  width: 100%;
+  padding: 12px 16px;
+  background: #0d0d0f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.npubInput:focus {
+  border-color: var(--accent);
+}
+
+.signerOptions {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.signerOption {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  background: #0d0d0f;
+  color: var(--text);
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.signerOption:hover {
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.12);
+}
+
+.signerOptionSelected {
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.12);
+}
+
+/* Step 2 - Relays */
+.relayGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 auto 0;
+  max-width: 440px;
+  text-align: left;
+}
+
+.relayCard {
+  padding: 12px 16px;
+  background: #0d0d0f;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.relayCardOn {
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.12);
+}
+
+.rcIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: linear-gradient(135deg, #2a2a3a, #1a1a28);
+}
+
+.rcName {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.rcUrl {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* Step 3 - Storage */
+.storageConfig {
+  text-align: left;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.storageLabel {
+  display: block;
+  color: var(--text-dim);
+  font-size: 12px;
+  margin: 14px 0 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.storageBarLocked {
+  width: 100%;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  position: relative;
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sliderRow input[type='range'] {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.sliderVal {
+  min-width: 44px;
+  text-align: right;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.toggleGroup {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.togglePill {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #0d0d0f;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-dim);
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.togglePillOn {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(124, 58, 237, 0.12);
+}
+
+.radioGroup {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.radioLabel input {
+  accent-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .relayGrid {
+    grid-template-columns: 1fr;
+  }
+}

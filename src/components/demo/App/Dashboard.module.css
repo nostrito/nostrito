@@ -1,0 +1,265 @@
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.statCard {
+  background: #0d0d0f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.statLabel {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.activityChart {
+  margin-bottom: 16px;
+}
+
+.chartLabel {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chartBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 40px;
+}
+
+.chartBar {
+  flex: 1;
+  border-radius: 2px 2px 0 0;
+  background: var(--border);
+}
+
+.chartBarRecent {
+  background: rgba(124, 58, 237, 0.7);
+}
+
+.chartBarCurrent {
+  background: var(--accent);
+}
+
+.dashMain {
+  display: flex;
+  gap: 16px;
+}
+
+.dashEvents {
+  flex: 1;
+}
+
+.eventCard {
+  background: #0d0d0f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.ecHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ecAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #a855f7);
+}
+
+.ecName {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ecNpub {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.ecText {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.ecActions {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.ecActions span {
+  cursor: default;
+}
+
+.hopBadge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+.hop1 {
+  background: rgba(124, 58, 237, 0.2);
+  color: #a78bfa;
+}
+
+.hop2 {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+/* Sync Engine Panel */
+.syncPanel {
+  width: 180px;
+  min-width: 180px;
+  align-self: flex-start;
+}
+
+.syncTitle {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.syncTier {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.syncTierLast {
+  border-bottom: none;
+}
+
+.tierHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.tierLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+
+.tierBadgeFast {
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+  font-weight: 700;
+}
+
+.tierMeta {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.tierRelayList {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tierRelay {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.tierLatency {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-dim);
+  opacity: 0.7;
+}
+
+.dotGreen {
+  color: #34d399;
+}
+
+.peerPulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  animation: pulseDot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.tierIdle {
+  opacity: 0.4;
+}
+
+.blossomSection {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.blossomTitle {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.blossomMeta {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+@media (max-width: 768px) {
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashMain {
+    flex-direction: column;
+  }
+
+  .syncPanel {
+    width: 100%;
+    min-width: unset;
+  }
+}

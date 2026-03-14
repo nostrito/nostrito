@@ -1,0 +1,24 @@
+.section {
+  text-align: center;
+  padding: 120px 0;
+}
+
+.section h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+}
+
+.section p {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  margin-bottom: 36px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

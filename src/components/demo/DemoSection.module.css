@@ -1,0 +1,17 @@
+.demoSection {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  margin: 0 0 48px;
+}

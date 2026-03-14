@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nostrito.com/sitemap.xml

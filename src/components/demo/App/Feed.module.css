@@ -1,0 +1,128 @@
+.filterTabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.filterBtn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterBtnActive {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.feedEvent {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  background: #0d0d0f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.feedEventHidden {
+  display: none;
+}
+
+.feAvatar {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+}
+
+.feBody {
+  flex: 1;
+}
+
+.feHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.feName {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.feNpub {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.feTime {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+
+.feText {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.feActions {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.feActions span {
+  cursor: default;
+}
+
+.longform {
+  flex-direction: column;
+}
+
+.lfTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.lfHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.lfAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.hopBadge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+.hop1 {
+  background: rgba(124, 58, 237, 0.2);
+  color: #a78bfa;
+}
+
+.hop2 {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}

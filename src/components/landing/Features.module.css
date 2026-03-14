@@ -1,0 +1,97 @@
+.section {
+  padding: 100px 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+}
+
+.sectionHeader p {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  border-color: rgba(124, 58, 237, 0.2);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.fiRelay {
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.fiMedia {
+  background: rgba(167, 139, 250, 0.1);
+}
+
+.fiConfig {
+  background: rgba(251, 146, 60, 0.1);
+}
+
+.fiOffline {
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.fiWot {
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.fiDaemon {
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.card code {
+  font-family: var(--mono);
+  background: rgba(124, 58, 237, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}

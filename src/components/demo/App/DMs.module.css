@@ -1,0 +1,142 @@
+.dmItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  gap: 10px;
+  transition: background 0.15s;
+}
+
+.dmItem:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dmAvatar {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+}
+
+.dmMid {
+  flex: 1;
+  min-width: 0;
+}
+
+.dmNameRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.dmName {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.dmUnread {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f97316;
+  flex-shrink: 0;
+}
+
+.dmPreview {
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dmTime {
+  font-size: 11px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.hopBadge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-left: 2px;
+}
+
+.hop1 {
+  background: rgba(124, 58, 237, 0.2);
+  color: #a78bfa;
+}
+
+.hop2 {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+/* Conversation view */
+.convHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.convName {
+  font-weight: 600;
+}
+
+.convHop {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--accent);
+  margin-left: 4px;
+}
+
+.convEncrypted {
+  font-size: 11px;
+  color: #34d399;
+  margin-left: auto;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dmBubble {
+  border-radius: 12px;
+  font-size: 13px;
+  padding: 10px 14px;
+  max-width: 75%;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.bubbleTheirs {
+  background: #0d0d0f;
+  border: 1px solid var(--border);
+  align-self: flex-start;
+}
+
+.bubbleMine {
+  background: var(--accent);
+  color: #fff;
+  align-self: flex-end;
+}
