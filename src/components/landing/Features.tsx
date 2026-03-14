@@ -7,43 +7,43 @@ const FEATURES: { icon: ReactNode; iconClass: string; title: string; description
   {
     icon: <Icon name="relay" />,
     iconClass: styles.fiRelay,
-    title: 'Your Own Server',
+    title: 'your own server',
     description:
-      'A full WebSocket relay on localhost. Use Damus, Amethyst, or any client with it. Your feed, served from your machine.',
+      'a full websocket relay on localhost. use damus, amethyst, or any client with it. your feed, served from your machine.',
   },
   {
     icon: <Icon name="blossom" />,
     iconClass: styles.fiMedia,
-    title: 'Blossom Media Backup',
+    title: 'blossom media backup',
     description:
-      'Every image, video, and file from your network gets backed up locally — automatically. SHA-256 verified. Yours forever, even if the original server disappears.',
+      'every image, video, and file from your network gets backed up locally — automatically. SHA-256 verified. yours forever, even if the original server disappears.',
   },
   {
     icon: <Icon name="target" />,
     iconClass: styles.fiConfig,
-    title: 'Human-Friendly Config',
+    title: 'human-friendly config',
     description: null,
   },
   {
     icon: <Icon name="lock" />,
     iconClass: styles.fiOffline,
-    title: 'Offline Mode',
+    title: 'offline mode',
     description:
-      'One toggle to go fully offline — disable all outbound relay sync instantly. Your data stays local, no leaks, no connections. Go dark whenever you want.',
+      'one toggle to go fully offline — disable all outbound relay sync instantly. your data stays local, no leaks, no connections. go dark whenever you want.',
   },
   {
     icon: <Icon name="web" />,
     iconClass: styles.fiWot,
-    title: 'Web of Trust Sync',
+    title: 'web of trust sync',
     description:
-      'Computes your trust graph from your follow list. Only fetches events from people you actually trust — not the entire network.',
+      'computes your trust graph from your follow list. only fetches events from people you actually trust — not the entire network.',
   },
   {
     icon: <Icon name="zap" />,
     iconClass: styles.fiDaemon,
-    title: 'Track Anyone',
+    title: 'track anyone',
     description:
-      'Pin profiles you care about — their events, media, and activity stay synced and cached on your machine. Browse their media gallery, see stats, all offline.',
+      'pin profiles you care about — their events, media, and activity stay synced and cached on your machine. browse their media gallery, see stats, all offline.',
   },
 ]
 
@@ -53,10 +53,10 @@ export default function Features() {
       <Container>
         <div className={styles.sectionHeader}>
           <h2>
-            Everything you need.<br />Nothing you don't.
+            everything you need.<br />nothing you don't.
           </h2>
           <p>
-            nostrito does one thing well: keeps your Nostr data local, trusted,
+            nostrito does one thing well: keeps your nostr data local, trusted,
             and available.
           </p>
         </div>
@@ -71,8 +71,8 @@ export default function Features() {
                 <p>{feature.description}</p>
               ) : (
                 <p>
-                  Choose <code>primal</code>. Choose <code>damus</code>. No
-                  URLs, no protocols, no copy-pasting strings from docs. You
+                  choose <code>primal</code>. choose <code>damus</code>. no
+                  URLs, no protocols, no copy-pasting strings from docs. you
                   know the name — nostrito handles the rest.
                 </p>
               )}

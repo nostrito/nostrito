@@ -3,19 +3,19 @@ import styles from './HowItWorks.module.css'
 
 const STEPS = [
   {
-    title: 'Paste your npub',
+    title: 'paste your npub',
     description:
-      'Open nostrito and drop in your public key. It sets up everything — database, relay connections, trust graph.',
+      'open nostrito and drop in your public key. it sets up everything — database, relay connections, trust graph.',
   },
   {
-    title: 'Watch it sync',
+    title: 'watch it sync',
     description:
-      'nostrito discovers your network, builds your Web of Trust, and starts pulling events from people you actually follow. Track specific profiles to cache their full media history.',
+      'nostrito discovers your network, builds your web of trust, and starts pulling events from people you actually follow. track specific profiles to cache their full media history.',
   },
   {
-    title: 'Use any client',
+    title: 'use any client',
     description:
-      'Your favorite Nostr app connects to nostrito automatically. Your feed with infinite scroll, profile pages with banners and follows — all served from your machine.',
+      'your favorite nostr app connects to nostrito automatically. your feed with infinite scroll, profile pages with banners and follows — all served from your machine.',
   },
 ] as const
 
@@ -24,8 +24,8 @@ export default function HowItWorks() {
     <section id="how" className={styles.section}>
       <Container>
         <div className={styles.sectionHeader}>
-          <h2>Up and running in a minute.</h2>
-          <p>No terminal. No config files. Just open the app.</p>
+          <h2>up and running in a minute.</h2>
+          <p>no terminal. no config files. just open the app.</p>
         </div>
         <div className={styles.steps}>
           {STEPS.map((step) => (

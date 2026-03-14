@@ -4,22 +4,22 @@ import styles from './Footer.module.css'
 
 const FOOTER_LINKS = [
   {
-    label: 'GitHub',
+    label: 'github',
     href: 'https://github.com/nostrito/nostrito',
     external: true,
   },
   {
-    label: 'Docs',
+    label: 'docs',
     href: '/docs',
     external: false,
   },
   {
-    label: 'Spec',
+    label: 'spec',
     href: 'https://github.com/nostrito/nostrito/blob/main/SPEC.md',
     external: true,
   },
   {
-    label: 'MIT License',
+    label: 'MIT license',
     href: 'https://github.com/nostrito/nostrito/blob/main/LICENSE',
     external: true,
   },

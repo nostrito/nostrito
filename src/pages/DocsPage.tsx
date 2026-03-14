@@ -24,38 +24,38 @@ interface SidebarSection {
 
 const SIDEBAR_SECTIONS: SidebarSection[] = [
   {
-    title: 'Getting Started',
+    title: 'getting started',
     links: [
-      { id: 'getting-started', label: 'Introduction' },
-      { id: 'installation', label: 'Installation' },
-      { id: 'quickstart', label: 'Quick Start' },
+      { id: 'getting-started', label: 'introduction' },
+      { id: 'installation', label: 'installation' },
+      { id: 'quickstart', label: 'quick start' },
     ],
   },
   {
-    title: 'Configuration',
+    title: 'configuration',
     links: [
-      { id: 'configuration', label: 'Config File' },
-      { id: 'relay-aliases', label: 'Relay Aliases' },
+      { id: 'configuration', label: 'config file' },
+      { id: 'relay-aliases', label: 'relay aliases' },
     ],
   },
   {
-    title: 'Features',
+    title: 'features',
     links: [
-      { id: 'sync', label: 'Sync Engine' },
-      { id: 'storage', label: 'Storage' },
-      { id: 'wot', label: 'Web of Trust' },
-      { id: 'blossom', label: 'Blossom Media' },
+      { id: 'sync', label: 'sync engine' },
+      { id: 'storage', label: 'storage' },
+      { id: 'wot', label: 'web of trust' },
+      { id: 'blossom', label: 'blossom media' },
     ],
   },
   {
-    title: 'Advanced',
+    title: 'advanced',
     links: [
-      { id: 'advanced', label: 'Advanced Config' },
-      { id: 'api', label: 'Relay API' },
+      { id: 'advanced', label: 'advanced config' },
+      { id: 'api', label: 'relay API' },
     ],
   },
   {
-    title: 'Help',
+    title: 'help',
     links: [{ id: 'faq', label: 'FAQ' }],
   },
 ]
@@ -63,66 +63,66 @@ const SIDEBAR_SECTIONS: SidebarSection[] = [
 function IntroductionPage() {
   return (
     <>
-      <h1>Introduction</h1>
+      <h1>introduction</h1>
       <p className={styles.lead}>
-        nostrito is a personal Nostr mini-relay that runs on your machine. It
-        builds your Web of Trust, syncs your feed, and caches your media — all
+        nostrito is a personal social network that runs on your machine. it
+        builds your web of trust, syncs your feed, and caches your media — all
         locally.
       </p>
 
-      <h2>What is nostrito?</h2>
+      <h2>what is nostrito?</h2>
       <p>
-        nostrito is a lightweight, single-binary relay daemon written in Rust. It
-        connects to the Nostr network, computes your Web of Trust from your
+        nostrito is a lightweight, single-binary relay daemon written in rust. it
+        connects to the nostr network, computes your web of trust from your
         follow list, and stores only the events and media from people you trust.
       </p>
       <p>
-        Your favorite Nostr client (Damus, Amethyst, Coracle, etc.) connects to
-        nostrito over a local WebSocket, so your feed loads instantly — no
+        your favorite nostr client (damus, amethyst, coracle, etc.) connects to
+        nostrito over a local websocket, so your feed loads instantly — no
         network latency, no downtime, no dependency on third-party
         infrastructure.
       </p>
 
-      <h2>Key Features</h2>
+      <h2>key features</h2>
       <ul>
         <li>
           <strong>WoT-aware sync</strong> — only stores events from trusted
           pubkeys
         </li>
         <li>
-          <strong>Local NIP-01 relay</strong> — works with any Nostr client
+          <strong>local NIP-01 relay</strong> — works with any nostr client
         </li>
         <li>
-          <strong>Blossom media cache</strong> — images, videos, audio stored
+          <strong>blossom media cache</strong> — images, videos, audio stored
           locally
         </li>
         <li>
-          <strong>Human-friendly config</strong> — relay aliases, TOML format
+          <strong>human-friendly config</strong> — relay aliases, TOML format
         </li>
         <li>
-          <strong>Offline-first</strong> — your data is always available
+          <strong>offline-first</strong> — your data is always available
         </li>
         <li>
-          <strong>Single binary</strong> — no runtime deps, no Docker, no
-          Node.js
+          <strong>single binary</strong> — no runtime deps, no docker, no
+          node.js
         </li>
       </ul>
 
-      <h2>How It Works</h2>
+      <h2>how it works</h2>
       <p>
-        When you start nostrito for the first time, you provide your{' '}
+        when you start nostrito for the first time, you provide your{' '}
         <code>npub</code>. nostrito then:
       </p>
       <ol>
-        <li>Fetches your follow list (kind:3) from configured relays</li>
-        <li>Computes your Web of Trust graph (configurable depth)</li>
-        <li>Syncs events from trusted pubkeys</li>
-        <li>Caches Blossom media locally</li>
-        <li>Serves everything via a local WebSocket relay</li>
+        <li>fetches your follow list (kind:3) from configured relays</li>
+        <li>computes your web of trust graph (configurable depth)</li>
+        <li>syncs events from trusted pubkeys</li>
+        <li>caches blossom media locally</li>
+        <li>serves everything via a local websocket relay</li>
       </ol>
 
       <div className={styles.callout}>
-        <strong>Tip:</strong> Point your Nostr client at{' '}
+        <strong>tip:</strong> point your nostr client at{' '}
         <code>ws://localhost:4869</code> and your feed will load from your local
         machine — even when you're offline.
       </div>
@@ -133,40 +133,40 @@ function IntroductionPage() {
 function InstallationPage() {
   return (
     <>
-      <h1>Installation</h1>
+      <h1>installation</h1>
       <p className={styles.lead}>
-        nostrito ships as a single binary for macOS, Linux, and Windows. No
+        nostrito ships as a single binary for macOS, linux, and windows. no
         dependencies required.
       </p>
 
       <h2>macOS</h2>
       <p>
-        Download the latest <code>.dmg</code> from the GitHub Releases page, or
-        install via Homebrew:
+        download the latest <code>.dmg</code> from the github releases page, or
+        install via homebrew:
       </p>
       <pre className={styles.codeBlock}>
-        <span className={styles.comment}># Install via Homebrew</span>
+        <span className={styles.comment}># install via homebrew</span>
         {'\n'}brew install nostrito/tap/nostrito
       </pre>
 
-      <h2>Linux</h2>
-      <p>Download the binary for your architecture (x86_64 or aarch64):</p>
+      <h2>linux</h2>
+      <p>download the binary for your architecture (x86_64 or aarch64):</p>
       <pre className={styles.codeBlock}>
-        <span className={styles.comment}># Download and install</span>
+        <span className={styles.comment}># download and install</span>
         {'\n'}curl -L
         https://github.com/nostrito/nostrito/releases/latest/download/nostrito-linux-x86_64
         -o nostrito{'\n'}chmod +x nostrito{'\n'}sudo mv nostrito /usr/local/bin/
       </pre>
 
-      <h2>Windows</h2>
+      <h2>windows</h2>
       <p>
-        Download the <code>.exe</code> from the GitHub Releases page and add it
+        download the <code>.exe</code> from the github releases page and add it
         to your PATH.
       </p>
 
-      <h2>Build from Source</h2>
+      <h2>build from source</h2>
       <pre className={styles.codeBlock}>
-        <span className={styles.comment}># Requires Rust 1.75+</span>
+        <span className={styles.comment}># requires rust 1.75+</span>
         {'\n'}git clone https://github.com/nostrito/nostrito.git{'\n'}cd nostrito
         {'\n'}cargo build --release
       </pre>
@@ -177,42 +177,42 @@ function InstallationPage() {
 function QuickStartPage() {
   return (
     <>
-      <h1>Quick Start</h1>
-      <p className={styles.lead}>Get nostrito running in under a minute.</p>
+      <h1>quick start</h1>
+      <p className={styles.lead}>get nostrito running in under a minute.</p>
 
-      <h2>1. Start nostrito</h2>
+      <h2>1. start nostrito</h2>
       <p>
-        Open the app (or run the binary). You'll be greeted with the setup
+        open the app (or run the binary). you'll be greeted with the setup
         wizard.
       </p>
 
-      <h2>2. Enter your npub</h2>
+      <h2>2. enter your npub</h2>
       <p>
-        Paste your Nostr public key. nostrito will set up the database and begin
-        computing your Web of Trust.
+        paste your nostr public key. nostrito will set up the database and begin
+        computing your web of trust.
       </p>
 
-      <h2>3. Pick your relays</h2>
+      <h2>3. pick your relays</h2>
       <p>
-        Select which relays to sync from. You can use friendly names —{' '}
+        select which relays to sync from. you can use friendly names —{' '}
         <code>primal</code>, <code>damus</code>, <code>nos</code> — instead of
-        full WebSocket URLs.
+        full websocket URLs.
       </p>
 
-      <h2>4. Configure storage</h2>
+      <h2>4. configure storage</h2>
       <p>
-        Set how much space to allocate for others' events and media. Your own
+        set how much space to allocate for others' events and media. your own
         events are always stored at 100%.
       </p>
 
-      <h2>5. Connect your client</h2>
+      <h2>5. connect your client</h2>
       <p>
-        Add <code>ws://localhost:4869</code> to your Nostr client's relay list.
-        Your feed will load from your local relay.
+        add <code>ws://localhost:4869</code> to your nostr client's relay list.
+        your feed will load from your local relay.
       </p>
 
       <div className={styles.callout}>
-        <strong>That's it!</strong> nostrito runs in the background, syncing your
+        <strong>that's it!</strong> nostrito runs in the background, syncing your
         network and serving your feed locally.
       </div>
     </>
@@ -222,13 +222,13 @@ function QuickStartPage() {
 function ConfigFilePage() {
   return (
     <>
-      <h1>Config File</h1>
+      <h1>config file</h1>
       <p className={styles.lead}>
         nostrito uses a TOML configuration file at{' '}
         <code>~/.nostrito/config.toml</code>.
       </p>
 
-      <h2>Default Configuration</h2>
+      <h2>default configuration</h2>
       <pre className={styles.codeBlock}>
         <span className={styles.comment}># ~/.nostrito/config.toml</span>
         {'\n\n'}
@@ -286,9 +286,9 @@ function ConfigFilePage() {
         <span className={styles.comment}># or "least_interacted"</span>
       </pre>
 
-      <h2>Environment Variables</h2>
+      <h2>environment variables</h2>
       <p>
-        Any config value can be overridden with environment variables using the{' '}
+        any config value can be overridden with environment variables using the{' '}
         <code>NOSTRITO_</code> prefix:
       </p>
       <pre className={styles.codeBlock}>
@@ -301,32 +301,32 @@ function ConfigFilePage() {
 function RelayAliasesPage() {
   return (
     <>
-      <h1>Relay Aliases</h1>
+      <h1>relay aliases</h1>
       <p className={styles.lead}>
-        You never have to type a <code>wss://</code> URL. nostrito uses friendly
+        you never have to type a <code>wss://</code> URL. nostrito uses friendly
         names for every relay, and handles the mapping internally.
       </p>
 
-      <h2>Why aliases?</h2>
+      <h2>why aliases?</h2>
       <p>
-        WebSocket URLs are ugly and easy to mistype. nostrito lets you refer to
+        websocket URLs are ugly and easy to mistype. nostrito lets you refer to
         relays by short, memorable names — in the setup wizard, in the config
-        file, and everywhere else. When you pick "damus" during onboarding,
-        nostrito knows that means <code>wss://relay.damus.io</code>. You never
+        file, and everywhere else. when you pick "damus" during onboarding,
+        nostrito knows that means <code>wss://relay.damus.io</code>. you never
         see the raw URL unless you go looking for it.
       </p>
 
-      <h2>Built-in aliases</h2>
+      <h2>built-in aliases</h2>
       <p>
-        nostrito ships with 8 built-in aliases covering the most popular Nostr
+        nostrito ships with 8 built-in aliases covering the most popular nostr
         relays:
       </p>
       <table className={styles.docsTable}>
         <thead>
           <tr>
-            <th>Alias</th>
-            <th>Resolves to</th>
-            <th>Description</th>
+            <th>alias</th>
+            <th>resolves to</th>
+            <th>description</th>
           </tr>
         </thead>
         <tbody>
@@ -337,7 +337,7 @@ function RelayAliasesPage() {
             <td>
               <code>wss://relay.primal.net</code>
             </td>
-            <td>Popular social relay with fast global coverage</td>
+            <td>popular social relay with fast global coverage</td>
           </tr>
           <tr>
             <td>
@@ -355,7 +355,7 @@ function RelayAliasesPage() {
             <td>
               <code>wss://relay.nos.social</code>
             </td>
-            <td>Open social network relay</td>
+            <td>open social network relay</td>
           </tr>
           <tr>
             <td>
@@ -364,7 +364,7 @@ function RelayAliasesPage() {
             <td>
               <code>wss://relay.snort.social</code>
             </td>
-            <td>Web client relay, popular with browser users</td>
+            <td>web client relay, popular with browser users</td>
           </tr>
           <tr>
             <td>
@@ -373,7 +373,7 @@ function RelayAliasesPage() {
             <td>
               <code>wss://relay.coracle.social</code>
             </td>
-            <td>Privacy-focused, good for discovery</td>
+            <td>privacy-focused, good for discovery</td>
           </tr>
           <tr>
             <td>
@@ -382,7 +382,7 @@ function RelayAliasesPage() {
             <td>
               <code>wss://nostr.wine</code>
             </td>
-            <td>Curated content, paid relay with quality filtering</td>
+            <td>curated content, paid relay with quality filtering</td>
           </tr>
           <tr>
             <td>
@@ -391,7 +391,7 @@ function RelayAliasesPage() {
             <td>
               <code>wss://nostr.band</code>
             </td>
-            <td>Android community relay and search index</td>
+            <td>android community relay and search index</td>
           </tr>
           <tr>
             <td>
@@ -400,29 +400,29 @@ function RelayAliasesPage() {
             <td>
               <code>wss://relay.yakihonne.com</code>
             </td>
-            <td>Long-form content and articles</td>
+            <td>long-form content and articles</td>
           </tr>
         </tbody>
       </table>
 
-      <h2>How resolution works</h2>
+      <h2>how resolution works</h2>
       <p>
-        When nostrito sees a relay name, it checks the alias table first. If the
+        when nostrito sees a relay name, it checks the alias table first. if the
         name matches a built-in alias, it uses the corresponding{' '}
-        <code>wss://</code> URL. If no alias matches, nostrito treats the name as
+        <code>wss://</code> URL. if no alias matches, nostrito treats the name as
         a raw URL — so you can always use a full <code>wss://</code> address if
         you need to connect to a relay that isn't in the alias list.
       </p>
 
       <div className={styles.callout}>
-        <strong>Tip:</strong> In the setup wizard, you just toggle relay names on
-        and off. nostrito resolves them to real URLs behind the scenes. You can
+        <strong>tip:</strong> in the setup wizard, you just toggle relay names on
+        and off. nostrito resolves them to real URLs behind the scenes. you can
         mix aliases and raw URLs freely in the config file.
       </div>
 
-      <h2>Custom aliases</h2>
+      <h2>custom aliases</h2>
       <p>
-        Add your own aliases in the config file. Useful for private relays or
+        add your own aliases in the config file. useful for private relays or
         relays that aren't in the built-in list:
       </p>
       <pre className={styles.codeBlock}>
@@ -435,7 +435,7 @@ function RelayAliasesPage() {
         <span className={styles.str}>"wss://internal-relay.company.io"</span>
       </pre>
       <p>
-        Custom aliases work exactly like built-in ones — use them anywhere you'd
+        custom aliases work exactly like built-in ones — use them anywhere you'd
         use a relay name.
       </p>
     </>
@@ -445,109 +445,109 @@ function RelayAliasesPage() {
 function SyncEnginePage() {
   return (
     <>
-      <h1>Sync Engine</h1>
+      <h1>sync engine</h1>
       <p className={styles.lead}>
-        nostrito syncs your data from the Nostr network using a 4-tier priority
-        system. It fetches the most important things first, works its way through
+        nostrito syncs your data from the nostr network using a 4-tier priority
+        system. it fetches the most important things first, works its way through
         less urgent data in the background, and is always polite to the relays it
         connects to.
       </p>
 
-      <h2>The 4-tier system</h2>
+      <h2>the 4-tier system</h2>
       <p>
-        Not all data is equally urgent. When you first launch nostrito (or after
+        not all data is equally urgent. when you first launch nostrito (or after
         a long time offline), it needs to fetch your profile, your follows,
-        recent notes, and eventually the broader social graph. Instead of trying
+        recent notes, and eventually the broader social graph. instead of trying
         to do everything at once, nostrito works through four tiers in order:
       </p>
 
-      <h3>Tier 1 — Critical (completes in seconds)</h3>
+      <h3>tier 1 — critical (completes in seconds)</h3>
       <p>
-        The first thing nostrito does is fetch <strong>your own profile</strong>{' '}
+        the first thing nostrito does is fetch <strong>your own profile</strong>{' '}
         (kind:0 metadata) and <strong>your follow list</strong> (kind:3 contact
-        list). This is a single request to one relay — fast and lightweight. Your
-        follow list seeds the entire Web of Trust graph, so everything else
+        list). this is a single request to one relay — fast and lightweight. your
+        follow list seeds the entire web of trust graph, so everything else
         depends on it.
       </p>
       <p>
-        Once tier 1 completes, nostrito knows who you follow. The app becomes
+        once tier 1 completes, nostrito knows who you follow. the app becomes
         usable immediately.
       </p>
 
-      <h3>Tier 2 — Important (completes in minutes)</h3>
+      <h3>tier 2 — important (completes in minutes)</h3>
       <p>
-        Now that nostrito knows your follow list, it fetches{' '}
+        now that nostrito knows your follow list, it fetches{' '}
         <strong>recent notes</strong> (kind:1 events) from your direct follows.
-        It only looks at the last 7 days and caps at 500 events, so this stays
+        it only looks at the last 7 days and caps at 500 events, so this stays
         fast.
       </p>
       <p>
-        Pubkeys are processed in batches of 20, with a short 300ms pause between
-        batches to avoid hammering the relay. After tier 2, your feed is
+        pubkeys are processed in batches of 20, with a short 300ms pause between
+        batches to avoid hammering the relay. after tier 2, your feed is
         populated with recent content from the people you care about most.
       </p>
 
-      <h3>Tier 3 — Background (completes in hours)</h3>
+      <h3>tier 3 — background (completes in hours)</h3>
       <p>
-        This is the WoT crawl. For each person you follow, nostrito fetches{' '}
-        <em>their</em> follow list (kind:3) to discover follows-of-follows. This
+        this is the WoT crawl. for each person you follow, nostrito fetches{' '}
+        <em>their</em> follow list (kind:3) to discover follows-of-follows. this
         builds out the 2-hop and 3-hop layers of your trust graph.
       </p>
       <p>
-        Tier 3 runs slowly on purpose — 10 pubkeys per batch with 2-second
-        pauses between them. If you're actively using the app (scrolling your
+        tier 3 runs slowly on purpose — 10 pubkeys per batch with 2-second
+        pauses between them. if you're actively using the app (scrolling your
         feed, interacting with the UI), tier 3 pauses entirely and resumes when
-        you're idle. It also checkpoints its progress to the database, so if you
+        you're idle. it also checkpoints its progress to the database, so if you
         quit and reopen nostrito, it picks up where it left off instead of
         starting over.
       </p>
 
-      <h3>Tier 4 — Archive (completes in days)</h3>
-      <p>The lowest priority tier handles everything else:</p>
+      <h3>tier 4 — archive (completes in days)</h3>
+      <p>the lowest priority tier handles everything else:</p>
       <ul>
         <li>
-          <strong>Blossom media downloads</strong> — images, videos, and audio
+          <strong>blossom media downloads</strong> — images, videos, and audio
           from events nostrito has already stored
         </li>
         <li>
-          <strong>Historical events</strong> — notes older than 7 days from your
+          <strong>historical events</strong> — notes older than 7 days from your
           follows
         </li>
         <li>
-          <strong>Deep WoT</strong> — 3-hop+ pubkeys, if configured
+          <strong>deep WoT</strong> — 3-hop+ pubkeys, if configured
         </li>
       </ul>
       <p>
-        Tier 4 only starts after tiers 1–3 are complete. It runs very slowly — 5
+        tier 4 only starts after tiers 1–3 are complete. it runs very slowly — 5
         seconds between batches — and can take days to finish for a large social
-        graph. That's fine. This is background work that fills in the gaps over
+        graph. that's fine. this is background work that fills in the gaps over
         time.
       </p>
 
       <div className={styles.callout}>
-        <strong>Why tiers?</strong> Most relay apps try to fetch everything at
+        <strong>why tiers?</strong> most relay apps try to fetch everything at
         once, which overwhelms relays and makes the app feel slow on first
         launch. nostrito's tiered approach means your feed is usable in seconds,
         even while the full graph takes hours to build.
       </div>
 
-      <h2>Politeness policies</h2>
+      <h2>politeness policies</h2>
       <p>
-        nostrito is designed to be a good citizen on the Nostr network. It never
+        nostrito is designed to be a good citizen on the nostr network. it never
         floods relays with requests.
       </p>
 
-      <h3>Rate limiting</h3>
+      <h3>rate limiting</h3>
       <p>
-        By default, nostrito sends no more than{' '}
-        <strong>10 requests per minute</strong> to any single relay. If a relay
+        by default, nostrito sends no more than{' '}
+        <strong>10 requests per minute</strong> to any single relay. if a relay
         sends a NOTICE message containing the words "rate" or "limit," nostrito
         immediately pauses all requests to that relay for 60 seconds.
       </p>
 
-      <h3>Exponential backoff</h3>
+      <h3>exponential backoff</h3>
       <p>
-        When a relay connection fails, nostrito doesn't retry immediately. It
+        when a relay connection fails, nostrito doesn't retry immediately. it
         backs off exponentially:
       </p>
       <ul>
@@ -556,46 +556,46 @@ function SyncEnginePage() {
         <li>3rd failure: wait 30 seconds</li>
         <li>4th failure: wait 60 seconds</li>
         <li>5th failure: wait 120 seconds</li>
-        <li>Maximum: 300 seconds (5 minutes)</li>
+        <li>maximum: 300 seconds (5 minutes)</li>
       </ul>
       <p>
-        The backoff resets after a successful connection. This prevents nostrito
+        the backoff resets after a successful connection. this prevents nostrito
         from hammering a relay that's temporarily down.
       </p>
 
       <h3>
-        The <code>since</code> filter — never re-fetch old events
+        the <code>since</code> filter — never re-fetch old events
       </h3>
       <p>
-        After the initial sync, every subsequent request includes a{' '}
+        after the initial sync, every subsequent request includes a{' '}
         <code>since</code> timestamp set to the most recent event nostrito has
-        seen from that relay. This means nostrito only asks for <em>new</em>{' '}
-        events — it never re-downloads data it already has. This dramatically
+        seen from that relay. this means nostrito only asks for <em>new</em>{' '}
+        events — it never re-downloads data it already has. this dramatically
         reduces bandwidth and relay load over time.
       </p>
 
-      <h3>Primary relay</h3>
+      <h3>primary relay</h3>
       <p>
-        The first relay in your configuration is treated as the{' '}
+        the first relay in your configuration is treated as the{' '}
         <strong>primary relay</strong>. nostrito sends most of its requests
-        there. Other relays are used as fallbacks — if the primary doesn't have
-        what nostrito needs, it tries the others in order. This concentrates load
+        there. other relays are used as fallbacks — if the primary doesn't have
+        what nostrito needs, it tries the others in order. this concentrates load
         on a single relay (which you presumably trust) rather than spreading
         requests across many.
       </p>
 
-      <h2>Sync progress</h2>
+      <h2>sync progress</h2>
       <p>
-        nostrito emits real-time progress events as it syncs. The dashboard shows
+        nostrito emits real-time progress events as it syncs. the dashboard shows
         which tier is currently active, how many events have been fetched, and
-        which relay is being queried. When a tier completes, the app updates
+        which relay is being queried. when a tier completes, the app updates
         automatically.
       </p>
 
-      <h2>Surviving restarts</h2>
+      <h2>surviving restarts</h2>
       <p>
-        All sync progress is persisted to the database. If you quit nostrito
-        mid-sync and reopen it later, it resumes from where it left off. Tier 3
+        all sync progress is persisted to the database. if you quit nostrito
+        mid-sync and reopen it later, it resumes from where it left off. tier 3
         in particular tracks exactly which pubkeys have been processed, so it
         doesn't re-crawl follow lists it's already seen.
       </p>
@@ -606,93 +606,93 @@ function SyncEnginePage() {
 function StoragePage() {
   return (
     <>
-      <h1>Storage</h1>
+      <h1>storage</h1>
       <p className={styles.lead}>
         nostrito gives you full control over what gets stored and how much disk
-        space to use. Your data is always safe; everyone else's is quota-based.
+        space to use. your data is always safe; everyone else's is quota-based.
       </p>
 
-      <h2>Your events — always 100%</h2>
+      <h2>your events — always 100%</h2>
       <p>
-        Every event you've authored (notes, reactions, zaps, profile updates —
-        everything) is stored permanently. So is any media you've posted via
-        Blossom. This is non-negotiable: your data is yours, and nostrito never
+        every event you've authored (notes, reactions, zaps, profile updates —
+        everything) is stored permanently. so is any media you've posted via
+        blossom. this is non-negotiable: your data is yours, and nostrito never
         deletes it, no matter how tight storage gets.
       </p>
       <p>
-        This guarantee extends to all event kinds, all media types, and all time
-        periods. If you wrote it, nostrito keeps it.
+        this guarantee extends to all event kinds, all media types, and all time
+        periods. if you wrote it, nostrito keeps it.
       </p>
 
-      <h2>Others' events — quota-based</h2>
+      <h2>others' events — quota-based</h2>
       <p>
-        Events from people in your Web of Trust are stored up to the quota you
-        set during setup. You configure two separate limits:
+        events from people in your web of trust are stored up to the quota you
+        set during setup. you configure two separate limits:
       </p>
       <ul>
         <li>
-          <strong>Events quota</strong> — how many GB to allocate for text events
+          <strong>events quota</strong> — how many GB to allocate for text events
           (notes, replies, reactions, etc.) from others
         </li>
         <li>
-          <strong>Media quota</strong> — how many GB to allocate for Blossom
+          <strong>media quota</strong> — how many GB to allocate for blossom
           media (images, videos, audio) from others
         </li>
       </ul>
       <p>
-        Within the media quota, you can toggle which types to cache: images,
-        videos, and audio are each independently selectable. If you only care
+        within the media quota, you can toggle which types to cache: images,
+        videos, and audio are each independently selectable. if you only care
         about images, turn off videos and audio to save space.
       </p>
 
-      <h2>Blossom media verification</h2>
+      <h2>blossom media verification</h2>
       <p>
-        When nostrito downloads media from a Blossom URL, it doesn't just save
-        the file blindly. Every download is verified against the SHA-256 hash
-        embedded in the Blossom URL. If the hash doesn't match, the file is
-        discarded. This prevents tampered or corrupted media from polluting your
+        when nostrito downloads media from a blossom URL, it doesn't just save
+        the file blindly. every download is verified against the SHA-256 hash
+        embedded in the blossom URL. if the hash doesn't match, the file is
+        discarded. this prevents tampered or corrupted media from polluting your
         local cache.
       </p>
       <p>
-        Verified media is stored in <code>~/.nostrito/blossom/</code>, organized
-        by hash. When your Nostr client requests the file, nostrito serves it
+        verified media is stored in <code>~/.nostrito/blossom/</code>, organized
+        by hash. when your nostr client requests the file, nostrito serves it
         directly from disk — no network round-trip needed.
       </p>
 
-      <h2>Auto-cleanup</h2>
+      <h2>auto-cleanup</h2>
       <p>
-        When either quota fills up, nostrito automatically makes room using your
+        when either quota fills up, nostrito automatically makes room using your
         chosen strategy:
       </p>
       <ul>
         <li>
-          <strong>Oldest first</strong> — deletes the oldest events and media
-          first. Simple and predictable.
+          <strong>oldest first</strong> — deletes the oldest events and media
+          first. simple and predictable.
         </li>
         <li>
-          <strong>Least interacted</strong> — keeps events you've engaged with
+          <strong>least interacted</strong> — keeps events you've engaged with
           (replied to, reacted to, zapped) and removes the ones you haven't.
-          Smarter, but slightly more complex.
+          smarter, but slightly more complex.
         </li>
       </ul>
       <p>
-        Cleanup never touches your own events. Only others' data is subject to
+        cleanup never touches your own events. only others' data is subject to
         quota limits.
       </p>
 
       <h2>WoT-aware storage priority</h2>
       <p>
-        Not all contacts are equal. Events from 1-hop contacts (people you
-        directly follow) get storage priority over 2-hop or 3-hop contacts. When
+        not all contacts are equal. events from 1-hop contacts (people you
+        directly follow) get storage priority over 2-hop or 3-hop contacts. when
         cleanup runs, it removes distant contacts' data first.
       </p>
 
-      <h2>Database</h2>
+      <h2>database</h2>
       <p>
-        All event data lives in a single SQLite database at{' '}
+        all event data lives in a single SQLite database at{' '}
         <code>~/.nostrito/data.db</code>, using WAL mode for fast concurrent
-        reads. Media files are stored separately in{' '}
-        <code>~/.nostrito/blossom/</code>. To back up everything, just copy the{' '}
+        reads. media files are stored separately in{' '}
+        <code>~/.nostrito/blossom/</code>. to back up everything, just copy the{' '}
         <code>~/.nostrito/</code> directory.
       </p>
     </>
@@ -702,35 +702,35 @@ function StoragePage() {
 function WebOfTrustPage() {
   return (
     <>
-      <h1>Web of Trust</h1>
+      <h1>web of trust</h1>
       <p className={styles.lead}>
-        nostrito builds a trust graph from the Nostr network and uses it to
-        decide which events to store, serve, and prioritize. No centralized
+        nostrito builds a trust graph from the nostr network and uses it to
+        decide which events to store, serve, and prioritize. no centralized
         authority — just math on follow lists.
       </p>
 
-      <h2>The core idea</h2>
+      <h2>the core idea</h2>
       <p>
-        On Nostr, every user publishes a <strong>follow list</strong> (a kind:3
-        event) that says "these are the people I follow." nostrito reads these
-        lists and builds a graph of who trusts whom. The closer someone is to you
+        on nostr, every user publishes a <strong>follow list</strong> (a kind:3
+        event) that says "these are the people i follow." nostrito reads these
+        lists and builds a graph of who trusts whom. the closer someone is to you
         in this graph, the more nostrito trusts them.
       </p>
 
-      <h2>How the graph is built</h2>
+      <h2>how the graph is built</h2>
       <p>
-        It starts with you. nostrito fetches your kind:3 event from a relay and
-        extracts every pubkey you follow. Those are your{' '}
+        it starts with you. nostrito fetches your kind:3 event from a relay and
+        extracts every pubkey you follow. those are your{' '}
         <strong>1-hop contacts</strong> — people you directly trust.
       </p>
       <p>
-        Then nostrito fetches the kind:3 events for each of your follows. The
+        then nostrito fetches the kind:3 events for each of your follows. the
         people <em>they</em> follow (but you don't) become your{' '}
-        <strong>2-hop contacts</strong>. One more round gives you{' '}
+        <strong>2-hop contacts</strong>. one more round gives you{' '}
         <strong>3-hop contacts</strong>.
       </p>
       <p>
-        The result is a directed graph with you at the center. nostrito stores
+        the result is a directed graph with you at the center. nostrito stores
         this graph in memory for fast lookups and persists it to SQLite so it
         survives restarts.
       </p>
@@ -738,23 +738,23 @@ function WebOfTrustPage() {
       <h2>BFS algorithm</h2>
       <p>
         nostrito uses <strong>breadth-first search (BFS)</strong> to compute
-        trust distances. Starting from your pubkey, it explores the graph layer
+        trust distances. starting from your pubkey, it explores the graph layer
         by layer:
       </p>
       <ol>
         <li>
-          <strong>Layer 0:</strong> You. Trust distance = 0.
+          <strong>layer 0:</strong> you. trust distance = 0.
         </li>
         <li>
-          <strong>Layer 1:</strong> Everyone in your follow list. Trust distance
+          <strong>layer 1:</strong> everyone in your follow list. trust distance
           = 1.
         </li>
         <li>
-          <strong>Layer 2:</strong> Everyone followed by layer-1 contacts (who
-          isn't already in layer 0 or 1). Trust distance = 2.
+          <strong>layer 2:</strong> everyone followed by layer-1 contacts (who
+          isn't already in layer 0 or 1). trust distance = 2.
         </li>
         <li>
-          <strong>Layer 3:</strong> Same pattern, one more hop out. Trust
+          <strong>layer 3:</strong> same pattern, one more hop out. trust
           distance = 3.
         </li>
       </ol>
@@ -764,32 +764,32 @@ function WebOfTrustPage() {
         minimum number of hops from you.
       </p>
 
-      <h2>Trust scoring</h2>
-      <p>Distance alone isn't the whole picture. nostrito also factors in:</p>
+      <h2>trust scoring</h2>
+      <p>distance alone isn't the whole picture. nostrito also factors in:</p>
       <ul>
         <li>
-          <strong>Follower count from your WoT</strong> — if many of your
+          <strong>follower count from your WoT</strong> — if many of your
           follows also follow someone, that person is more trusted than someone
           reached by a single chain
         </li>
         <li>
-          <strong>Mutual follows</strong> — bidirectional follow relationships
+          <strong>mutual follows</strong> — bidirectional follow relationships
           carry more weight than one-way follows
         </li>
         <li>
-          <strong>Bridge nodes</strong> — nostrito can identify which contacts
+          <strong>bridge nodes</strong> — nostrito can identify which contacts
           act as "bridges" connecting you to a distant pubkey
         </li>
       </ul>
 
-      <h2>Hop depths in practice</h2>
+      <h2>hop depths in practice</h2>
       <table className={styles.docsTable}>
         <thead>
           <tr>
-            <th>Depth</th>
-            <th>Who's included</th>
-            <th>Typical size</th>
-            <th>Trust level</th>
+            <th>depth</th>
+            <th>who's included</th>
+            <th>typical size</th>
+            <th>trust level</th>
           </tr>
         </thead>
         <tbody>
@@ -797,37 +797,37 @@ function WebOfTrustPage() {
             <td>
               <strong>1-hop</strong>
             </td>
-            <td>People you directly follow</td>
+            <td>people you directly follow</td>
             <td>50–500 pubkeys</td>
-            <td>High — you chose to follow them</td>
+            <td>high — you chose to follow them</td>
           </tr>
           <tr>
             <td>
               <strong>2-hop</strong>
             </td>
-            <td>People your follows follow</td>
+            <td>people your follows follow</td>
             <td>5,000–50,000 pubkeys</td>
-            <td>Medium — vouched for by someone you trust</td>
+            <td>medium — vouched for by someone you trust</td>
           </tr>
           <tr>
             <td>
               <strong>3-hop</strong>
             </td>
-            <td>One more degree out</td>
+            <td>one more degree out</td>
             <td>100,000+ pubkeys</td>
-            <td>Low — useful for spam filtering, not for curation</td>
+            <td>low — useful for spam filtering, not for curation</td>
           </tr>
         </tbody>
       </table>
 
       <div className={styles.callout}>
-        <strong>Why 3 hops max?</strong> Beyond 3 hops, the graph expands so
-        rapidly that nearly everyone on Nostr is included. At that point, trust
+        <strong>why 3 hops max?</strong> beyond 3 hops, the graph expands so
+        rapidly that nearly everyone on nostr is included. at that point, trust
         distance stops being meaningful. nostrito defaults to 3 but you can lower
         it to 2 or 1 if you want a tighter circle.
       </div>
 
-      <h2>Configuration</h2>
+      <h2>configuration</h2>
       <pre className={styles.codeBlock}>
         <span className={styles.key}>[wot]</span>
         {'\n'}
@@ -846,9 +846,9 @@ function WebOfTrustPage() {
         </span>
       </pre>
 
-      <h2>Storage integration</h2>
+      <h2>storage integration</h2>
       <p>
-        WoT depth directly controls what nostrito stores. You can set different
+        WoT depth directly controls what nostrito stores. you can set different
         policies per depth — for example, store all event types from 1-hop
         contacts but only short notes from 2-hop:
       </p>
@@ -876,7 +876,7 @@ function WebOfTrustPage() {
         </span>
       </pre>
       <p>
-        Events from pubkeys outside your configured WoT depth are silently
+        events from pubkeys outside your configured WoT depth are silently
         dropped — they never touch your database.
       </p>
     </>
@@ -886,29 +886,29 @@ function WebOfTrustPage() {
 function BlossomMediaPage() {
   return (
     <>
-      <h1>Blossom Media</h1>
+      <h1>blossom media</h1>
       <p className={styles.lead}>
-        nostrito automatically caches media from Blossom URLs, verified by hash.
+        nostrito automatically caches media from blossom URLs, verified by hash.
       </p>
 
-      <h2>What is Blossom?</h2>
+      <h2>what is blossom?</h2>
       <p>
-        Blossom is a content-addressed media hosting protocol for Nostr. Files
+        blossom is a content-addressed media hosting protocol for nostr. files
         are referenced by their SHA-256 hash, making them verifiable and
         portable.
       </p>
 
-      <h2>How nostrito handles media</h2>
-      <p>When nostrito encounters a Blossom URL in an event, it:</p>
+      <h2>how nostrito handles media</h2>
+      <p>when nostrito encounters a blossom URL in an event, it:</p>
       <ol>
         <li>
-          Downloads the file to <code>~/.nostrito/blossom/</code>
+          downloads the file to <code>~/.nostrito/blossom/</code>
         </li>
-        <li>Verifies the SHA-256 hash matches</li>
-        <li>Serves it locally when clients request it</li>
+        <li>verifies the SHA-256 hash matches</li>
+        <li>serves it locally when clients request it</li>
       </ol>
 
-      <h2>Configuration</h2>
+      <h2>configuration</h2>
       <pre className={styles.codeBlock}>
         <span className={styles.key}>[blossom]</span>
         {'\n'}
@@ -934,12 +934,12 @@ function BlossomMediaPage() {
 function AdvancedConfigPage() {
   return (
     <>
-      <h1>Advanced Configuration</h1>
+      <h1>advanced configuration</h1>
       <p className={styles.lead}>
-        Fine-tune nostrito's behavior for power users.
+        fine-tune nostrito's behavior for power users.
       </p>
 
-      <h2>Daemon Mode</h2>
+      <h2>daemon mode</h2>
       <p>
         nostrito can run as a background daemon, starting automatically on login:
       </p>
@@ -949,24 +949,24 @@ function AdvancedConfigPage() {
         </span>
         {'\n'}nostrito daemon install{'\n\n'}
         <span className={styles.comment}>
-          # Linux: install as systemd service
+          # linux: install as systemd service
         </span>
         {'\n'}nostrito daemon install --systemd{'\n\n'}
-        <span className={styles.comment}># Manual start</span>
+        <span className={styles.comment}># manual start</span>
         {'\n'}nostrito daemon start
       </pre>
 
-      <h2>Database Maintenance</h2>
-      <p>Compact the database to reclaim space:</p>
+      <h2>database maintenance</h2>
+      <p>compact the database to reclaim space:</p>
       <pre className={styles.codeBlock}>
         nostrito db compact{'\n'}nostrito db stats
       </pre>
 
-      <h2>Debug Logging</h2>
+      <h2>debug logging</h2>
       <pre className={styles.codeBlock}>
-        <span className={styles.comment}># Enable verbose logging</span>
+        <span className={styles.comment}># enable verbose logging</span>
         {'\n'}NOSTRITO_LOG=debug nostrito{'\n\n'}
-        <span className={styles.comment}># Or in config</span>
+        <span className={styles.comment}># or in config</span>
         {'\n'}
         <span className={styles.key}>[logging]</span>
         {'\n'}
@@ -974,7 +974,7 @@ function AdvancedConfigPage() {
         <span className={styles.str}>"debug"</span>
       </pre>
 
-      <h2>Network Configuration</h2>
+      <h2>network configuration</h2>
       <pre className={styles.codeBlock}>
         <span className={styles.key}>[network]</span>
         {'\n'}
@@ -987,7 +987,7 @@ function AdvancedConfigPage() {
         <span className={styles.val}>proxy</span> ={' '}
         <span className={styles.str}>"socks5://127.0.0.1:9050"</span>
         {'  '}
-        <span className={styles.comment}># Tor support</span>
+        <span className={styles.comment}># tor support</span>
       </pre>
     </>
   )
@@ -996,19 +996,19 @@ function AdvancedConfigPage() {
 function RelayApiPage() {
   return (
     <>
-      <h1>Relay API</h1>
+      <h1>relay API</h1>
       <p className={styles.lead}>
         nostrito implements NIP-01 and additional NIPs for local relay
         functionality.
       </p>
 
-      <h2>Supported NIPs</h2>
+      <h2>supported NIPs</h2>
       <table className={styles.docsTable}>
         <thead>
           <tr>
             <th>NIP</th>
-            <th>Description</th>
-            <th>Status</th>
+            <th>description</th>
+            <th>status</th>
           </tr>
         </thead>
         <tbody>
@@ -1016,42 +1016,42 @@ function RelayApiPage() {
             <td>
               <code>NIP-01</code>
             </td>
-            <td>Basic protocol flow</td>
-            <td>Full</td>
+            <td>basic protocol flow</td>
+            <td>full</td>
           </tr>
           <tr>
             <td>
               <code>NIP-02</code>
             </td>
-            <td>Follow List</td>
-            <td>Full</td>
+            <td>follow list</td>
+            <td>full</td>
           </tr>
           <tr>
             <td>
               <code>NIP-09</code>
             </td>
-            <td>Event Deletion</td>
-            <td>Full</td>
+            <td>event deletion</td>
+            <td>full</td>
           </tr>
           <tr>
             <td>
               <code>NIP-11</code>
             </td>
-            <td>Relay Information</td>
-            <td>Full</td>
+            <td>relay information</td>
+            <td>full</td>
           </tr>
           <tr>
             <td>
               <code>NIP-45</code>
             </td>
-            <td>Counting results</td>
-            <td>Planned</td>
+            <td>counting results</td>
+            <td>planned</td>
           </tr>
         </tbody>
       </table>
 
-      <h2>Connecting</h2>
-      <p>Connect any NIP-01 compatible client to:</p>
+      <h2>connecting</h2>
+      <p>connect any NIP-01 compatible client to:</p>
       <pre className={styles.codeBlock}>ws://localhost:4869</pre>
     </>
   )
@@ -1062,51 +1062,51 @@ function FaqPage() {
     <>
       <h1>FAQ</h1>
       <p className={styles.lead}>
-        Frequently asked questions about nostrito.
+        frequently asked questions about nostrito.
       </p>
 
-      <h2>Is nostrito a full relay?</h2>
+      <h2>is nostrito a full relay?</h2>
       <p>
-        nostrito is a <strong>personal</strong> relay. It only accepts connections
-        from localhost by default and only stores events from your Web of Trust.
-        It's not designed to be a public relay.
+        nostrito is a <strong>personal</strong> relay. it only accepts connections
+        from localhost by default and only stores events from your web of trust.
+        it's not designed to be a public relay.
       </p>
 
-      <h2>Does nostrito work offline?</h2>
+      <h2>does nostrito work offline?</h2>
       <p>
-        Yes! Once your events are synced, they're stored locally. Your Nostr
+        yes! once your events are synced, they're stored locally. your nostr
         client can read from nostrito even without an internet connection.
       </p>
 
-      <h2>How much storage does it use?</h2>
+      <h2>how much storage does it use?</h2>
       <p>
-        That depends on your configuration. A typical setup with 2-hop WoT, 5 GB
-        events quota, and 2 GB media quota uses about 2-5 GB total. Your own
+        that depends on your configuration. a typical setup with 2-hop WoT, 5 GB
+        events quota, and 2 GB media quota uses about 2-5 GB total. your own
         events are stored separately and don't count toward the quota.
       </p>
 
-      <h2>Can I use it alongside other relays?</h2>
+      <h2>can i use it alongside other relays?</h2>
       <p>
-        Absolutely. Add nostrito as one of your client's relays. It complements
+        absolutely. add nostrito as one of your client's relays. it complements
         public relays by providing fast local access and offline capability.
       </p>
 
-      <h2>Is my data encrypted?</h2>
+      <h2>is my data encrypted?</h2>
       <p>
-        nostrito stores data in a SQLite database on your machine. The data
-        itself is not encrypted at rest (since it's already public Nostr events),
+        nostrito stores data in a SQLite database on your machine. the data
+        itself is not encrypted at rest (since it's already public nostr events),
         but your machine's full-disk encryption protects it.
       </p>
 
-      <h2>How do I back up my data?</h2>
+      <h2>how do i back up my data?</h2>
       <p>
-        Copy the <code>~/.nostrito/</code> directory. It contains the database
+        copy the <code>~/.nostrito/</code> directory. it contains the database
         and all cached media.
       </p>
 
-      <h2>Can I run it on a server?</h2>
+      <h2>can i run it on a server?</h2>
       <p>
-        Yes, but nostrito is designed as a personal relay. If you want to expose
+        yes, but nostrito is designed as a personal relay. if you want to expose
         it externally, consider using a reverse proxy with authentication.
       </p>
     </>
@@ -1141,8 +1141,8 @@ export default function DocsPage() {
   return (
     <>
       <SEO
-        title="nostrito — Documentation"
-        description="Documentation for nostrito, your personal Nostr relay."
+        title="nostrito — documentation"
+        description="documentation for nostrito, your personal social network."
         url="https://nostrito.com/docs"
       />
 
@@ -1158,11 +1158,11 @@ export default function DocsPage() {
         </Link>
         <ul className={styles.docsNavLinks}>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">home</Link>
           </li>
           <li>
             <Link to="/docs" className={styles.docsNavLinkActive}>
-              Docs
+              docs
             </Link>
           </li>
           <li>
@@ -1171,7 +1171,7 @@ export default function DocsPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
+              github
             </a>
           </li>
         </ul>

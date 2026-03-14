@@ -3,11 +3,11 @@ import Container from '@/components/ui/Container'
 import styles from './Nav.module.css'
 
 const ANCHOR_LINKS = [
-  { label: 'Features', href: '#features' },
-  { label: 'How it works', href: '#how' },
-  { label: 'Demo', href: '#demo' },
-  { label: 'Architecture', href: '#architecture' },
-  { label: 'Gossip', href: '#gossip' },
+  { label: 'features', href: '#features' },
+  { label: 'how it works', href: '#how' },
+  { label: 'demo', href: '#demo' },
+  { label: 'architecture', href: '#architecture' },
+  { label: 'gozzip', href: '#gossip' },
 ] as const
 
 export default function Nav() {
@@ -29,10 +29,10 @@ export default function Nav() {
             </li>
           ))}
           <li>
-            <Link to="/docs">Docs</Link>
+            <Link to="/docs">docs</Link>
           </li>
           <li>
-            <Link to="/media">Media Kit</Link>
+            <Link to="/media">media kit</Link>
           </li>
           <li>
             <a
@@ -41,7 +41,7 @@ export default function Nav() {
               rel="noopener noreferrer"
               className={styles.navCta}
             >
-              GitHub &rarr;
+              github &rarr;
             </a>
           </li>
         </ul>

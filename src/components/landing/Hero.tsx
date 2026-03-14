@@ -8,26 +8,19 @@ export default function Hero() {
     <section className={styles.hero}>
       <Container>
         <h1 className={styles.tagline}>
-          Social media<br />you actually own.
+          your personal<br />social network.
         </h1>
         <p className={styles.subtitle}>
-          Nostr is a new way to share online — where you keep your identity,
-          your followers, and your content. No company can ban you, algorithm-feed
-          you, or sell your data. nostrito makes it effortless: install, open,
-          and you're in. No technical setup required.
+          a new way to share online. your profile, followers and posts belong to you.
+          <br />
+          just install it, open it and start. nothing to set up.
         </p>
         <div className={styles.ctas}>
           <Button variant="primary" href="#demo">
-            <span className={styles.btnIcon}><Icon name="gamepad" size={16} /></span> Try the Demo
+            <span className={styles.btnIcon}><Icon name="gamepad" size={16} /></span> try the demo
           </Button>
-          <Button variant="secondary" href="#">
-            <span className={styles.btnIcon}><Icon name="apple" size={16} /></span> Download for Mac
-          </Button>
-          <Button variant="secondary" href="#">
-            <span className={styles.btnIcon}><Icon name="linux" size={16} /></span> Linux
-          </Button>
-          <Button variant="secondary" href="#">
-            <span className={styles.btnIcon}><Icon name="windows" size={16} /></span> Windows
+          <Button variant="secondary" href="/download">
+            <span className={styles.btnIcon}><Icon name="apple" size={16} /></span> download
           </Button>
         </div>
       </Container>

@@ -6,10 +6,10 @@ export default function Architecture() {
     <section id="architecture" className={styles.section}>
       <Container>
         <div className={styles.sectionHeader}>
-          <h2>Built to be invisible.</h2>
+          <h2>built to be invisible.</h2>
           <p>
-            A single Rust binary. Five async components. One SQLite database.
-            Runs quietly in the background.
+            a single rust binary. five async components. one SQLite database.
+            runs quietly in the background.
           </p>
         </div>
         <pre className={styles.diagram}>

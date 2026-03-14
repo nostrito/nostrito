@@ -9,9 +9,9 @@ interface SEOProps {
 }
 
 const DEFAULTS = {
-  title: 'nostrito — Your Personal Nostr Relay',
+  title: 'nostrito — your personal social network',
   description:
-    'A personal Nostr mini-relay that lives on your machine. WoT-aware, offline-first, always yours.',
+    'a personal social network that lives on your machine. WoT-aware, offline-first, always yours.',
   url: 'https://nostrito.com',
   image: 'https://nostrito.com/assets/nostrito-preview.jpg',
   type: 'website',

@@ -6,8 +6,8 @@ export default function MediaPage() {
   return (
     <div className={styles.mediaPage}>
       <SEO
-        title="nostrito — Media Kit"
-        description="Download social media banners and assets for sharing nostrito across platforms."
+        title="nostrito — media kit"
+        description="download social media banners and assets for sharing nostrito across platforms."
         url="https://nostrito.com/media"
       />
 
@@ -23,7 +23,7 @@ export default function MediaPage() {
             nostrito
           </Link>
           <Link to="/" className={styles.navLink}>
-            &larr; Back to site
+            &larr; back to site
           </Link>
         </div>
       </nav>
@@ -31,15 +31,15 @@ export default function MediaPage() {
       <div className={styles.container}>
         {/* Page Header */}
         <div className={styles.pageHeader}>
-          <h1>nostrito — Media Kit</h1>
+          <h1>nostrito — media kit</h1>
           <p>
-            Download assets and banners for sharing nostrito across platforms.
+            download assets and banners for sharing nostrito across platforms.
           </p>
         </div>
 
         {/* Twitter/X Header */}
         <div className={styles.bannerSection}>
-          <h2 className={styles.bannerLabel}>Twitter / X Header · 1500 × 500</h2>
+          <h2 className={styles.bannerLabel}>twitter / X header · 1500 × 500</h2>
           <div className={styles.bannerWrap}>
             <div className={styles.bannerTwitter}>
               <div className={styles.logoSide}>
@@ -52,21 +52,21 @@ export default function MediaPage() {
               <div className={styles.textSide}>
                 <div className={styles.textSideName}>nostrito</div>
                 <div className={styles.textSideTagline}>
-                  your personal nostr relay
+                  your personal social network
                 </div>
               </div>
               <div className={styles.bannerUrl}>nostrito.com</div>
             </div>
           </div>
           <div className={styles.bannerNote}>
-            Right-click → Save as image, or screenshot at 1500×500 for
+            right-click → save as image, or screenshot at 1500×500 for
             pixel-perfect export.
           </div>
         </div>
 
         {/* Square Post */}
         <div className={styles.bannerSection}>
-          <h2 className={styles.bannerLabel}>Square Post · 1080 × 1080</h2>
+          <h2 className={styles.bannerLabel}>square post · 1080 × 1080</h2>
           <div className={styles.bannerWrapInline}>
             <div className={styles.bannerSquare}>
               <img
@@ -76,20 +76,20 @@ export default function MediaPage() {
               />
               <div className={styles.bannerSquareName}>nostrito</div>
               <div className={styles.bannerSquareTagline}>
-                your personal nostr relay
+                your personal social network
               </div>
               <div className={styles.bannerSquareUrl}>nostrito.com</div>
             </div>
           </div>
           <div className={styles.bannerNote}>
-            Rendered at 540×540. Actual export size: 1080×1080.
+            rendered at 540×540. actual export size: 1080×1080.
           </div>
         </div>
 
         {/* GitHub Social Preview */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>
-            GitHub Social Preview · 1280 × 640
+            github social preview · 1280 × 640
           </h2>
           <div className={styles.bannerWrapInline}>
             <div className={styles.bannerGithub}>
@@ -101,7 +101,7 @@ export default function MediaPage() {
                 />
                 <div className={styles.githubLeftName}>nostrito</div>
                 <div className={styles.githubLeftTagline}>
-                  your personal nostr relay
+                  your personal social network
                 </div>
               </div>
               <div className={styles.githubRight}>
@@ -113,8 +113,8 @@ export default function MediaPage() {
                     </svg>
                   </div>
                   <div className={styles.featureText}>
-                    <strong>Personal Relay</strong>
-                    <span>WebSocket server on localhost</span>
+                    <strong>personal relay</strong>
+                    <span>websocket server on localhost</span>
                   </div>
                 </div>
                 <div className={styles.featureItem}>
@@ -124,8 +124,8 @@ export default function MediaPage() {
                     </svg>
                   </div>
                   <div className={styles.featureText}>
-                    <strong>Offline-First</strong>
-                    <span>Your data, always available</span>
+                    <strong>offline-first</strong>
+                    <span>your data, always available</span>
                   </div>
                 </div>
                 <div className={styles.featureItem}>
@@ -137,21 +137,21 @@ export default function MediaPage() {
                     </svg>
                   </div>
                   <div className={styles.featureText}>
-                    <strong>Open Source</strong>
-                    <span>MIT licensed · Rust</span>
+                    <strong>open source</strong>
+                    <span>MIT licensed · rust</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className={styles.bannerNote}>
-            Rendered at 640×320. Actual export size: 1280×640.
+            rendered at 640×320. actual export size: 1280×640.
           </div>
         </div>
 
         {/* Minimal Badge */}
         <div className={styles.bannerSection}>
-          <h2 className={styles.bannerLabel}>Minimal Badge · 400 × 100</h2>
+          <h2 className={styles.bannerLabel}>minimal badge · 400 × 100</h2>
           <div className={styles.bannerWrapNoBorder}>
             <div className={styles.bannerBadge}>
               <img
@@ -164,11 +164,11 @@ export default function MediaPage() {
                 <div className={styles.badgeTextWs}>ws://localhost:4869</div>
               </div>
               <div className={styles.badgeDivider} />
-              <div className={styles.badgeLabel}>RELAY</div>
+              <div className={styles.badgeLabel}>relay</div>
             </div>
           </div>
           <div className={styles.bannerNote}>
-            Badge-style asset for READMEs and docs.
+            badge-style asset for READMEs and docs.
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@ export default function MediaPage() {
       {/* Footer */}
       <footer className={styles.pageFooter}>
         <div className={styles.container}>
-          <Link to="/">&larr; Back to nostrito.com</Link>
+          <Link to="/">&larr; back to nostrito.com</Link>
         </div>
       </footer>
     </div>

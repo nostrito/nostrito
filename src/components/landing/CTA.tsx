@@ -6,7 +6,7 @@ export default function CTA() {
   return (
     <section className={styles.section}>
       <Container>
-        <h2>Own your feed.</h2>
+        <h2>own your feed.</h2>
         <p>
           nostrito is open source, MIT licensed, and built for people who believe
           their data should live on their machine.
@@ -16,10 +16,10 @@ export default function CTA() {
             variant="primary"
             href="https://github.com/nostrito/nostrito"
           >
-            View on GitHub →
+            view on github →
           </Button>
           <Button variant="secondary" href="/docs">
-            Documentation
+            documentation
           </Button>
         </div>
       </Container>
