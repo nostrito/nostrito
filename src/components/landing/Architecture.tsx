@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import styles from './Architecture.module.css'
 
@@ -5,14 +6,26 @@ export default function Architecture() {
   return (
     <section id="architecture" className={styles.section}>
       <Container>
-        <div className={styles.sectionHeader}>
+        <motion.div
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <h2>built to be invisible.</h2>
           <p>
             a single rust binary. five async components. one SQLite database.
             runs quietly in the background.
           </p>
-        </div>
-        <pre className={styles.diagram}>
+        </motion.div>
+        <motion.pre
+          className={styles.diagram}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+        >
 <span className={styles.label}>Nostr Network</span>                          <span className={styles.label}>Your Machine</span>{'\n'}
 {'\n'}
 {'┌─────────────────┐               ┌──────────────────────────────────┐\n'}
@@ -31,7 +44,7 @@ export default function Architecture() {
 {'                                  ┌───────────▼──────────────────────┐\n'}
 {'                                  │  '}<span className={styles.label}>Damus / Amethyst / any client</span>{'   │\n'}
 {'                                  └──────────────────────────────────┘'}
-        </pre>
+        </motion.pre>
       </Container>
     </section>
   )

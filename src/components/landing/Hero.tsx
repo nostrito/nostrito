@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react'
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Icon from '@/components/ui/Icon'
@@ -62,20 +63,35 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <Container>
-        <h1 className={styles.tagline}>
+        <motion.h1
+          className={styles.tagline}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
           your personal<br />social network.
-        </h1>
-        <p className={styles.subtitle}>
+        </motion.h1>
+        <motion.p
+          className={styles.subtitle}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+        >
           <span className={styles.subtitleLead}>a new way to <strong>be</strong> online.</span>
-        </p>
-        <div className={styles.ctas}>
+        </motion.p>
+        <motion.div
+          className={styles.ctas}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
+        >
           <Button variant="secondary" href="#demo">
             <span className={styles.btnIcon}><Icon name="gamepad" size={16} /></span> demo
           </Button>
           <Button variant="primary" href="/download">
             <span className={styles.btnIcon}><Icon name="apple" size={16} /></span> download
           </Button>
-        </div>
+        </motion.div>
       </Container>
 
       <div className={styles.paradeTrack} aria-hidden="true">

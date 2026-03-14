@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import Icon from '@/components/ui/Icon'
 import styles from './Features.module.css'
@@ -35,16 +36,16 @@ const FEATURES: { icon: ReactNode; iconClass: string; title: string; description
   {
     icon: <Icon name="web" />,
     iconClass: styles.fiWot,
-    title: 'web of trust sync',
+    title: 'kith and kin',
     description:
-      'computes your trust graph from your follow list. only fetches events from people you actually trust — not the entire network.',
+      'check the feeds of the people you decided to follow and the people they follow by default — not the entire network. explore global mode if bored.',
   },
   {
     icon: <Icon name="zap" />,
     iconClass: styles.fiDaemon,
     title: 'track anyone',
     description:
-      'pin profiles you care about — their events, media, and activity stay synced and cached on your machine. browse their media gallery, see stats, all offline.',
+      'pin profiles you care about — their posts, articles and media stay synced on nostrito. also efficiently block!',
   },
 ]
 
@@ -52,7 +53,13 @@ export default function Features() {
   return (
     <section id="features" className={styles.section}>
       <Container>
-        <div className={styles.sectionHeader}>
+        <motion.div
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <h2>
             everything you need.<br />nothing you don't.
           </h2>
@@ -60,10 +67,17 @@ export default function Features() {
             nostrito does one thing well: keeps your social data local, trusted,
             and available.
           </p>
-        </div>
+        </motion.div>
         <div className={styles.grid}>
-          {FEATURES.map((feature) => (
-            <div key={feature.title} className={styles.card}>
+          {FEATURES.map((feature, i) => (
+            <motion.div
+              key={feature.title}
+              className={styles.card}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
+            >
               <div className={`${styles.icon} ${feature.iconClass}`}>
                 {feature.icon}
               </div>
@@ -77,7 +91,7 @@ export default function Features() {
                   know the name — nostrito handles the rest.
                 </p>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>

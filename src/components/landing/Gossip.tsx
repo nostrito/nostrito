@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import Icon from '@/components/ui/Icon'
 import styles from './Gossip.module.css'
@@ -27,7 +28,13 @@ export default function Gossip() {
     <section id="gossip" className={styles.section}>
       <Container>
         <div className={styles.content}>
-          <div className={styles.text}>
+          <motion.div
+            className={styles.text}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
             <h2>
               future: <em className={styles.gradientText}><a href="https://gozzip.org" target="_blank" rel="noopener noreferrer">gozzip protocol</a></em>
             </h2>
@@ -44,8 +51,14 @@ export default function Gossip() {
                 </li>
               ))}
             </ul>
-          </div>
-          <pre className={styles.visual}>
+          </motion.div>
+          <motion.pre
+            className={styles.visual}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
+          >
 {'  '}<span className={styles.purple}>you (nostrito)</span>{'\n'}
 {'       │\n'}
 {'       ├──── '}<span className={styles.green}>alice (pact peer)</span>{'\n'}
@@ -63,7 +76,7 @@ export default function Gossip() {
 {'  your data lives in your\n'}
 {'  '}<span className={styles.purple}>trust network</span>{', not on\n'}
 {"  someone else's server."}
-          </pre>
+          </motion.pre>
         </div>
       </Container>
     </section>

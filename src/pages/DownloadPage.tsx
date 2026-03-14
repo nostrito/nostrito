@@ -7,23 +7,9 @@ const PLATFORMS = [
   {
     icon: <Icon name="apple" size={32} />,
     name: 'macOS',
-    description: 'apple silicon & intel. requires macOS 12+.',
-    filename: 'nostrito.dmg',
-    href: '#',
-  },
-  {
-    icon: <Icon name="linux" size={32} />,
-    name: 'linux',
-    description: 'x86_64 and aarch64. single binary, no dependencies.',
-    filename: 'nostrito-linux-x86_64',
-    href: '#',
-  },
-  {
-    icon: <Icon name="windows" size={32} />,
-    name: 'windows',
-    description: 'windows 10+. portable executable.',
-    filename: 'nostrito.exe',
-    href: '#',
+    description: 'apple silicon. requires macOS 12+.',
+    filename: 'nostrito_0.1.0_aarch64.dmg',
+    href: 'https://github.com/nostrito/nostrito-app/releases/download/v0.1.0/nostrito_0.1.0_aarch64.dmg',
   },
 ] as const
 
@@ -32,7 +18,7 @@ export default function DownloadPage() {
     <div className={styles.page}>
       <SEO
         title="nostrito — download"
-        description="download nostrito for mac, linux, or windows. your personal social network."
+        description="download nostrito for mac. your personal social network."
         url="https://nostrito.com/download"
       />
 

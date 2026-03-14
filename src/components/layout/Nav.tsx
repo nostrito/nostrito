@@ -1,16 +1,17 @@
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import Container from '@/components/ui/Container'
 import styles from './Nav.module.css'
 
-const ANCHOR_LINKS = [
-  { label: 'features', href: '#features' },
-  { label: 'how it works', href: '#how' },
-  { label: 'demo', href: '#demo' },
-  { label: 'architecture', href: '#architecture' },
-  { label: 'gozzip', href: '#gossip' },
-] as const
-
 export default function Nav() {
+  const [open, setOpen] = useState(false)
+  const location = useLocation()
+
+  // close menu on navigation
+  useEffect(() => {
+    setOpen(false)
+  }, [location.pathname])
+
   return (
     <nav className={styles.nav}>
       <Container className={styles.navContainer}>
@@ -22,30 +23,45 @@ export default function Nav() {
           />
           nostrito
         </Link>
+
+        {/* Desktop links */}
         <ul className={styles.navLinks}>
-          {ANCHOR_LINKS.map(({ label, href }) => (
-            <li key={href}>
-              <a href={href}>{label}</a>
-            </li>
-          ))}
           <li>
             <Link to="/docs">docs</Link>
           </li>
           <li>
-            <Link to="/media">media kit</Link>
-          </li>
-          <li>
-            <a
-              href="https://github.com/nostrito/nostrito"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.navCta}
-            >
-              github &rarr;
-            </a>
+            <Link to="/download" className={styles.navCta}>
+              download &rarr;
+            </Link>
           </li>
         </ul>
+
+        {/* Hamburger button */}
+        <button
+          className={`${styles.burger} ${open ? styles.burgerOpen : ''}`}
+          onClick={() => setOpen(v => !v)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </Container>
+
+      {/* Mobile drawer */}
+      <div className={`${styles.drawer} ${open ? styles.drawerOpen : ''}`}>
+        <ul className={styles.drawerLinks}>
+          <li><Link to="/">home</Link></li>
+          <li><Link to="/docs">docs</Link></li>
+          <li><Link to="/download" className={styles.drawerCta}>download</Link></li>
+        </ul>
+        <img
+          src="/assets/nostrito-white.svg"
+          alt="nostrito"
+          className={styles.drawerLogo}
+        />
+      </div>
     </nav>
   )
 }

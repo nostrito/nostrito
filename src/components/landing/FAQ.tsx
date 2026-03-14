@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import styles from './FAQ.module.css'
 
@@ -44,23 +45,33 @@ export default function FAQ() {
   return (
     <section id="faq" className={styles.section}>
       <Container>
-        <div className={styles.sectionHeader}>
+        <motion.div
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <h2>common questions.</h2>
           <p>things people ask before running their own relay.</p>
-        </div>
+        </motion.div>
         <div className={styles.list}>
-          {FAQ_ITEMS.map((item) => (
-            <details
+          {FAQ_ITEMS.map((item, i) => (
+            <motion.details
               key={item.question}
               className={styles.item}
               open={item.defaultOpen || undefined}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.4, delay: i * 0.08, ease: 'easeOut' }}
             >
               <summary>
                 {item.question}
                 <span className={styles.icon}>+</span>
               </summary>
               <p className={styles.answer}>{item.answer}</p>
-            </details>
+            </motion.details>
           ))}
         </div>
       </Container>

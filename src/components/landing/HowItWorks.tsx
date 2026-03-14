@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Container from '@/components/ui/Container'
 import styles from './HowItWorks.module.css'
 
@@ -13,9 +14,9 @@ const STEPS = [
       'nostrito discovers your network, builds your web of trust, and starts pulling events from people you actually follow. track specific profiles to cache their full media history.',
   },
   {
-    title: 'use any client',
+    title: 'start exploring',
     description:
-      'your favorite nostr app connects to nostrito automatically. your feed with infinite scroll, profile pages with banners and follows — all served from your machine.',
+      'your feed fills up very quickly with the information most interest you, and creates a local backup of your whole history. you can port it anywhere after that!',
   },
 ] as const
 
@@ -23,16 +24,29 @@ export default function HowItWorks() {
   return (
     <section id="how" className={styles.section}>
       <Container>
-        <div className={styles.sectionHeader}>
+        <motion.div
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
           <h2>up and running in a minute.</h2>
           <p>no terminal. no config files. just open the app.</p>
-        </div>
+        </motion.div>
         <div className={styles.steps}>
-          {STEPS.map((step) => (
-            <div key={step.title} className={styles.step}>
+          {STEPS.map((step, i) => (
+            <motion.div
+              key={step.title}
+              className={styles.step}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: i * 0.15, ease: 'easeOut' }}
+            >
               <h3>{step.title}</h3>
               <p>{step.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>
