@@ -9,27 +9,28 @@ const FEATURES: { icon: ReactNode; iconClass: string; title: string; description
     iconClass: styles.fiRelay,
     title: 'your own server',
     description:
-      'a full websocket relay on localhost. use damus, amethyst, or any client with it. your feed, served from your machine.',
+      'fully local, everything happens in your computer. lightweight and customizable. keep it simple, or make it difficult as you want.',
   },
   {
     icon: <Icon name="blossom" />,
     iconClass: styles.fiMedia,
-    title: 'blossom media backup',
+    title: 'media backup',
     description:
-      'every image, video, and file from your network gets backed up locally — automatically. SHA-256 verified. yours forever, even if the original server disappears.',
+      'every image, video, and file that you post gets backed up locally — automatically. yours forever, even if the original server disappears.',
   },
   {
     icon: <Icon name="target" />,
     iconClass: styles.fiConfig,
     title: 'human-friendly config',
-    description: null,
+    description:
+      'choose social network clients by name, and connect with your friends\' social networks via link. you know the name — nostrito handles the rest.',
   },
   {
     icon: <Icon name="lock" />,
     iconClass: styles.fiOffline,
     title: 'offline mode',
     description:
-      'one toggle to go fully offline — disable all outbound relay sync instantly. your data stays local, no leaks, no connections. go dark whenever you want.',
+      'one toggle to go fully offline — disable all communications instantly. your data stays local, no leaks, no connections. go dark whenever you want.',
   },
   {
     icon: <Icon name="web" />,
@@ -56,7 +57,7 @@ export default function Features() {
             everything you need.<br />nothing you don't.
           </h2>
           <p>
-            nostrito does one thing well: keeps your nostr data local, trusted,
+            nostrito does one thing well: keeps your social data local, trusted,
             and available.
           </p>
         </div>

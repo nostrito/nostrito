@@ -14,14 +14,19 @@ const FOOTER_LINKS = [
     external: false,
   },
   {
-    label: 'spec',
-    href: 'https://github.com/nostrito/nostrito/blob/main/SPEC.md',
-    external: true,
+    label: 'media kit',
+    href: '/media',
+    external: false,
   },
   {
     label: 'MIT license',
     href: 'https://github.com/nostrito/nostrito/blob/main/LICENSE',
     external: true,
+  },
+  {
+    label: 'terms',
+    href: '/terms',
+    external: false,
   },
 ] as const
 
@@ -53,8 +58,9 @@ export default function Footer() {
             alt="nostrito"
             className={styles.taglineLogo}
           />
-          nostrito — your relay, your data, your rules.
+          nostrito — your personal social network.
         </p>
+        <p className={styles.credit}>made by los acosta, with balls.</p>
       </Container>
     </footer>
   )

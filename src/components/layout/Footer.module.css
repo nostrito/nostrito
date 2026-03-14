@@ -38,3 +38,9 @@
   margin-right: 6px;
   border-radius: 3px;
 }
+
+.credit {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
