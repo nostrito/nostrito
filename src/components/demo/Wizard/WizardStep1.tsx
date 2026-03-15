@@ -23,9 +23,6 @@ export default function WizardStep1() {
         >
           <div className={styles.identityOptionTitle}>
             <Icon name="book" size={16} /> Read-only
-            <span className={styles.identityOptionRecommended}>
-              Recommended
-            </span>
           </div>
           <div className={styles.identityOptionDesc}>
             Paste your npub. DMs disabled, everything else works.
