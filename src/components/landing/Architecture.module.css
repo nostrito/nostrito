@@ -21,37 +21,15 @@
   margin: 0 auto;
 }
 
+.diagramContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .diagram {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 800px;
+  height: auto;
   border-radius: 16px;
-  padding: 48px;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  line-height: 1.5;
-  overflow-x: auto;
-  color: var(--text-dim);
-  white-space: pre;
-  text-align: center;
-}
-
-.label {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.accent {
-  color: var(--accent);
-}
-
-.green {
-  color: var(--green);
-}
-
-.purple {
-  color: var(--purple);
-}
-
-.blue {
-  color: var(--blue);
+  border: 1px solid var(--border);
 }
