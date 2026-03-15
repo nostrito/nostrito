@@ -25,6 +25,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  z-index: 110;
 }
 
 .logoImg {
@@ -64,4 +65,114 @@
 .navCta:hover {
   opacity: 0.9;
   color: #fff !important;
+}
+
+/* Hamburger */
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 110;
+}
+
+.burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.burgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile drawer */
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.97);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 105;
+}
+
+.drawerOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawerLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 0;
+  margin: 0;
+}
+
+.drawerLinks a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.drawerLinks a:hover {
+  color: var(--text);
+}
+
+.drawerCta {
+  color: var(--accent) !important;
+}
+
+.drawerCta:hover {
+  color: var(--accent-light) !important;
+}
+
+.drawerLogo {
+  width: 48px;
+  height: 48px;
+  opacity: 0.15;
+  position: absolute;
+  bottom: 40px;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .navLinks {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
 }
