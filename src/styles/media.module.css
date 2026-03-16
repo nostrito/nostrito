@@ -86,6 +86,44 @@
   max-width: 520px;
 }
 
+/* ─── Section Dividers ─── */
+.sectionDivider {
+  margin-top: 64px;
+  margin-bottom: 40px;
+  padding-top: 48px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.sectionDivider:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.sectionTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.sectionDesc {
+  font-size: 0.88rem;
+  color: #666;
+  max-width: 520px;
+  line-height: 1.5;
+}
+
+/* ─── Asset Description ─── */
+.assetDescription {
+  font-size: 0.84rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+
 /* ─── Banner Sections ─── */
 .bannerSection {
   margin-bottom: 64px;
@@ -528,6 +566,25 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   z-index: 1;
+}
+
+/* ─── Architecture Diagram ─── */
+.architectureImg {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  padding: 24px;
+}
+
+/* ─── Demo GIF ─── */
+.demoGifImg {
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 24px;
 }
 
 /* ─── OG Preview (image) ─── */

@@ -65,7 +65,7 @@ export default function MediaPage() {
     <div className={styles.mediaPage}>
       <SEO
         title="nostrito — media kit"
-        description="download social media banners and assets for sharing nostrito across platforms."
+        description="download social media banners, architecture diagrams, and brand assets for sharing nostrito across platforms."
         url="https://nostrito.com/media"
       />
 
@@ -91,13 +91,89 @@ export default function MediaPage() {
         <div className={styles.pageHeader}>
           <h1>nostrito — media kit</h1>
           <p>
-            download assets and banners for sharing nostrito across platforms.
+            brand assets, architecture diagrams, and social banners — everything
+            you need to share nostrito across platforms.
+          </p>
+        </div>
+
+        {/* ─── Section: Architecture & Technical ─── */}
+        <div className={styles.sectionDivider}>
+          <h2 className={styles.sectionTitle}>architecture &amp; technical</h2>
+          <p className={styles.sectionDesc}>
+            diagrams and visuals that explain how nostrito works under the hood.
+          </p>
+        </div>
+
+        {/* Architecture Diagram */}
+        <div className={styles.bannerSection}>
+          <h2 className={styles.bannerLabel}>architecture diagram · SVG</h2>
+          <p className={styles.assetDescription}>
+            high-level overview of nostrito's internal architecture — the sync engine,
+            Web of Trust engine, SQLite storage, Blossom media server, relay server,
+            and how client apps connect. shows the five async components running
+            inside a single rust binary.
+          </p>
+          <div className={styles.bannerOgWrap}>
+            <img
+              src="/assets/architecture-diagram.svg"
+              alt="nostrito architecture diagram — sync engine, WoT engine, SQLite, Blossom storage, relay server, and client connections"
+              className={styles.architectureImg}
+            />
+          </div>
+          <div className={styles.bannerActions}>
+            <a
+              className={styles.btnDownloadLink}
+              href="/assets/architecture-diagram.svg"
+              download="nostrito-architecture-diagram.svg"
+            >
+              {downloadIcon}
+              download SVG
+            </a>
+          </div>
+        </div>
+
+        {/* Animated Demo */}
+        <div className={styles.bannerSection}>
+          <h2 className={styles.bannerLabel}>animated relay demo · GIF</h2>
+          <p className={styles.assetDescription}>
+            animated preview showing nostrito's personal relay running locally —
+            the nostr mascot in action. useful for blog posts, presentations,
+            or social media to show nostrito in motion.
+          </p>
+          <div className={styles.bannerOgWrap}>
+            <img
+              src="/assets/nostr-running.gif"
+              alt="nostrito animated relay demo"
+              className={styles.demoGifImg}
+            />
+          </div>
+          <div className={styles.bannerActions}>
+            <a
+              className={styles.btnDownloadLink}
+              href="/assets/nostr-running.gif"
+              download="nostrito-running-demo.gif"
+            >
+              {downloadIcon}
+              download GIF
+            </a>
+          </div>
+        </div>
+
+        {/* ─── Section: Brand Identity ─── */}
+        <div className={styles.sectionDivider}>
+          <h2 className={styles.sectionTitle}>brand identity</h2>
+          <p className={styles.sectionDesc}>
+            logos, profile pictures, and wordmarks for consistent branding.
           </p>
         </div>
 
         {/* Profile Picture */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>profile picture · 512 × 512</h2>
+          <p className={styles.assetDescription}>
+            standard profile avatar on a white background. use for nostr profiles,
+            github accounts, forum avatars, or anywhere a square icon is needed.
+          </p>
           <div className={styles.bannerWrapNoBorder}>
             <div ref={profileRef} className={styles.bannerProfile}>
               <img
@@ -121,6 +197,10 @@ export default function MediaPage() {
         {/* Profile Picture Dark */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>profile picture (dark) · 512 × 512</h2>
+          <p className={styles.assetDescription}>
+            dark variant of the profile avatar — ideal for platforms with dark themes
+            or when placed on dark backgrounds.
+          </p>
           <div className={styles.bannerWrapNoBorder}>
             <div ref={profileDarkRef} className={styles.bannerProfileDark}>
               <img
@@ -145,6 +225,11 @@ export default function MediaPage() {
         {/* Wordmark */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>wordmark · 800 × 200</h2>
+          <p className={styles.assetDescription}>
+            horizontal logo + name lockup. use in documentation headers,
+            readme files, or partner pages where the full brand name should appear
+            alongside the icon.
+          </p>
           <div className={styles.bannerWrapInline}>
             <div ref={wordmarkRef} className={styles.bannerWordmark}>
               <img
@@ -166,9 +251,49 @@ export default function MediaPage() {
           </div>
         </div>
 
+        {/* Logo Files */}
+        <div className={styles.bannerSection}>
+          <h2 className={styles.bannerLabel}>logo files</h2>
+          <p className={styles.assetDescription}>
+            raw SVG logo files for maximum flexibility — scale to any size without
+            quality loss. available in black (for light backgrounds) and white
+            (for dark backgrounds).
+          </p>
+          <div className={styles.bannerActions}>
+            <a
+              className={styles.btnDownloadLink}
+              href="/assets/nostrito.svg"
+              download="nostrito-logo.svg"
+            >
+              {downloadIcon}
+              logo SVG (black)
+            </a>
+            <a
+              className={styles.btnDownloadLink}
+              href="/assets/nostrito-white.svg"
+              download="nostrito-logo-white.svg"
+            >
+              {downloadIcon}
+              logo SVG (white)
+            </a>
+          </div>
+        </div>
+
+        {/* ─── Section: Social Media Banners ─── */}
+        <div className={styles.sectionDivider}>
+          <h2 className={styles.sectionTitle}>social media banners</h2>
+          <p className={styles.sectionDesc}>
+            ready-to-use banners sized for each platform. download as PNG and upload directly.
+          </p>
+        </div>
+
         {/* Twitter/X Header */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>twitter / X header · 1500 × 500</h2>
+          <p className={styles.assetDescription}>
+            cover image for twitter/X profiles. clean white design with logo on
+            the left and tagline on the right — fits the recommended header dimensions.
+          </p>
           <div className={styles.bannerWrap}>
             <div ref={twitterRef} className={styles.bannerTwitter}>
               <div className={styles.logoSide}>
@@ -201,6 +326,11 @@ export default function MediaPage() {
         {/* Nostr Banner */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>nostr profile banner · 1500 × 500</h2>
+          <p className={styles.assetDescription}>
+            dark-themed banner designed for nostr client profiles. features a subtle
+            purple glow accent and "personal relay" label — matches the aesthetic
+            of most nostr clients.
+          </p>
           <div className={styles.bannerWrap}>
             <div ref={nostrRef} className={styles.bannerNostr}>
               <div className={styles.nostrLogoSide}>
@@ -235,6 +365,10 @@ export default function MediaPage() {
         {/* Square Post */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>square post · 1080 × 1080</h2>
+          <p className={styles.assetDescription}>
+            square format for instagram, nostr image posts, or any social feed.
+            centered layout with logo, name, tagline, and URL.
+          </p>
           <div className={styles.bannerWrapInline}>
             <div ref={squareRef} className={styles.bannerSquare}>
               <img
@@ -260,11 +394,25 @@ export default function MediaPage() {
           </div>
         </div>
 
+        {/* ─── Section: Developer & Platform ─── */}
+        <div className={styles.sectionDivider}>
+          <h2 className={styles.sectionTitle}>developer &amp; platform</h2>
+          <p className={styles.sectionDesc}>
+            assets for github, open graph previews, and developer-facing contexts.
+          </p>
+        </div>
+
         {/* GitHub Social Preview */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>
             github social preview · 1280 × 640
           </h2>
+          <p className={styles.assetDescription}>
+            optimized for github's repository social preview. shows the nostrito
+            logo alongside three key features — personal relay, offline-first
+            architecture, and open source licensing. appears when the repo is
+            shared on social media or in link previews.
+          </p>
           <div className={styles.bannerWrapInline}>
             <div ref={githubRef} className={styles.bannerGithub}>
               <div className={styles.githubLeft}>
@@ -334,6 +482,11 @@ export default function MediaPage() {
           <h2 className={styles.bannerLabel}>
             open graph / social preview · 1200 × 630
           </h2>
+          <p className={styles.assetDescription}>
+            the default image shown when nostrito.com is shared on any platform
+            that supports open graph tags — slack, discord, telegram, imessage,
+            etc. pre-rendered in both JPG and SVG formats.
+          </p>
           <div className={styles.bannerOgWrap}>
             <img
               src="/assets/nostrito-preview.jpg"
@@ -364,6 +517,11 @@ export default function MediaPage() {
         {/* Minimal Badge */}
         <div className={styles.bannerSection}>
           <h2 className={styles.bannerLabel}>minimal badge · 400 × 100</h2>
+          <p className={styles.assetDescription}>
+            compact badge showing the nostrito logo, name, and default relay
+            websocket address. embed in documentation, blog posts, or readmes
+            to indicate nostrito relay compatibility.
+          </p>
           <div className={styles.bannerWrapNoBorder}>
             <div ref={badgeRef} className={styles.bannerBadge}>
               <img
@@ -387,29 +545,6 @@ export default function MediaPage() {
               width={800}
               height={200}
             />
-          </div>
-        </div>
-
-        {/* Raw Logo Downloads */}
-        <div className={styles.bannerSection}>
-          <h2 className={styles.bannerLabel}>logo files</h2>
-          <div className={styles.bannerActions}>
-            <a
-              className={styles.btnDownloadLink}
-              href="/assets/nostrito.svg"
-              download="nostrito-logo.svg"
-            >
-              {downloadIcon}
-              logo SVG (black)
-            </a>
-            <a
-              className={styles.btnDownloadLink}
-              href="/assets/nostrito-white.svg"
-              download="nostrito-logo-white.svg"
-            >
-              {downloadIcon}
-              logo SVG (white)
-            </a>
           </div>
         </div>
       </div>
