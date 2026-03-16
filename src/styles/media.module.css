@@ -123,6 +123,43 @@
   color: #999;
 }
 
+.bannerActions {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btnDownload {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  background: #111;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.btnDownload:hover {
+  background: #333;
+}
+
+.btnDownload svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* ─── Twitter Header 1500x500 ─── */
 .bannerTwitter {
   width: 100%;
@@ -377,6 +414,206 @@
   transform: rotate(180deg);
 }
 
+/* ─── Profile Picture 512x512 (rendered at 256x256) ─── */
+.bannerProfile {
+  width: 256px;
+  height: 256px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.bannerProfileImg {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+/* ─── Profile Picture Dark ─── */
+.bannerProfileDark {
+  width: 256px;
+  height: 256px;
+  background: #0a0a0a;
+  border: 2px solid #222;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.bannerProfileDarkImg {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+/* ─── Nostr Banner 1500x500 ─── */
+.bannerNostr {
+  width: 100%;
+  aspect-ratio: 1500 / 500;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bannerNostr::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.nostrLogoSide {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.nostrLogoImg {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.nostrTextSide {
+  text-align: right;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.nostrName {
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #e8e8f0;
+  line-height: 1;
+}
+
+.nostrTagline {
+  font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+  color: #7a7a90;
+  font-weight: 400;
+  margin-top: 6px;
+}
+
+.nostrUrl {
+  position: absolute;
+  bottom: 12px;
+  right: 60px;
+  font-size: clamp(0.55rem, 1vw, 0.8rem);
+  color: #55556a;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  z-index: 1;
+}
+
+.nostrAccent {
+  position: absolute;
+  bottom: 12px;
+  left: 60px;
+  font-size: clamp(0.5rem, 0.9vw, 0.72rem);
+  color: #7c3aed;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* ─── OG Preview (image) ─── */
+.bannerOgWrap {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: inline-block;
+}
+
+.bannerOgImg {
+  width: 600px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Wordmark 800x200 (rendered at 400x100) ─── */
+.bannerWordmark {
+  width: 400px;
+  height: 100px;
+  max-width: 100%;
+  background: #fff;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.wordmarkImg {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.wordmarkText {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #000;
+  line-height: 1;
+}
+
+/* ─── Direct download link ─── */
+.btnDownloadLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  background: #111;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.btnDownloadLink:hover {
+  background: #333;
+  color: #fff;
+}
+
+.btnDownloadLink svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* ─── Footer ─── */
 .pageFooter {
   border-top: 1px solid #e0e0e0;
@@ -430,6 +667,28 @@
   }
 
   .bannerBadge {
+    width: 100%;
+  }
+
+  .bannerNostr {
+    padding: 0 24px;
+    gap: 20px;
+  }
+
+  .nostrLogoImg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .nostrUrl {
+    right: 24px;
+  }
+
+  .nostrAccent {
+    left: 24px;
+  }
+
+  .bannerWordmark {
     width: 100%;
   }
 }
