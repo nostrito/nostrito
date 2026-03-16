@@ -12,25 +12,36 @@ const downloadIcon = (
   </svg>
 )
 
-function DownloadButton({ label, targetRef, filename, scale, bg }: {
+function DownloadButton({ label, targetRef, filename, width, height, bg }: {
   label: string
   targetRef: React.RefObject<HTMLDivElement | null>
   filename: string
-  scale: number
+  width: number
+  height: number
   bg?: string
 }) {
   const handleDownload = useCallback(async () => {
     if (!targetRef.current) return
-    const canvas = await html2canvas(targetRef.current, {
+    const el = targetRef.current
+    const scale = width / el.offsetWidth
+    const canvas = await html2canvas(el, {
       scale,
       useCORS: true,
       backgroundColor: bg ?? '#ffffff',
+      width: el.offsetWidth,
+      height: el.offsetHeight,
     })
+    // Resize to exact target dimensions if needed
+    const out = document.createElement('canvas')
+    out.width = width
+    out.height = height
+    const ctx = out.getContext('2d')!
+    ctx.drawImage(canvas, 0, 0, width, height)
     const link = document.createElement('a')
     link.download = `${filename}.png`
-    link.href = canvas.toDataURL('image/png')
+    link.href = out.toDataURL('image/png')
     link.click()
-  }, [targetRef, filename, scale, bg])
+  }, [targetRef, filename, width, height, bg])
 
   return (
     <button className={styles.btnDownload} onClick={handleDownload}>
@@ -101,7 +112,8 @@ export default function MediaPage() {
               label="download PNG (512×512)"
               targetRef={profileRef}
               filename="nostrito-profile"
-              scale={2}
+              width={512}
+              height={512}
             />
           </div>
         </div>
@@ -123,7 +135,8 @@ export default function MediaPage() {
               label="download PNG (512×512)"
               targetRef={profileDarkRef}
               filename="nostrito-profile-dark"
-              scale={2}
+              width={512}
+              height={512}
               bg="#0a0a0a"
             />
           </div>
@@ -147,7 +160,8 @@ export default function MediaPage() {
               label="download PNG (800×200)"
               targetRef={wordmarkRef}
               filename="nostrito-wordmark"
-              scale={2}
+              width={800}
+              height={200}
             />
           </div>
         </div>
@@ -178,7 +192,8 @@ export default function MediaPage() {
               label="download PNG (1500×500)"
               targetRef={twitterRef}
               filename="nostrito-twitter-header"
-              scale={2}
+              width={1500}
+              height={500}
             />
           </div>
         </div>
@@ -210,7 +225,8 @@ export default function MediaPage() {
               label="download PNG (1500×500)"
               targetRef={nostrRef}
               filename="nostrito-nostr-banner"
-              scale={2}
+              width={1500}
+              height={500}
               bg="#0a0a0a"
             />
           </div>
@@ -238,7 +254,8 @@ export default function MediaPage() {
               label="download PNG (1080×1080)"
               targetRef={squareRef}
               filename="nostrito-square-post"
-              scale={2}
+              width={1080}
+              height={1080}
             />
           </div>
         </div>
@@ -306,7 +323,8 @@ export default function MediaPage() {
               label="download PNG (1280×640)"
               targetRef={githubRef}
               filename="nostrito-github-preview"
-              scale={2}
+              width={1280}
+              height={640}
             />
           </div>
         </div>
@@ -366,7 +384,8 @@ export default function MediaPage() {
               label="download PNG (800×200)"
               targetRef={badgeRef}
               filename="nostrito-badge"
-              scale={2}
+              width={800}
+              height={200}
             />
           </div>
         </div>
