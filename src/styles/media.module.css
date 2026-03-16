@@ -180,9 +180,8 @@
 }
 
 .logoSideImg {
-  width: 120px;
+  width: auto;
   height: 120px;
-  object-fit: contain;
 }
 
 .textSide {
@@ -233,9 +232,8 @@
 }
 
 .bannerSquareImg {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
+  width: auto;
+  height: 140px;
   margin-bottom: 24px;
 }
 
@@ -287,9 +285,8 @@
 }
 
 .githubLeftImg {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+  width: auto;
+  height: 100px;
 }
 
 .githubLeftName {
@@ -372,9 +369,8 @@
 }
 
 .badgeImg {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
+  width: auto;
+  height: 50px;
 }
 
 .badgeText {
@@ -429,9 +425,8 @@
 }
 
 .bannerProfileImg {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
+  width: auto;
+  height: 180px;
 }
 
 /* ─── Profile Picture Dark ─── */
@@ -449,9 +444,8 @@
 }
 
 .bannerProfileDarkImg {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
+  width: auto;
+  height: 180px;
 }
 
 /* ─── Nostr Banner 1500x500 ─── */
@@ -488,9 +482,8 @@
 }
 
 .nostrLogoImg {
-  width: 120px;
+  width: auto;
   height: 120px;
-  object-fit: contain;
 }
 
 .nostrTextSide {
@@ -568,9 +561,8 @@
 }
 
 .wordmarkImg {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
+  width: auto;
+  height: 60px;
 }
 
 .wordmarkText {
@@ -641,7 +633,7 @@
   }
 
   .logoSideImg {
-    width: 60px;
+    width: auto;
     height: 60px;
   }
 
@@ -676,7 +668,7 @@
   }
 
   .nostrLogoImg {
-    width: 60px;
+    width: auto;
     height: 60px;
   }
 
